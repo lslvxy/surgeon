@@ -8,13 +8,13 @@ import com.github.surgeon.api.DictServiceI;
 import com.github.surgeon.dto.DictSaveCmd;
 import com.github.surgeon.dto.cmd.DeleteByIdCmd;
 import com.github.surgeon.dto.data.DictDTO;
-import com.github.surgeon.executor.DictDeleteCmdExe;
-import com.github.surgeon.executor.DictSaveExe;
-import com.github.surgeon.executor.query.FileFindByIdQryExe;
-import com.github.surgeon.executor.query.FileListAllQryExe;
-import com.github.surgeon.executor.query.FileListByNameQryExe;
 import com.github.surgeon.dto.query.IdQuery;
 import com.github.surgeon.dto.query.NameQuery;
+import com.github.surgeon.executor.DictDeleteCmdExe;
+import com.github.surgeon.executor.DictSaveExe;
+import com.github.surgeon.executor.query.DictFindByIdQryExe;
+import com.github.surgeon.executor.query.DictListAllQryExe;
+import com.github.surgeon.executor.query.DictListByNameQryExe;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -29,25 +29,25 @@ public class DictServiceImpl implements DictServiceI {
     private DictDeleteCmdExe dictDeleteCmdExe;
 
     @Resource
-    private FileListByNameQryExe fileListByNameQryExe;
+    private DictListByNameQryExe dictListByNameQryExe;
     @Resource
-    private FileListAllQryExe    fileListAllQryExe;
+    private DictListAllQryExe    dictListAllQryExe;
     @Resource
-    private FileFindByIdQryExe   fileFindByIdQryExe;
+    private DictFindByIdQryExe   dictFindByIdQryExe;
 
     @Override
     public SingleResponse<DictDTO> findById(IdQuery query) {
-        return fileFindByIdQryExe.execute(query);
+        return dictFindByIdQryExe.execute(query);
     }
 
     @Override
     public MultiResponse<DictDTO> listByName(NameQuery fileListByNameQry) {
-        return fileListByNameQryExe.execute(fileListByNameQry);
+        return dictListByNameQryExe.execute(fileListByNameQry);
     }
 
     @Override
     public MultiResponse<DictDTO> findAll() {
-        return fileListAllQryExe.execute();
+        return dictListAllQryExe.execute();
     }
 
     @Override
