@@ -29,7 +29,7 @@ public class FileController extends BaseController {
     @Autowired
     private FileServiceI fileService;
 
-    @GetMapping(value = "/list-by-name")
+    @PostMapping(value = "/list-by-name")
     public MultiResponse<FileDTO> listByName(@RequestParam(required = false) String name) {
         NameQuery query = new NameQuery();
         query.setName(name);

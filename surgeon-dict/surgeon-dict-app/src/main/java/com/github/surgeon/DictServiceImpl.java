@@ -5,6 +5,7 @@ import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.github.surgeon.api.DictServiceI;
+import com.github.surgeon.dto.DictSaveCmd;
 import com.github.surgeon.dto.cmd.DeleteByIdCmd;
 import com.github.surgeon.dto.data.DictDTO;
 import com.github.surgeon.executor.DictDeleteCmdExe;
@@ -52,6 +53,16 @@ public class DictServiceImpl implements DictServiceI {
     @Override
     public Response delete(DeleteByIdCmd cmd) {
         return dictDeleteCmdExe.execute(cmd);
+    }
+
+    @Override
+    public SingleResponse<DictDTO> create(DictSaveCmd cmd) {
+        return dictSaveExe.execute(cmd);
+    }
+
+    @Override
+    public SingleResponse<DictDTO> update(DictSaveCmd cmd) {
+        return dictSaveExe.execute(cmd);
     }
 
 }

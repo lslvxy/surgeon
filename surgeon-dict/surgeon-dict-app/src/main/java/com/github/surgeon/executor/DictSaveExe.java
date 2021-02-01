@@ -1,6 +1,7 @@
 
 package com.github.surgeon.executor;
 
+import com.alibaba.cola.dto.SingleResponse;
 import com.github.surgeon.convertor.DictDTOConvertor;
 import com.github.surgeon.domain.Dict;
 import com.github.surgeon.domain.gateway.DictGateway;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 @Component
 public class DictSaveExe {
@@ -19,9 +21,15 @@ public class DictSaveExe {
     @Autowired
     private DictDTOConvertor dictDTOConvertor;
 
-    public DictDTO execute(DictSaveCmd cmd) {
+    public SingleResponse<DictDTO> execute(DictSaveCmd cmd) {
         Dict dict = dictDTOConvertor.toEntity(cmd.getDictDTO());
-        return dictDTOConvertor.toDto(dictGateway.create(dict));
+        if (Objects.isNull(cmd.getDictDTO().getId())) {
+            dict = dictGateway.create(dict);
+        } else {
+            dict = dictGateway.update(dict);
+        }
+        DictDTO dictDTO = dictDTOConvertor.toDto(dict);
+        return SingleResponse.of(dictDTO);
     }
 
 }

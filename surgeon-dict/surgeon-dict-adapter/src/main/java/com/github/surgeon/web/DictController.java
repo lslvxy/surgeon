@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("file")
-public class FileController extends BaseController {
+@RequestMapping("dict")
+public class DictController extends BaseController {
 
     @Autowired
     private DictServiceI fileService;
 
-    @GetMapping(value = "/list-by-name")
+    @PostMapping(value = "/list-by-name")
     public MultiResponse<DictDTO> listByName(@RequestParam(required = false) String name) {
         NameQuery query = new NameQuery();
         query.setName(name);
