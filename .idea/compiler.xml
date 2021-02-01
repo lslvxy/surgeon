@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="surgeon-autoconfig" />
+        <module name="surgeon-file-adapter" />
+        <module name="surgeon-dict-client" />
+        <module name="surgeon-upms-test" />
+        <module name="surgeon-dict-domain" />
+        <module name="surgeon-file-test" />
+        <module name="surgeon-file-domain" />
+        <module name="kamala-jdbc" />
+        <module name="surgeon-dict-test" />
+        <module name="surgeon-upms-client" />
+        <module name="surgeon-dict-app" />
+        <module name="surgeon-upms-infrastructure" />
+        <module name="kamala-autoconfig" />
+        <module name="surgeon-file-app" />
+        <module name="surgeon-common" />
+        <module name="surgeon-upms-adapter" />
+        <module name="surgeon-file-start" />
+        <module name="surgeon-file-client" />
+        <module name="kamala-common" />
+        <module name="surgeon-dict-infrastructure" />
+        <module name="surgeon-upms-app" />
+        <module name="surgeon-dict-adapter" />
+        <module name="surgeon-file-infrastructure" />
+        <module name="surgeon-upms-domain" />
+        <module name="surgeon-mbg-plugin" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="crux-autoconfig" target="8" />
+      <module name="crux-common" target="8" />
+      <module name="crux-jdbc" target="8" />
+      <module name="crux-parent" target="8" />
+      <module name="kamala-autoconfig" target="8" />
+      <module name="kamala-common" target="8" />
+      <module name="kamala-jdbc" target="8" />
+      <module name="kamala-parent" target="8" />
+      <module name="start" target="8" />
+      <module name="start (1)" target="8" />
+      <module name="surgeon-autoconfig" target="8" />
+      <module name="surgeon-common" target="8" />
+      <module name="surgeon-dict-adapter" target="8" />
+      <module name="surgeon-dict-app" target="8" />
+      <module name="surgeon-dict-client" target="8" />
+      <module name="surgeon-dict-domain" target="8" />
+      <module name="surgeon-dict-infrastructure" target="8" />
+      <module name="surgeon-dict-parent" target="8" />
+      <module name="surgeon-dict-test" target="8" />
+      <module name="surgeon-file-adapter" target="8" />
+      <module name="surgeon-file-app" target="8" />
+      <module name="surgeon-file-client" target="8" />
+      <module name="surgeon-file-domain" target="8" />
+      <module name="surgeon-file-infrastructure" target="8" />
+      <module name="surgeon-file-parent" target="8" />
+      <module name="surgeon-file-start" target="8" />
+      <module name="surgeon-file-test" target="8" />
+      <module name="surgeon-jdbc" target="8" />
+      <module name="surgeon-mbg-plugin" target="8" />
+      <module name="surgeon-parent" target="8" />
+      <module name="surgeon-upms-adapter" target="8" />
+      <module name="surgeon-upms-app" target="8" />
+      <module name="surgeon-upms-client" target="8" />
+      <module name="surgeon-upms-domain" target="8" />
+      <module name="surgeon-upms-infrastructure" target="8" />
+      <module name="surgeon-upms-parent" target="8" />
+      <module name="surgeon-upms-start" target="8" />
+      <module name="surgeon-upms-test" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

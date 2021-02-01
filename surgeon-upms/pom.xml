@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.github.surgeon</groupId>
+        <artifactId>surgeon-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>surgeon-upms-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>surgeon-upms</name>
+
+
+    <modules>
+        <module>surgeon-upms-client</module>
+        <module>surgeon-upms-adapter</module>
+        <module>surgeon-upms-app</module>
+        <module>surgeon-upms-domain</module>
+        <module>surgeon-upms-infrastructure</module>
+        <module>surgeon-upms-test</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--Project modules-->
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-upms-adapter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-upms-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-upms-app</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-upms-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-upms-infrastructure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-upms-provider</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--Project modules End-->
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

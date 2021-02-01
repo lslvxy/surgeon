@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.github.surgeon</groupId>
+        <artifactId>surgeon-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>surgeon-dict-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>surgeon-dict</name>
+
+
+    <modules>
+        <module>surgeon-dict-client</module>
+        <module>surgeon-dict-adapter</module>
+        <module>surgeon-dict-app</module>
+        <module>surgeon-dict-domain</module>
+        <module>surgeon-dict-infrastructure</module>
+        <module>surgeon-dict-test</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+
+
+            <!--Project modules-->
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-dict-adapter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-dict-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-dict-app</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-dict-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-dict-infrastructure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-dict-provider</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--Project modules End-->
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

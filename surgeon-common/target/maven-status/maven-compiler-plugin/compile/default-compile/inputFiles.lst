@@ -1,0 +1,16 @@
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/base/BaseDomain.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/base/BaseDO.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/util/IdUtil.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/base/BaseConvertor.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/query/NameQuery.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/query/IdQuery.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/util/ThrowableUtil.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/enums/DeleteStatusEnum.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/constant/KamalaConstants.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/exception/BadRequestException.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/exception/EntityExistException.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/exception/EntityNotFoundException.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/base/BaseController.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/base/BaseEnum.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/enums/CommonStatusEnum.java
+/Users/lise/WorkSpace/surgeon/surgeon-common/src/main/java/com/github/surgeon/base/BaseMapper.java

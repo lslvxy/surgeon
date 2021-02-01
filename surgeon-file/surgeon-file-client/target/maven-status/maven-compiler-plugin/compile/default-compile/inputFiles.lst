@@ -1,0 +1,12 @@
+/Users/lise/WorkSpace/surgeon/surgeon-file/surgeon-file-client/src/main/java/com/github/surgeon/constant/Constants.java
+/Users/lise/WorkSpace/surgeon/surgeon-file/surgeon-file-client/src/main/java/com/github/surgeon/dto/event/DomainEventConstant.java
+/Users/lise/WorkSpace/surgeon/surgeon-file/surgeon-file-client/src/main/java/com/github/surgeon/dto/FileSaveCmd.java
+/Users/lise/WorkSpace/surgeon/surgeon-file/surgeon-file-client/src/main/java/com/github/surgeon/dto/FileDeleteCmd.java
+/Users/lise/WorkSpace/surgeon/surgeon-file/surgeon-file-client/src/main/java/com/github/surgeon/dto/data/ErrorCode.java
+/Users/lise/WorkSpace/surgeon/surgeon-file/surgeon-file-client/src/main/java/com/github/surgeon/dto/event/CustomerCreatedEvent.java
+/Users/lise/WorkSpace/surgeon/surgeon-file/surgeon-file-client/src/main/java/com/github/surgeon/api/FileServiceI.java
+/Users/lise/WorkSpace/surgeon/surgeon-file/surgeon-file-client/src/main/java/com/github/surgeon/dto/FileDownloadCmd.java
+/Users/lise/WorkSpace/surgeon/surgeon-file/surgeon-file-client/src/main/java/com/github/surgeon/dto/data/FileUploadDTO.java
+/Users/lise/WorkSpace/surgeon/surgeon-file/surgeon-file-client/src/main/java/com/github/surgeon/dto/data/FileDownloadDTO.java
+/Users/lise/WorkSpace/surgeon/surgeon-file/surgeon-file-client/src/main/java/com/github/surgeon/dto/FileUploadCmd.java
+/Users/lise/WorkSpace/surgeon/surgeon-file/surgeon-file-client/src/main/java/com/github/surgeon/dto/data/FileDTO.java

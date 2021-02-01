@@ -1,0 +1,4 @@
+com/github/surgeon/domain/DictDetail.class
+com/github/surgeon/domain/gateway/DictGateway.class
+com/github/surgeon/domain/gateway/DictDetailGateway.class
+com/github/surgeon/domain/Dict.class
