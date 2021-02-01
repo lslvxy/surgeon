@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,9 +21,7 @@ public class DictController extends BaseController {
     private DictServiceI dictServiceI;
 
     @PostMapping(value = "/list-by-name")
-    public MultiResponse<DictDTO> listByName(@RequestParam(required = false) String name) {
-        NameQuery query = new NameQuery();
-        query.setName(name);
+    public MultiResponse<DictDTO> listByName(@RequestBody NameQuery query) {
         return dictServiceI.listByName(query);
     }
 

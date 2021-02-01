@@ -42,7 +42,7 @@ public class DictGatewayImpl implements DictGateway {
     public List<Dict> listByName(String fileName) {
         SelectStatementProvider provider = select(dictDO.allColumns())
                 .from(dictDO)
-                .where(dictDO.name, isLike(fileName).when(Objects::nonNull))
+                .where(dictDO.name, isLike("%" + fileName + "%").when(Objects::nonNull))
                 .build()
                 .render(RenderingStrategies.MYBATIS3);
         return dictDOConvertor.toEntity(dictDOMapper.selectMany(provider));

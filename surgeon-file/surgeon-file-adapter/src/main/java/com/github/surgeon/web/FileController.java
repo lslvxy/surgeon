@@ -11,7 +11,6 @@ import com.github.surgeon.dto.data.FileUploadDTO;
 import com.github.surgeon.dto.query.NameQuery;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,9 +29,7 @@ public class FileController extends BaseController {
     private FileServiceI fileService;
 
     @PostMapping(value = "/list-by-name")
-    public MultiResponse<FileDTO> listByName(@RequestParam(required = false) String name) {
-        NameQuery query = new NameQuery();
-        query.setName(name);
+    public MultiResponse<FileDTO> listByName(@RequestBody NameQuery query) {
         return fileService.listByName(query);
     }
 
