@@ -25,8 +25,33 @@ public class DictController extends BaseController {
         return dictServiceI.listByName(query);
     }
 
-    @PostMapping(value = "/customer")
-    public Response addCustomer(@RequestBody DictSaveCmd dictSaveCmd) {
+    @PostMapping(value = "/page")
+    public Response page(@RequestBody DictSaveCmd dictSaveCmd) {
+        return Response.buildSuccess();
+    }
+
+    @PostMapping(value = "/all")
+    public Response all(@RequestBody DictSaveCmd dictSaveCmd) {
+        return Response.buildSuccess();
+    }
+
+    @PostMapping(value = "/list")
+    public MultiResponse<DictDTO> list(@RequestBody NameQuery query) {
+        return dictServiceI.listByName(query);
+    }
+
+    @PostMapping(value = "/detail")
+    public Response detail(@RequestBody DictSaveCmd dictSaveCmd) {
+        return Response.buildSuccess();
+    }
+
+    @PostMapping(value = "/save")
+    public Response save(@RequestBody DictSaveCmd dictSaveCmd) {
+        return Response.buildSuccess();
+    }
+
+    @PostMapping(value = "/delete")
+    public Response delete(@RequestBody DictSaveCmd dictSaveCmd) {
         return Response.buildSuccess();
     }
 

@@ -14,12 +14,12 @@ public interface DictGateway {
     Dict findById(Long id);
 
     /**
-     * 根据文件名查询
+     * 根据名称查询
      *
-     * @param fileName
+     * @param name
      * @return
      */
-    List<Dict> listByName(String fileName);
+    List<Dict> listByName(String name);
 
     /**
      * 分页查询

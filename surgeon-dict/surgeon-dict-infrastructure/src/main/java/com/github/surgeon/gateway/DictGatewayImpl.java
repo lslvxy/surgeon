@@ -1,6 +1,7 @@
 package com.github.surgeon.gateway;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
 import com.github.surgeon.convertor.DictDOConvertor;
 import com.github.surgeon.dataobject.DictDO;
 import com.github.surgeon.domain.Dict;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -39,10 +39,10 @@ public class DictGatewayImpl implements DictGateway {
     }
 
     @Override
-    public List<Dict> listByName(String fileName) {
+    public List<Dict> listByName(String name) {
         SelectStatementProvider provider = select(dictDO.allColumns())
                 .from(dictDO)
-                .where(dictDO.name, isLike("%" + fileName + "%").when(Objects::nonNull))
+                .where(dictDO.name, isLike("%" + name + "%").when(s -> StrUtil.isNotBlank(name)))
                 .build()
                 .render(RenderingStrategies.MYBATIS3);
         return dictDOConvertor.toEntity(dictDOMapper.selectMany(provider));

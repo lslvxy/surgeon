@@ -1,6 +1,7 @@
 package com.github.surgeon.gateway;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
 import com.github.surgeon.convertor.FileDOConvertor;
 import com.github.surgeon.dataobject.FileDO;
 import com.github.surgeon.domain.file.File;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -42,7 +42,7 @@ public class FileGatewayImpl implements FileGateway {
     public List<File> listByName(String fileName) {
         SelectStatementProvider provider = select(fileDO.allColumns())
                 .from(fileDO)
-                .where(fileDO.fileName, isLike(fileName).when(Objects::nonNull))
+                .where(fileDO.fileName, isLike("%" + fileName + "%").when(s -> StrUtil.isNotBlank(fileName)))
                 .build()
                 .render(RenderingStrategies.MYBATIS3);
         return fileDOConvertor.toEntity(fileDOMapper.selectMany(provider));
