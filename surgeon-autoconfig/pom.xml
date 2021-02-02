@@ -13,6 +13,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.github.surgeon</groupId>
             <artifactId>surgeon-common</artifactId>
             <version>${project.version}</version>
