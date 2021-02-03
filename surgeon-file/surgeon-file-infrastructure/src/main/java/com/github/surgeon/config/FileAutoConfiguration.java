@@ -15,12 +15,14 @@
  */
 package com.github.surgeon.config;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * @author lise
  */
 @Configuration
+@MapperScan(basePackages = {"com.github.surgeon.repository"})
 public class FileAutoConfiguration {
 
 }

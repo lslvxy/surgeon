@@ -29,6 +29,8 @@ import com.github.surgeon.dto.FileUploadCmd;
 import com.github.surgeon.dto.data.FileDTO;
 import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.dto.data.FileUploadDTO;
+import com.github.surgeon.dto.query.IdQuery;
+import com.github.surgeon.dto.query.NameQuery;
 import com.github.surgeon.executor.FileDeleteCmdExe;
 import com.github.surgeon.executor.FileDownloadCmdExe;
 import com.github.surgeon.executor.FileSaveExe;
@@ -36,8 +38,6 @@ import com.github.surgeon.executor.FileUploadCmdExe;
 import com.github.surgeon.executor.query.FileFindByIdQryExe;
 import com.github.surgeon.executor.query.FileListAllQryExe;
 import com.github.surgeon.executor.query.FileListByNameQryExe;
-import com.github.surgeon.dto.query.IdQuery;
-import com.github.surgeon.dto.query.NameQuery;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -50,7 +50,7 @@ import javax.annotation.Resource;
 @CatchAndLog
 public class FileServiceImpl implements FileServiceI {
 
-    @Value("${kamala.file.provider:local}")
+    @Value("${surgeon.file.provider:local}")
     private String provider;
 
     private BizScenario scenario;

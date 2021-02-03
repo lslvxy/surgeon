@@ -46,9 +46,9 @@ spring:
             multi-statement-allow: true
 
 
-kamala:
+surgeon:
   file:
-    provider: local
+    provider: minio
     local:
       linux:
         path: /home/lise/file/
@@ -58,6 +58,6 @@ kamala:
         path: C:\file\
     minio:
       endpoint: http://laysan.com:9000
-      accessKey: minioadmin
-      secretKey: minioadmin
+      accessKey: minio
+      secretKey: minio@123
       bucket: ${spring.application.name}

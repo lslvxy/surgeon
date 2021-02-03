@@ -17,6 +17,7 @@ package com.github.surgeon.extension;
 
 import cn.hutool.core.lang.Assert;
 import com.alibaba.cola.extension.Extension;
+import com.github.surgeon.config.MinioProp;
 import com.github.surgeon.constant.FileProviderConstants;
 import com.github.surgeon.dto.FileDeleteCmd;
 import com.github.surgeon.dto.FileDownloadCmd;
@@ -28,25 +29,26 @@ import com.github.surgeon.util.FileUtils;
 import io.minio.MinioClient;
 import io.minio.ObjectStat;
 import io.minio.PutObjectOptions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.InputStream;
-import com.github.surgeon.config.MinioProp;
 
 @Extension(bizId = FileProviderConstants.MINIO)
 @Component
 public class MinioFileUploadExt implements FileUploadExtPt {
-    @Resource
+    @Autowired(required = false)
     private MinioClient minioClient;
     @Resource
-    private MinioProp   minioProp;
+    private MinioProp minioProp;
 
     @Override
     public FileUploadDTO upload(FileUploadCmd cmd) {
         String finalFileName = FileUtils.getPathByTime(cmd.getFileName());
         try {
             InputStream inputStream = cmd.getInputStream();
+            Assert.notNull(minioClient, "minioClient 配置错误");
             minioClient.putObject(minioProp.getBucket(), finalFileName, inputStream,
                     new PutObjectOptions(inputStream.available(), -1));
             ObjectStat objectStat = minioClient.statObject(minioProp.getBucket(), finalFileName);

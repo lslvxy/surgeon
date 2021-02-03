@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "kamala.file.local")
+@ConfigurationProperties(prefix = "surgeon.file.local")
 public class LocalProp {
     private ElPath mac;
 

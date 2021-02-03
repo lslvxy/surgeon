@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "kamala.file.minio")
+@ConfigurationProperties(prefix = "surgeon.file.minio")
 public class MinioProp {
     /**
      * 连接url
