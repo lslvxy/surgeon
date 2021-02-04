@@ -15,6 +15,7 @@
  */
 package com.github.surgeon.extension;
 
+import cn.hutool.core.lang.Assert;
 import com.alibaba.cola.extension.Extension;
 import com.github.surgeon.config.LocalProp;
 import com.github.surgeon.constant.FileProviderConstants;
@@ -44,18 +45,21 @@ public class LocalFileUploadExt implements FileUploadExtPt {
 
         FileUtils.writeFromStream(cmd.getInputStream(), fullPath);
         FileUploadDTO dto = new FileUploadDTO();
-        dto.setFilePath(finalFileName);
+        dto.setFilePath(finalFileName.replaceAll(File.separator, "/"));
         dto.setFileName(cmd.getFileName());
         return dto;
     }
 
     @Override
     public FileDownloadDTO download(FileDownloadCmd cmd) {
+        String fileName = cmd.getFilePath().substring(cmd.getFilePath().lastIndexOf(File.separator) + 1);
         String rootPath = localProp.getPath();
-        String fullPath = Joiner.on(File.separator).join(rootPath, cmd.getFilePath());
+        String fullPath = Joiner.on(File.separator).join(rootPath, cmd.getFilePath().replaceAll("/", File.separator));
+        Assert.isTrue(FileUtils.exist(fullPath), "文件[{}]不存在", fileName);
+
         BufferedInputStream inputStream = FileUtils.getInputStream(fullPath);
         FileDownloadDTO dto = new FileDownloadDTO();
-        dto.setFileName("");
+        dto.setFileName(fileName);
         dto.setFileInputStream(inputStream);
         return dto;
     }

@@ -65,6 +65,18 @@ public class MinioFileUploadExt implements FileUploadExtPt {
 
     @Override
     public FileDownloadDTO download(FileDownloadCmd cmd) {
+        Assert.notNull(minioClient, "minioClient 配置错误");
+        Assert.notBlank(cmd.getFilePath(), "文件路径不正确");
+        FileDownloadDTO dto = new FileDownloadDTO();
+        try {
+            InputStream inputStream = minioClient.getObject(minioProp.getBucket(), cmd.getFilePath());
+            String fileName = cmd.getFilePath().substring(cmd.getFilePath().lastIndexOf("/") + 1);
+            dto.setFileName(fileName);
+            dto.setFileInputStream(inputStream);
+            return dto;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

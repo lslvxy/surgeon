@@ -19,8 +19,8 @@
         <module>surgeon-file-client</module>
         <module>surgeon-file-adapter</module>
         <module>surgeon-file-app</module>
-        <module>surgeon-file-domain</module>
-        <module>surgeon-file-infrastructure</module>
+        <!--        <module>surgeon-file-domain</module>-->
+        <!--        <module>surgeon-file-infrastructure</module>-->
         <module>surgeon-file-test</module>
     </modules>
 
