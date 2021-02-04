@@ -14,7 +14,7 @@
         <module>surgeon-dict</module>
         <module>surgeon-file</module>
         <module>surgeon-upms</module>
-                <module>start</module>
+<!--                <module>start</module>-->
     </modules>
     <packaging>pom</packaging>
 
