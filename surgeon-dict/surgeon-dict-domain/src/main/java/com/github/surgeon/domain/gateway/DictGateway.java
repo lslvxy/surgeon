@@ -34,7 +34,7 @@ public interface DictGateway {
      * @param name
      * @return
      */
-    List<Dict> FindByName(String name);
+    List<Dict> findAll(String name);
 
     /**
      * 分页查询
@@ -63,4 +63,5 @@ public interface DictGateway {
      * @param id /
      */
     boolean delete(Long id);
+
 }

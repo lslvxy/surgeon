@@ -30,6 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.util.Objects;
 
 @Extension(bizId = FileProviderConstants.LOCAL)
 public class LocalFileUploadExt implements FileUploadExtPt {
@@ -38,8 +39,11 @@ public class LocalFileUploadExt implements FileUploadExtPt {
 
     @Override
     public FileUploadDTO upload(FileUploadCmd cmd) {
+
+        Objects.requireNonNull(cmd.getFileDTO());
+        Objects.requireNonNull(cmd.getInputStream());
         String rootPath = localProp.getPath();
-        String finalFileName = FileUtils.getPathByTime(cmd.getFileName());
+        String finalFileName = FileUtils.getPathByTime(cmd.getFileDTO().getFileName());
         String fullPath = Joiner.on(File.separator).join(rootPath, finalFileName);
 
         FileUtils.writeFromStream(cmd.getInputStream(), fullPath);

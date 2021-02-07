@@ -15,12 +15,17 @@
  */
 package com.github.surgeon.executor;
 
+import com.alibaba.cola.dto.SingleResponse;
 import com.alibaba.cola.extension.BizScenario;
 import com.alibaba.cola.extension.ExtensionExecutor;
 import com.github.surgeon.constant.FileProviderConstants;
+import com.github.surgeon.convertor.FileDTOConvertor;
+import com.github.surgeon.domain.File;
+import com.github.surgeon.domain.gateway.FileGateway;
 import com.github.surgeon.dto.FileUploadCmd;
 import com.github.surgeon.dto.data.FileUploadDTO;
 import com.github.surgeon.extensionpoint.FileUploadExtPt;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -31,14 +36,25 @@ public class FileUploadCmdExe {
 
     @Resource
     private ExtensionExecutor extensionExecutor;
+    @Resource
+    private FileGateway fileGateway;
+    @Autowired
+    private FileDTOConvertor fileDTOConvertor;
 
-    public FileUploadDTO execute(FileUploadCmd cmd) {
-
+    public SingleResponse<FileUploadDTO> execute(FileUploadCmd cmd) {
         if (Objects.isNull(cmd.getBizScenario())) {
             BizScenario scenario = BizScenario.valueOf(FileProviderConstants.LOCAL);
             cmd.setBizScenario(scenario);
         }
-        return extensionExecutor.execute(FileUploadExtPt.class, cmd.getBizScenario(), v -> v.upload(cmd));
+
+        FileUploadDTO execute = extensionExecutor.execute(FileUploadExtPt.class, cmd.getBizScenario(), v -> v.upload(cmd));
+
+        File file = fileDTOConvertor.toEntity(cmd.getFileDTO());
+        file.setFilePath(execute.getFilePath());
+        file = fileGateway.create(file);
+        execute.setId(file.getId());
+        execute.setFileUrl("file/download/" + file.getId());
+        return SingleResponse.of(execute);
     }
 
 }

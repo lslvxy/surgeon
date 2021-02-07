@@ -34,6 +34,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.InputStream;
+import java.util.Objects;
 
 @Extension(bizId = FileProviderConstants.MINIO)
 @Component
@@ -45,7 +46,9 @@ public class MinioFileUploadExt implements FileUploadExtPt {
 
     @Override
     public FileUploadDTO upload(FileUploadCmd cmd) {
-        String finalFileName = FileUtils.getPathByTime(cmd.getFileName());
+        Objects.requireNonNull(cmd.getFileDTO());
+        Objects.requireNonNull(cmd.getInputStream());
+        String finalFileName = FileUtils.getPathByTime(cmd.getFileDTO().getFileName());
         try {
             InputStream inputStream = cmd.getInputStream();
             Assert.notNull(minioClient, "minioClient 配置错误");
@@ -55,7 +58,7 @@ public class MinioFileUploadExt implements FileUploadExtPt {
             Assert.notNull(objectStat, "上传失败");
             FileUploadDTO dto = new FileUploadDTO();
             dto.setFilePath(finalFileName);
-            dto.setFileName(cmd.getFileName());
+            dto.setFileName(cmd.getFileDTO().getFileName());
             return dto;
         } catch (Exception e) {
             e.printStackTrace();

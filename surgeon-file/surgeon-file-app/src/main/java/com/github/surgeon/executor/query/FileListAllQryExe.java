@@ -16,26 +16,26 @@
 package com.github.surgeon.executor.query;
 
 import com.alibaba.cola.dto.MultiResponse;
-import com.github.surgeon.convertor.DictDTOConvertor;
-import com.github.surgeon.domain.Dict;
-import com.github.surgeon.domain.gateway.DictGateway;
-import com.github.surgeon.dto.data.DictDTO;
-import com.github.surgeon.dto.query.NameQuery;
+import com.github.surgeon.convertor.FileDTOConvertor;
+import com.github.surgeon.domain.File;
+import com.github.surgeon.domain.gateway.FileGateway;
+import com.github.surgeon.dto.FileSearchQuery;
+import com.github.surgeon.dto.data.FileDTO;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Component
-public class DictListByNameQryExe {
+public class FileListAllQryExe {
 
     @Resource
-    private DictGateway      dictGateway;
+    private FileGateway fileGateway;
     @Resource
-    private DictDTOConvertor dictDTOConvertor;
+    private FileDTOConvertor fileDTOConvertor;
 
-    public MultiResponse<DictDTO> execute(NameQuery query) {
-        List<Dict> dictList = dictGateway.FindByName(query.getName());
-        return MultiResponse.of(dictDTOConvertor.toDto(dictList));
+    public MultiResponse<FileDTO> execute(FileSearchQuery query) {
+        List<File> all = fileGateway.findAll(query);
+        return MultiResponse.of(fileDTOConvertor.toDto(all));
     }
 }

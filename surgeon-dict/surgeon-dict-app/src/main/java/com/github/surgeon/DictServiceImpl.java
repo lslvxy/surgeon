@@ -17,19 +17,21 @@ package com.github.surgeon;
 
 import com.alibaba.cola.catchlog.CatchAndLog;
 import com.alibaba.cola.dto.MultiResponse;
+import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.github.surgeon.api.DictServiceI;
+import com.github.surgeon.dto.DictPageQry;
+import com.github.surgeon.dto.DictQry;
 import com.github.surgeon.dto.DictSaveCmd;
 import com.github.surgeon.dto.cmd.DeleteByIdCmd;
 import com.github.surgeon.dto.data.DictDTO;
 import com.github.surgeon.dto.query.IdQuery;
-import com.github.surgeon.dto.query.NameQuery;
 import com.github.surgeon.executor.DictDeleteCmdExe;
 import com.github.surgeon.executor.DictSaveExe;
 import com.github.surgeon.executor.query.DictFindByIdQryExe;
-import com.github.surgeon.executor.query.DictListAllQryExe;
-import com.github.surgeon.executor.query.DictListByNameQryExe;
+import com.github.surgeon.executor.query.DictListQryExe;
+import com.github.surgeon.executor.query.DictPageQryExe;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -39,16 +41,16 @@ import javax.annotation.Resource;
 public class DictServiceImpl implements DictServiceI {
 
     @Resource
-    private DictSaveExe      dictSaveExe;
+    private DictSaveExe dictSaveExe;
     @Resource
     private DictDeleteCmdExe dictDeleteCmdExe;
 
     @Resource
-    private DictListByNameQryExe dictListByNameQryExe;
+    private DictPageQryExe dictPageQryExe;
     @Resource
-    private DictListAllQryExe    dictListAllQryExe;
+    private DictListQryExe dictListQryExe;
     @Resource
-    private DictFindByIdQryExe   dictFindByIdQryExe;
+    private DictFindByIdQryExe dictFindByIdQryExe;
 
     @Override
     public SingleResponse<DictDTO> findById(IdQuery query) {
@@ -56,13 +58,18 @@ public class DictServiceImpl implements DictServiceI {
     }
 
     @Override
-    public MultiResponse<DictDTO> listByName(NameQuery fileListByNameQry) {
-        return dictListByNameQryExe.execute(fileListByNameQry);
+    public PageResponse<DictDTO> findPage(DictPageQry query) {
+        return dictPageQryExe.execute(query);
+    }
+
+    @Override
+    public MultiResponse<DictDTO> findAll(DictQry query) {
+        return dictListQryExe.execute(query);
     }
 
     @Override
     public MultiResponse<DictDTO> findAll() {
-        return dictListAllQryExe.execute();
+        return dictListQryExe.execute(new DictQry());
     }
 
     @Override

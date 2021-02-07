@@ -54,7 +54,7 @@ public class DictGatewayImpl implements DictGateway {
     }
 
     @Override
-    public List<Dict> FindByName(String name) {
+    public List<Dict> findAll(String name) {
         SelectStatementProvider provider = select(dictDO.allColumns())
                 .from(dictDO)
                 .where(dictDO.name, isLike("%" + name + "%").when(s -> StrUtil.isNotBlank(name)))

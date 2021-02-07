@@ -75,23 +75,8 @@ public class FileServiceImpl implements FileServiceI {
 
     @Override
     public SingleResponse<FileUploadDTO> upload(FileUploadCmd cmd) {
-        try {
-            cmd.setBizScenario(scenario);
-
-            if (cmd.getSize().compareTo(0L) <= 0) {
-                return SingleResponse.buildFailure("500", "上传失败，请选择文件");
-            }
-
-            FileUploadDTO uploadResult = fileUploadCmdExe.execute(cmd);
-
-
-            uploadResult.setFileUrl("/file/download/" + uploadResult.getFilePath());
-
-            return SingleResponse.of(uploadResult);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new SysException("上传失败");
-        }
+        cmd.setBizScenario(scenario);
+        return fileUploadCmdExe.execute(cmd);
     }
 
     @Override

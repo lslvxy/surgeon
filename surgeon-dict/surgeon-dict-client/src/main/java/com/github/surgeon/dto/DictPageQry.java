@@ -15,21 +15,16 @@
  */
 package com.github.surgeon.dto;
 
-import com.alibaba.cola.dto.Command;
-import com.alibaba.cola.extension.BizScenario;
-import com.github.surgeon.dto.data.FileDTO;
+import com.alibaba.cola.dto.PageQuery;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.io.InputStream;
+import lombok.NoArgsConstructor;
 
 @Data
-public class FileUploadCmd extends Command {
+@AllArgsConstructor
+@NoArgsConstructor
+public class DictPageQry extends PageQuery {
 
-    private BizScenario bizScenario;
-
-    private FileDTO fileDTO;
-
-    private InputStream inputStream;
-
+    private String name;
 
 }

@@ -25,6 +25,7 @@ import com.github.surgeon.dto.FileUploadCmd;
 import com.github.surgeon.dto.data.FileDTO;
 import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.dto.data.FileUploadDTO;
+import com.github.surgeon.dto.query.IdQuery;
 
 import java.io.IOException;
 

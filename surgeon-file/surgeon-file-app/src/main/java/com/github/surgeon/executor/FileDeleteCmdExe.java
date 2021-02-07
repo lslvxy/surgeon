@@ -19,6 +19,8 @@ import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.extension.BizScenario;
 import com.alibaba.cola.extension.ExtensionExecutor;
 import com.github.surgeon.constant.FileProviderConstants;
+import com.github.surgeon.domain.File;
+import com.github.surgeon.domain.gateway.FileGateway;
 import com.github.surgeon.dto.FileDeleteCmd;
 import com.github.surgeon.extensionpoint.FileUploadExtPt;
 import org.springframework.stereotype.Component;

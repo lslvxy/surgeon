@@ -16,13 +16,15 @@
 package com.github.surgeon.api;
 
 import com.alibaba.cola.dto.MultiResponse;
+import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
+import com.github.surgeon.dto.DictPageQry;
+import com.github.surgeon.dto.DictQry;
 import com.github.surgeon.dto.DictSaveCmd;
 import com.github.surgeon.dto.cmd.DeleteByIdCmd;
 import com.github.surgeon.dto.data.DictDTO;
 import com.github.surgeon.dto.query.IdQuery;
-import com.github.surgeon.dto.query.NameQuery;
 
 public interface DictServiceI {
 
@@ -35,12 +37,20 @@ public interface DictServiceI {
     SingleResponse<DictDTO> findById(IdQuery query);
 
     /**
-     * 根据文件名查询
+     * 分页查询
      *
-     * @param nameQuery
+     * @param query
      * @return
      */
-    MultiResponse<DictDTO> listByName(NameQuery nameQuery);
+    PageResponse<DictDTO> findPage(DictPageQry query);
+
+    /**
+     * 根据名查询
+     *
+     * @param query
+     * @return
+     */
+    MultiResponse<DictDTO> findAll(DictQry query);
 
     /**
      * 分页查询

@@ -31,6 +31,7 @@ import com.github.surgeon.dto.data.FileUploadDTO;
 import com.google.common.base.Joiner;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -58,8 +59,13 @@ public class FileController extends BaseController {
     public SingleResponse<FileUploadDTO> upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
 
         FileUploadCmd cmd = new FileUploadCmd();
-        cmd.setFileName(file.getOriginalFilename());
-        cmd.setSize(file.getSize());
+        FileDTO dto = new FileDTO();
+        dto.setFileName(file.getOriginalFilename());
+        dto.setFileSize(file.getSize());
+        dto.setMd5(DigestUtils.md5DigestAsHex(file.getBytes()));
+        dto.setContentType(file.getContentType());
+
+        cmd.setFileDTO(dto);
         cmd.setInputStream(file.getInputStream());
         return fileService.upload(cmd);
     }
