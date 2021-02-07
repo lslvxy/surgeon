@@ -13,21 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.dto;
+package com.github.surgeon.config;
 
-import com.alibaba.cola.dto.Command;
-import com.alibaba.cola.extension.BizScenario;
-import lombok.Data;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Configuration;
 
-import java.io.InputStream;
-
-@Data
-public class FileDownloadCmd extends Command {
-
-    private BizScenario bizScenario;
-
-    private String filePath;
-
-    private InputStream inputStream;
+/**
+ * @author lise
+ */
+@Configuration
+@MapperScan(basePackages = {"com.github.surgeon.repository"})
+public class FileAutoConfiguration {
 
 }

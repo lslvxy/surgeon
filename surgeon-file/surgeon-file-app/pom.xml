@@ -19,6 +19,10 @@
             <artifactId>surgeon-file-client</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.github.surgeon</groupId>
+            <artifactId>surgeon-file-infrastructure</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba.cola</groupId>
             <artifactId>cola-component-catchlog-starter</artifactId>
         </dependency>

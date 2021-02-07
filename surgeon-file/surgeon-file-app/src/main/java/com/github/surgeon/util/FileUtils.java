@@ -15,9 +15,10 @@
  */
 package com.github.surgeon.util;
 
-import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author laysan
@@ -27,6 +28,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class FileUtils extends cn.hutool.core.io.FileUtil {
 
+    //中文正则
+    private static Pattern ZHONGWEN_PATTERN = Pattern.compile("[\u4e00-\u9fa5]");
+
     /**
      * 根据日期时间生成带目录的文件path
      *
@@ -34,11 +38,64 @@ public class FileUtils extends cn.hutool.core.io.FileUtil {
      * @return
      */
     public static String getPathByTime(String fileName) {
-        fileName = cleanInvalid(fileName);
+        fileName = replaceChar(fileName);
         LocalDateTime now = LocalDateTime.now();
-        String dir = now.format(DateTimeFormatter.ofPattern("yyyy" + File.separator + "MM" + File.separator + "dd"));
-        return dir + File.separator + mainName(fileName) + now.format(DateTimeFormatter.ofPattern("_HHmmssSSS")) + "." + extName(fileName);
+        String dir = now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+        String typePart = FileUtils.getTypePart(fileName);
+        String substring = fileName.substring(0, fileName.lastIndexOf(typePart));
+        return dir + "/" + substring + now.format(DateTimeFormatter.ofPattern("_HHmmssSSS")) + typePart;
     }
 
+    /**
+     * 判断文件名是否带盘符，重新处理
+     *
+     * @param fileName
+     * @return
+     */
+    public static String replaceChar(String fileName) {
+        //判断是否带有盘符信息
+        // Check for Unix-style path
+        int unixSep = fileName.lastIndexOf('/');
+        // Check for Windows-style path
+        int winSep = fileName.lastIndexOf('\\');
+        // Cut off at latest possible point
+        int pos = (winSep > unixSep ? winSep : unixSep);
+        if (pos != -1) {
+            // Any sort of path separator found...
+            fileName = fileName.substring(pos + 1);
+        }
+        //替换上传文件名字的特殊字符
+        fileName = fileName.replace("=", "").replace(",", "").replace("&", "").replace("#", "");
+        ////替换上传文件名字中的中文
+        //if (ifContainChinese(fileName)) {
+        //    fileName = PinyinUtil.getPinyin(fileName, StrUtil.EMPTY);
+        //}
+        //替换上传文件名字中的空格
+        fileName = fileName.replaceAll("\\s", "");
+        return fileName;
+    }
+
+    // java 判断字符串里是否包含中文字符
+    public static boolean ifContainChinese(String str) {
+        if (str.getBytes().length == str.length()) {
+            return false;
+        } else {
+            Matcher m = ZHONGWEN_PATTERN.matcher(str);
+            if (m.find()) {
+                return true;
+            }
+            return false;
+        }
+    }
+
+    public static String getTypePart(String fileName) {
+        int point = fileName.lastIndexOf('.');
+        int length = fileName.length();
+        if (point == -1 || point == length - 1) {
+            return "";
+        } else {
+            return fileName.substring(point, length);
+        }
+    }
 
 }

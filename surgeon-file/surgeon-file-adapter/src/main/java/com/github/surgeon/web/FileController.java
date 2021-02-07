@@ -16,13 +16,16 @@
 package com.github.surgeon.web;
 
 import cn.hutool.core.io.IoUtil;
+import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.alibaba.cola.exception.SysException;
 import com.github.surgeon.api.FileServiceI;
 import com.github.surgeon.base.BaseController;
 import com.github.surgeon.dto.FileDownloadCmd;
+import com.github.surgeon.dto.FileSearchQuery;
 import com.github.surgeon.dto.FileUploadCmd;
+import com.github.surgeon.dto.data.FileDTO;
 import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.dto.data.FileUploadDTO;
 import com.google.common.base.Joiner;
@@ -43,6 +46,11 @@ public class FileController extends BaseController {
 
     @Autowired
     private FileServiceI fileService;
+
+    @PostMapping(value = "/list")
+    public MultiResponse<FileDTO> list(@RequestBody FileSearchQuery query) {
+        return fileService.findAll(query);
+    }
 
 
     @PostMapping("upload")
@@ -134,5 +142,4 @@ public class FileController extends BaseController {
             IoUtil.close(inputStream);
         }
     }
-
 }

@@ -15,19 +15,25 @@
  */
 package com.github.surgeon;
 
-import cn.hutool.core.util.StrUtil;
 import com.alibaba.cola.catchlog.CatchAndLog;
+import com.alibaba.cola.dto.MultiResponse;
+import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
-import com.alibaba.cola.exception.SysException;
 import com.alibaba.cola.extension.BizScenario;
 import com.github.surgeon.api.FileServiceI;
+import com.github.surgeon.dto.FileDeleteCmd;
 import com.github.surgeon.dto.FileDownloadCmd;
+import com.github.surgeon.dto.FileSearchQuery;
 import com.github.surgeon.dto.FileUploadCmd;
+import com.github.surgeon.dto.data.FileDTO;
 import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.dto.data.FileUploadDTO;
+import com.github.surgeon.dto.query.IdQuery;
 import com.github.surgeon.executor.FileDeleteCmdExe;
 import com.github.surgeon.executor.FileDownloadCmdExe;
 import com.github.surgeon.executor.FileUploadCmdExe;
+import com.github.surgeon.executor.query.FileFindByIdQryExe;
+import com.github.surgeon.executor.query.FileListAllQryExe;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +57,10 @@ public class FileServiceImpl implements FileServiceI {
     @Resource
     private FileDeleteCmdExe fileDeleteCmdExe;
 
+    @Resource
+    private FileListAllQryExe fileListAllQryExe;
+    @Resource
+    private FileFindByIdQryExe fileFindByIdQryExe;
 
     @PostConstruct
     private void initialize() {
@@ -60,9 +70,6 @@ public class FileServiceImpl implements FileServiceI {
     @Override
     public SingleResponse<FileDownloadDTO> download(FileDownloadCmd cmd) {
         cmd.setBizScenario(scenario);
-        if (StrUtil.isBlank(cmd.getFilePath())) {
-            return SingleResponse.buildFailure("500", "下载失败，请选择文件");
-        }
         return fileDownloadCmdExe.execute(cmd);
     }
 
@@ -85,6 +92,27 @@ public class FileServiceImpl implements FileServiceI {
             e.printStackTrace();
             throw new SysException("上传失败");
         }
+    }
+
+    @Override
+    public SingleResponse<FileDTO> findById(IdQuery query) {
+        return fileFindByIdQryExe.execute(query);
+    }
+
+
+    @Override
+    public MultiResponse<FileDTO> findAll() {
+        return fileListAllQryExe.execute(new FileSearchQuery());
+    }
+
+    @Override
+    public MultiResponse<FileDTO> findAll(FileSearchQuery query) {
+        return fileListAllQryExe.execute(query);
+    }
+
+    @Override
+    public Response delete(FileDeleteCmd cmd) {
+        return fileDeleteCmdExe.execute(cmd);
     }
 
 }

@@ -29,10 +29,15 @@ import java.util.Objects;
 @Component
 public class FileDeleteCmdExe {
     @Resource
+    private FileGateway fileGateway;
+    @Resource
     private ExtensionExecutor extensionExecutor;
 
     public Response execute(FileDeleteCmd cmd) {
 
+        fileGateway.delete(cmd.getId());
+        File file = fileGateway.findById(cmd.getId());
+        cmd.setFilePath(file.getFilePath());
 
         if (Objects.isNull(cmd.getBizScenario())) {
             BizScenario scenario = BizScenario.valueOf(FileProviderConstants.LOCAL);

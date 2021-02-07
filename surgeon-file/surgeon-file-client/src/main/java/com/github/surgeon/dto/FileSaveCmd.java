@@ -16,18 +16,16 @@
 package com.github.surgeon.dto;
 
 import com.alibaba.cola.dto.Command;
-import com.alibaba.cola.extension.BizScenario;
+import com.github.surgeon.dto.data.FileDTO;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.io.InputStream;
+import lombok.NoArgsConstructor;
 
 @Data
-public class FileDownloadCmd extends Command {
+@AllArgsConstructor
+@NoArgsConstructor
+public class FileSaveCmd extends Command {
 
-    private BizScenario bizScenario;
-
-    private String filePath;
-
-    private InputStream inputStream;
+    private FileDTO fileDTO;
 
 }

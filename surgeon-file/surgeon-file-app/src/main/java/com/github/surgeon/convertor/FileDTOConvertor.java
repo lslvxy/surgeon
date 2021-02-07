@@ -13,21 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.dto;
+package com.github.surgeon.convertor;
 
-import com.alibaba.cola.dto.Command;
-import com.alibaba.cola.extension.BizScenario;
-import lombok.Data;
+import com.github.surgeon.base.BaseConvertor;
+import com.github.surgeon.domain.File;
+import com.github.surgeon.dto.data.FileDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
-import java.io.InputStream;
-
-@Data
-public class FileDownloadCmd extends Command {
-
-    private BizScenario bizScenario;
-
-    private String filePath;
-
-    private InputStream inputStream;
-
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+public interface FileDTOConvertor extends BaseConvertor<FileDTO, File> {
 }

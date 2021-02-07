@@ -40,9 +40,6 @@ public class FileDownloadCmdExe {
             cmd.setBizScenario(scenario);
         }
         FileDownloadDTO execute = extensionExecutor.execute(FileUploadExtPt.class, cmd.getBizScenario(), v -> v.download(cmd));
-        if (Objects.isNull(execute)) {
-            return SingleResponse.buildFailure("500", "文件不存在");
-        }
         return SingleResponse.of(execute);
     }
 

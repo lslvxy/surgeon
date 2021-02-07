@@ -23,6 +23,4 @@ import lombok.Data;
 public class FileDeleteCmd extends Command {
     private BizScenario bizScenario;
 
-    private String filePath;
-
 }
