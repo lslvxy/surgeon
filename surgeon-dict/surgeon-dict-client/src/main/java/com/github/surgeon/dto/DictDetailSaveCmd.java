@@ -26,6 +26,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DictDetailSaveCmd extends Command {
 
-    private DictDetailDTO dictDetailDTO;
+    private DictDetailDTO dictDetail;
 
 }

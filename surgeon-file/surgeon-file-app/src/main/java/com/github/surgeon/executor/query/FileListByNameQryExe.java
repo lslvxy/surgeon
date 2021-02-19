@@ -35,6 +35,6 @@ public class FileListByNameQryExe {
 
     public MultiResponse<FileDTO> execute(NameQuery query) {
         List<File> files = fileGateway.listByName(query.getName());
-        return MultiResponse.of(fileDTOConvertor.toDto(files));
+        return MultiResponse.of(fileDTOConvertor.toSource(files));
     }
 }

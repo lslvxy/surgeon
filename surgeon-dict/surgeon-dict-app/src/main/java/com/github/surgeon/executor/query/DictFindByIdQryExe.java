@@ -30,13 +30,13 @@ import javax.annotation.Resource;
 public class DictFindByIdQryExe {
 
     @Resource
-    private DictGateway      dictGateway;
+    private DictGateway dictGateway;
     @Autowired
     private DictDTOConvertor dictDTOConvertor;
 
     public SingleResponse<DictDTO> execute(IdQuery query) {
         Dict byId = dictGateway.findById(query.getId());
-        DictDTO dto = dictDTOConvertor.toDto(byId);
+        DictDTO dto = dictDTOConvertor.toSource(byId);
         return SingleResponse.of(dto);
     }
 }

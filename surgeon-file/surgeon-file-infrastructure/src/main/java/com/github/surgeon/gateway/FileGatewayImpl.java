@@ -24,6 +24,7 @@ import com.github.surgeon.domain.gateway.FileGateway;
 import com.github.surgeon.dto.FileSearchQuery;
 import com.github.surgeon.repository.FileDOMapper;
 import com.github.surgeon.util.IdUtil;
+import com.github.surgeon.util.SqlBuilderUtil;
 import org.mybatis.dynamic.sql.render.RenderingStrategies;
 import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class FileGatewayImpl implements FileGateway {
     public File findById(Long id) {
         Optional<FileDO> fileDO = fileDOMapper.selectByPrimaryKey(id);
         AtomicReference<File> file = new AtomicReference<>();
-        fileDO.ifPresent(v -> file.set(fileDOConvertor.toEntity(v)));
+        fileDO.ifPresent(v -> file.set(fileDOConvertor.toTarget(v)));
         return file.get();
     }
 
@@ -61,35 +62,35 @@ public class FileGatewayImpl implements FileGateway {
                 .where(fileDO.fileName, isLike("%" + fileName + "%").when(s -> StrUtil.isNotBlank(fileName)))
                 .build()
                 .render(RenderingStrategies.MYBATIS3);
-        return fileDOConvertor.toEntity(fileDOMapper.selectMany(provider));
+        return fileDOConvertor.toTarget(fileDOMapper.selectMany(provider));
     }
 
     @Override
     public List<File> findAll(FileSearchQuery query) {
         SelectStatementProvider provider = select(fileDO.allColumns())
                 .from(fileDO)
-                .where(fileDO.fileName, isLike("%" + query.getName() + "%").when(v -> StrUtil.isNotBlank(query.getName())))
+                .where(fileDO.fileName, isLike(query.getName()).when(StrUtil::isNotBlank).then(SqlBuilderUtil::addWildcards))
                 .build()
                 .render(RenderingStrategies.MYBATIS3);
         Iterable<FileDO> all = fileDOMapper.selectMany(provider);
-        return fileDOConvertor.toEntity(CollectionUtil.toCollection(all));
+        return fileDOConvertor.toTarget(CollectionUtil.toCollection(all));
     }
 
     @Override
     public File create(File file) {
-        FileDO fileDO = fileDOConvertor.toDto(file);
+        FileDO fileDO = fileDOConvertor.toSource(file);
         fileDO.setId(IdUtil.getNextId());
         fileDO.setCreateTime(new Date());
         fileDOMapper.insert(fileDO);
-        return fileDOConvertor.toEntity(fileDO);
+        return fileDOConvertor.toTarget(fileDO);
     }
 
     @Override
     public File update(File file) {
-        FileDO fileDO = fileDOConvertor.toDto(file);
+        FileDO fileDO = fileDOConvertor.toSource(file);
         fileDO.setUpdateTime(new Date());
         fileDOMapper.updateByPrimaryKeySelective(fileDO);
-        return fileDOConvertor.toEntity(fileDO);
+        return fileDOConvertor.toTarget(fileDO);
     }
 
     @Override

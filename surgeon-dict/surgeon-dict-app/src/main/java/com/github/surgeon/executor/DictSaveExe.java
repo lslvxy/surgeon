@@ -36,13 +36,13 @@ public class DictSaveExe {
     private DictDTOConvertor dictDTOConvertor;
 
     public SingleResponse<DictDTO> execute(DictSaveCmd cmd) {
-        Dict dict = dictDTOConvertor.toEntity(cmd.getDict());
+        Dict dict = dictDTOConvertor.toTarget(cmd.getDict());
         if (Objects.isNull(cmd.getDict().getId())) {
             dict = dictGateway.create(dict);
         } else {
             dict = dictGateway.update(dict);
         }
-        DictDTO dictDTO = dictDTOConvertor.toDto(dict);
+        DictDTO dictDTO = dictDTOConvertor.toSource(dict);
         return SingleResponse.of(dictDTO);
     }
 

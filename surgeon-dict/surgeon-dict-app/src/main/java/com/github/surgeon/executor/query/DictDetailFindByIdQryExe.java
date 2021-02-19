@@ -36,7 +36,7 @@ public class DictDetailFindByIdQryExe {
 
     public SingleResponse<DictDetailDTO> execute(IdQuery query) {
         DictDetail byId = dictDetailGateway.findById(query.getId());
-        DictDetailDTO dto = dictDetailDTOConvertor.toDto(byId);
+        DictDetailDTO dto = dictDetailDTOConvertor.toSource(byId);
         return SingleResponse.of(dto);
     }
 }

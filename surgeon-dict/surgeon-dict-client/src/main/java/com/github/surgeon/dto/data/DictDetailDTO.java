@@ -35,7 +35,7 @@ public class DictDetailDTO extends DTO {
 
     private Integer dictSort;
 
-    private String label;
+    private String text;
 
     private String value;
 

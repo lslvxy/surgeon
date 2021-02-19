@@ -39,7 +39,7 @@ public class DictPageQryExe {
     public PageResponse<DictDTO> execute(DictPageQry query) {
         PageHelper.startPage(query.getPageIndex(), query.getPageSize());
         List<Dict> dictList = dictGateway.findAll(query.getName());
-        List<DictDTO> dictDTOList = dictDTOConvertor.toDto(dictList);
+        List<DictDTO> dictDTOList = dictDTOConvertor.toSource(dictList);
         PageInfo<DictDTO> pageInfo = new PageInfo<>(dictDTOList);
         return PageResponse.of(dictDTOList, (int) pageInfo.getTotal(), pageInfo.getPageSize(), pageInfo.getPageNum());
     }

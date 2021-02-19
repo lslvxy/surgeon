@@ -29,12 +29,12 @@ import java.util.List;
 public class FileListAllQryExe {
 
     @Resource
-    private FileGateway      fileGateway;
+    private FileGateway fileGateway;
     @Resource
     private FileDTOConvertor fileDTOConvertor;
 
     public MultiResponse<FileDTO> execute() {
         List<File> all = fileGateway.findAll();
-        return MultiResponse.of(fileDTOConvertor.toDto(all));
+        return MultiResponse.of(fileDTOConvertor.toSource(all));
     }
 }

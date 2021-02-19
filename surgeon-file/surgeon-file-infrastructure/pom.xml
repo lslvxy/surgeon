@@ -31,25 +31,17 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok-mapstruct-binding</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.github.surgeon</groupId>
+            <artifactId>surgeon-mbg-plugin</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -61,6 +53,7 @@
                     <configurationFile>src/main/resources/mybatis/mybatis-generator.xml</configurationFile>
                     <verbose>true</verbose>
                     <overwrite>true</overwrite>
+                    <includeAllDependencies>true</includeAllDependencies>
                 </configuration>
                 <executions>
                     <execution>
@@ -70,23 +63,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>8.0.22</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.github.surgeon</groupId>
-                        <artifactId>surgeon-mbg-plugin</artifactId>
-                        <version>1.0.0-SNAPSHOT</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.github.surgeon</groupId>
-                        <artifactId>surgeon-common</artifactId>
-                        <version>1.0.0-SNAPSHOT</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>

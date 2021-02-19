@@ -49,7 +49,7 @@ public class FileUploadCmdExe {
 
         FileUploadDTO execute = extensionExecutor.execute(FileUploadExtPt.class, cmd.getBizScenario(), v -> v.upload(cmd));
 
-        File file = fileDTOConvertor.toEntity(cmd.getFileDTO());
+        File file = fileDTOConvertor.toTarget(cmd.getFileDTO());
         file.setFilePath(execute.getFilePath());
         file = fileGateway.create(file);
         execute.setId(file.getId());

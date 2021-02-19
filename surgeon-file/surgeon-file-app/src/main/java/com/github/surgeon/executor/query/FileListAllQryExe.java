@@ -36,6 +36,6 @@ public class FileListAllQryExe {
 
     public MultiResponse<FileDTO> execute(FileSearchQuery query) {
         List<File> all = fileGateway.findAll(query);
-        return MultiResponse.of(fileDTOConvertor.toDto(all));
+        return MultiResponse.of(fileDTOConvertor.toSource(all));
     }
 }

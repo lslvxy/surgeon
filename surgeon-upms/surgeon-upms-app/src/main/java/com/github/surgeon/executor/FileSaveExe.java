@@ -29,13 +29,13 @@ import javax.annotation.Resource;
 public class FileSaveExe {
 
     @Resource
-    private FileGateway      fileGateway;
+    private FileGateway fileGateway;
     @Autowired
     private FileDTOConvertor fileDTOConvertor;
 
     public FileDTO execute(FileSaveCmd cmd) {
-        File file = fileDTOConvertor.toEntity(cmd.getFileDTO());
-        return fileDTOConvertor.toDto(fileGateway.create(file));
+        File file = fileDTOConvertor.toTarget(cmd.getFileDTO());
+        return fileDTOConvertor.toSource(fileGateway.create(file));
     }
 
 }

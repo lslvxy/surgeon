@@ -36,6 +36,6 @@ public class DictListQryExe {
 
     public MultiResponse<DictDTO> execute(DictQry qry) {
         List<Dict> all = dictGateway.findAll(qry.getName());
-        return MultiResponse.of(dictDTOConvertor.toDto(all));
+        return MultiResponse.of(dictDTOConvertor.toSource(all));
     }
 }

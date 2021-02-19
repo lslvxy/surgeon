@@ -36,6 +36,6 @@ public class DictDetailListQryExe {
 
     public MultiResponse<DictDetailDTO> execute(DictDetailQry qry) {
         List<DictDetail> all = dictDetailGateway.findAll(qry);
-        return MultiResponse.of(dictDetailDTOConvertor.toDto(all));
+        return MultiResponse.of(dictDetailDTOConvertor.toSource(all));
     }
 }

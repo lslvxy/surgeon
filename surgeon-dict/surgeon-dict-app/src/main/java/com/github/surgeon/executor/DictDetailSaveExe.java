@@ -35,9 +35,9 @@ public class DictDetailSaveExe {
     private DictDetailDTOConvertor dictDTOConvertor;
 
     public SingleResponse<DictDetailDTO> execute(DictDetailSaveCmd cmd) {
-        DictDetailDTO dictDetailDTO = cmd.getDictDetailDTO();
-        DictDetail dictDetail = dictGateway.create(dictDTOConvertor.toEntity(dictDetailDTO));
-        return SingleResponse.of(dictDTOConvertor.toDto(dictDetail));
+        DictDetailDTO dictDetailDTO = cmd.getDictDetail();
+        DictDetail dictDetail = dictGateway.create(dictDTOConvertor.toTarget(dictDetailDTO));
+        return SingleResponse.of(dictDTOConvertor.toSource(dictDetail));
     }
 
 }

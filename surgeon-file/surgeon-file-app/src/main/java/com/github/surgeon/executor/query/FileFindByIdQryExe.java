@@ -36,7 +36,7 @@ public class FileFindByIdQryExe {
 
     public SingleResponse<FileDTO> execute(IdQuery query) {
         File byId = fileGateway.findById(query.getId());
-        FileDTO dto = fileDTOConvertor.toDto(byId);
+        FileDTO dto = fileDTOConvertor.toSource(byId);
         return SingleResponse.of(dto);
     }
 }

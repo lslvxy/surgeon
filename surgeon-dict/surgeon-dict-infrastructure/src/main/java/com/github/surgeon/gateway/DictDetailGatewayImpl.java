@@ -24,6 +24,7 @@ import com.github.surgeon.domain.gateway.DictDetailGateway;
 import com.github.surgeon.dto.DictDetailQry;
 import com.github.surgeon.repository.DictDetailDOMapper;
 import com.github.surgeon.util.IdUtil;
+import com.github.surgeon.util.SqlBuilderUtil;
 import org.mybatis.dynamic.sql.render.RenderingStrategies;
 import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class DictDetailGatewayImpl implements DictDetailGateway {
     public DictDetail findById(Long id) {
         Optional<DictDetailDO> dictDetailDO = dictDetailDOMapper.selectByPrimaryKey(id);
         AtomicReference<DictDetail> dictDetail = new AtomicReference<>();
-        dictDetailDO.ifPresent(v -> dictDetail.set(dictDetailDOConvertor.toEntity(v)));
+        dictDetailDO.ifPresent(v -> dictDetail.set(dictDetailDOConvertor.toTarget(v)));
         return dictDetail.get();
     }
 
@@ -58,13 +59,13 @@ public class DictDetailGatewayImpl implements DictDetailGateway {
         SelectStatementProvider s = select(dictDetailDO.allColumns(), dictDO.allColumns()).from(dictDetailDO, "dd")
                 .leftJoin(dictDO, "d")
                 .on(dictDO.id, equalTo(dictDetailDO.dictId))
-                .where(dictDetailDO.text, isLike("%" + qry.getText() + "%").when(ss -> StrUtil.isNotBlank(qry.getText())))
+                .where(dictDetailDO.text, isLike(qry.getText()).when(StrUtil::isNotBlank).then(SqlBuilderUtil::addWildcards))
                 .and(dictDetailDO.value, isEqualTo(qry.getValue()).when(StrUtil::isNotBlank))
                 .and(dictDO.id, isEqualTo(qry.getDictId()).when(ObjectUtil::isNotNull))
-                .and(dictDO.name, isLike("%" + qry.getDictName() + "%").when(ss -> StrUtil.isNotBlank(qry.getDictName())))
+                .and(dictDO.name, isLike(qry.getDictName()).when(StrUtil::isNotBlank).then(SqlBuilderUtil::addWildcards))
                 .build()
                 .render(RenderingStrategies.MYBATIS3);
-        return dictDetailDOConvertor.toEntity(dictDetailDOMapper.selectMany(s));
+        return dictDetailDOConvertor.toTarget(dictDetailDOMapper.selectMany(s));
     }
 
     @Override
@@ -74,24 +75,24 @@ public class DictDetailGatewayImpl implements DictDetailGateway {
                 .on(dictDO.id, equalTo(dictDetailDO.dictId))
                 .build()
                 .render(RenderingStrategies.MYBATIS3);
-        return dictDetailDOConvertor.toEntity(dictDetailDOMapper.selectMany(s));
+        return dictDetailDOConvertor.toTarget(dictDetailDOMapper.selectMany(s));
     }
 
     @Override
     public DictDetail create(DictDetail dictDetail) {
-        DictDetailDO dictDetailDO = dictDetailDOConvertor.toDto(dictDetail);
+        DictDetailDO dictDetailDO = dictDetailDOConvertor.toSource(dictDetail);
         dictDetailDO.setId(IdUtil.getNextId());
         dictDetailDO.setCreateTime(new Date());
         dictDetailDOMapper.insert(dictDetailDO);
-        return dictDetailDOConvertor.toEntity(dictDetailDO);
+        return dictDetailDOConvertor.toTarget(dictDetailDO);
     }
 
     @Override
     public DictDetail update(DictDetail dictDetail) {
-        DictDetailDO fileDO = dictDetailDOConvertor.toDto(dictDetail);
+        DictDetailDO fileDO = dictDetailDOConvertor.toSource(dictDetail);
         fileDO.setUpdateTime(new Date());
         dictDetailDOMapper.updateByPrimaryKeySelective(fileDO);
-        return dictDetailDOConvertor.toEntity(fileDO);
+        return dictDetailDOConvertor.toTarget(fileDO);
     }
 
     @Override

@@ -23,4 +23,9 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", uses = {DictDOConvertor.class}, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface DictDetailDOConvertor extends BaseConvertor<DictDetailDO, DictDetail> {
+    @Override
+    DictDetail toTarget(DictDetailDO dictDetailDO);
+
+    @Override
+    DictDetailDO toSource(DictDetail dictDetail);
 }

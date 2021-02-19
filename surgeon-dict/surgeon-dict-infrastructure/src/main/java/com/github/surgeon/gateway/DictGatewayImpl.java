@@ -23,6 +23,7 @@ import com.github.surgeon.domain.Dict;
 import com.github.surgeon.domain.gateway.DictGateway;
 import com.github.surgeon.repository.DictDOMapper;
 import com.github.surgeon.util.IdUtil;
+import com.github.surgeon.util.SqlBuilderUtil;
 import org.mybatis.dynamic.sql.render.RenderingStrategies;
 import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +44,13 @@ public class DictGatewayImpl implements DictGateway {
     @Autowired
     private DictDOConvertor dictDOConvertor;
     @Autowired
-    private DictDOMapper    dictDOMapper;
+    private DictDOMapper dictDOMapper;
 
     @Override
     public Dict findById(Long id) {
         Optional<DictDO> dictDO = dictDOMapper.selectByPrimaryKey(id);
         AtomicReference<Dict> file = new AtomicReference<>();
-        dictDO.ifPresent(v -> file.set(dictDOConvertor.toEntity(v)));
+        dictDO.ifPresent(v -> file.set(dictDOConvertor.toTarget(v)));
         return file.get();
     }
 
@@ -57,10 +58,10 @@ public class DictGatewayImpl implements DictGateway {
     public List<Dict> findAll(String name) {
         SelectStatementProvider provider = select(dictDO.allColumns())
                 .from(dictDO)
-                .where(dictDO.name, isLike("%" + name + "%").when(s -> StrUtil.isNotBlank(name)))
+                .where(dictDO.name, isLike(name).when(StrUtil::isNotBlank).then(SqlBuilderUtil::addWildcards))
                 .build()
                 .render(RenderingStrategies.MYBATIS3);
-        return dictDOConvertor.toEntity(dictDOMapper.selectMany(provider));
+        return dictDOConvertor.toTarget(dictDOMapper.selectMany(provider));
     }
 
     @Override
@@ -70,24 +71,24 @@ public class DictGatewayImpl implements DictGateway {
                 .build()
                 .render(RenderingStrategies.MYBATIS3);
         Iterable<DictDO> all = dictDOMapper.selectMany(provider);
-        return dictDOConvertor.toEntity(CollectionUtil.toCollection(all));
+        return dictDOConvertor.toTarget(CollectionUtil.toCollection(all));
     }
 
     @Override
     public Dict create(Dict dict) {
-        DictDO dictDO = dictDOConvertor.toDto(dict);
+        DictDO dictDO = dictDOConvertor.toSource(dict);
         dictDO.setId(IdUtil.getNextId());
         dictDO.setCreateTime(new Date());
         dictDOMapper.insert(dictDO);
-        return dictDOConvertor.toEntity(dictDO);
+        return dictDOConvertor.toTarget(dictDO);
     }
 
     @Override
     public Dict update(Dict dict) {
-        DictDO dictDO = dictDOConvertor.toDto(dict);
+        DictDO dictDO = dictDOConvertor.toSource(dict);
         dictDO.setUpdateTime(new Date());
         dictDOMapper.updateByPrimaryKeySelective(dictDO);
-        return dictDOConvertor.toEntity(dictDO);
+        return dictDOConvertor.toTarget(dictDO);
     }
 
     @Override

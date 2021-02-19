@@ -41,7 +41,7 @@ public class DictDetailPageQryExe {
     public PageResponse<DictDetailDTO> execute(DictDetailPageQry query) {
         PageHelper.startPage(query.getPageIndex(), query.getPageSize());
         List<DictDetail> dictList = dictDetailGateway.findAll(BeanUtil.copyProperties(query, DictDetailQry.class));
-        List<DictDetailDTO> dictDTOList = dictDetailDTOConvertor.toDto(dictList);
+        List<DictDetailDTO> dictDTOList = dictDetailDTOConvertor.toSource(dictList);
         PageInfo<DictDetailDTO> pageInfo = new PageInfo<>(dictDTOList);
         return PageResponse.of(dictDTOList, (int) pageInfo.getTotal(), pageInfo.getPageSize(), pageInfo.getPageNum());
     }
