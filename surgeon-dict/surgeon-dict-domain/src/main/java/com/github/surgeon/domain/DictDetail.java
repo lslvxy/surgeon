@@ -30,7 +30,7 @@ public class DictDetail extends BaseDomain {
 
     private Integer dictSort;
 
-    private String label;
+    private String text;
 
     private String value;
 

@@ -23,8 +23,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DictQry extends Query {
+public class DictDetailQry extends Query {
 
-    private String name;
+    private String text;
+    private String value;
+
+    private String dictName;
+    private Long dictId;
+
 
 }

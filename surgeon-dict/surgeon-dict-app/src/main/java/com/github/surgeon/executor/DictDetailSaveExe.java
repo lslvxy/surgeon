@@ -15,10 +15,12 @@
  */
 package com.github.surgeon.executor;
 
-import com.github.surgeon.convertor.DictDTOConvertor;
-import com.github.surgeon.domain.gateway.DictGateway;
-import com.github.surgeon.dto.cmd.FindByIdCmd;
-import com.github.surgeon.dto.data.DictDTO;
+import com.alibaba.cola.dto.SingleResponse;
+import com.github.surgeon.convertor.DictDetailDTOConvertor;
+import com.github.surgeon.domain.DictDetail;
+import com.github.surgeon.domain.gateway.DictDetailGateway;
+import com.github.surgeon.dto.DictDetailSaveCmd;
+import com.github.surgeon.dto.data.DictDetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,12 +30,14 @@ import javax.annotation.Resource;
 public class DictDetailSaveExe {
 
     @Resource
-    private DictGateway      dictGateway;
+    private DictDetailGateway dictGateway;
     @Autowired
-    private DictDTOConvertor dictDTOConvertor;
+    private DictDetailDTOConvertor dictDTOConvertor;
 
-    public DictDTO execute(FindByIdCmd cmd) {
-        return dictDTOConvertor.toDto(dictGateway.findById(cmd.getId()));
+    public SingleResponse<DictDetailDTO> execute(DictDetailSaveCmd cmd) {
+        DictDetailDTO dictDetailDTO = cmd.getDictDetailDTO();
+        DictDetail dictDetail = dictGateway.create(dictDTOConvertor.toEntity(dictDetailDTO));
+        return SingleResponse.of(dictDTOConvertor.toDto(dictDetail));
     }
 
 }

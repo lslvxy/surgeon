@@ -13,18 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.dto;
+package com.github.surgeon.executor;
 
-import com.alibaba.cola.dto.Query;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.alibaba.cola.dto.Response;
+import com.github.surgeon.domain.gateway.DictDetailGateway;
+import com.github.surgeon.dto.cmd.DeleteByIdCmd;
+import org.springframework.stereotype.Component;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class DictQry extends Query {
+import javax.annotation.Resource;
 
-    private String name;
+@Component
+public class DictDetailDeleteCmdExe {
+    @Resource
+    private DictDetailGateway dictDetailGateway;
+
+    public Response execute(DeleteByIdCmd cmd) {
+        dictDetailGateway.delete(cmd.getId());
+        return Response.buildSuccess();
+    }
 
 }

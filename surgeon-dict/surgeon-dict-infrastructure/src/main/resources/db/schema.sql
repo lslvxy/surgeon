@@ -25,7 +25,7 @@ CREATE TABLE `sys_dict_detail`
     `update_by`   varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
 
     `dict_id`     bigint                                  DEFAULT NULL COMMENT '字典id',
-    `label`       varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '字典标签',
+    `text`        varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '字典标签',
     `value`       varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT '字典值',
     `dict_sort`   int                                     DEFAULT NULL COMMENT '排序',
     PRIMARY KEY (`id`)

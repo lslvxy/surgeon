@@ -18,52 +18,52 @@ package com.github.surgeon.web;
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
-import com.github.surgeon.api.DictServiceI;
+import com.github.surgeon.api.DictDetailServiceI;
 import com.github.surgeon.base.BaseController;
-import com.github.surgeon.dto.DictPageQry;
-import com.github.surgeon.dto.DictQry;
-import com.github.surgeon.dto.DictSaveCmd;
+import com.github.surgeon.dto.DictDetailPageQry;
+import com.github.surgeon.dto.DictDetailQry;
+import com.github.surgeon.dto.DictDetailSaveCmd;
 import com.github.surgeon.dto.cmd.DeleteByIdCmd;
-import com.github.surgeon.dto.data.DictDTO;
+import com.github.surgeon.dto.data.DictDetailDTO;
 import com.github.surgeon.dto.query.IdQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("dict")
-public class DictController extends BaseController {
+@RequestMapping("dict-detail")
+public class DictDetailController extends BaseController {
 
     @Autowired
-    private DictServiceI dictServiceI;
+    private DictDetailServiceI dictDetailServiceI;
 
     @GetMapping(value = "page")
-    public PageResponse<DictDTO> page(DictPageQry query) {
-        return dictServiceI.findPage(query);
+    public PageResponse<DictDetailDTO> page(DictDetailPageQry query) {
+        return dictDetailServiceI.findPage(query);
     }
 
     @GetMapping(value = "all")
-    public MultiResponse<DictDTO> all() {
-        return dictServiceI.findAll();
+    public MultiResponse<DictDetailDTO> all() {
+        return dictDetailServiceI.findAll();
     }
 
     @GetMapping(value = "list")
-    public MultiResponse<DictDTO> list(DictQry query) {
-        return dictServiceI.findAll(query);
+    public MultiResponse<DictDetailDTO> list(DictDetailQry query) {
+        return dictDetailServiceI.findAll(query);
     }
 
     @GetMapping(value = "detail")
     public Response detail(IdQuery query) {
-        return dictServiceI.findById(query);
+        return dictDetailServiceI.findById(query);
     }
 
     @PostMapping(value = "save")
-    public Response save(@RequestBody DictSaveCmd cmd) {
-        return dictServiceI.create(cmd);
+    public Response save(@RequestBody DictDetailSaveCmd cmd) {
+        return dictDetailServiceI.create(cmd);
     }
 
     @PostMapping(value = "delete")
     public Response delete(@RequestBody DeleteByIdCmd cmd) {
-        return dictServiceI.delete(cmd);
+        return dictDetailServiceI.delete(cmd);
     }
 
 }

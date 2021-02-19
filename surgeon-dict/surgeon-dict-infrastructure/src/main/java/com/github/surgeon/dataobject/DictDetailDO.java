@@ -17,27 +17,33 @@ package com.github.surgeon.dataobject;
 
 import com.github.surgeon.base.BaseDO;
 import io.swagger.annotations.ApiModelProperty;
-import javax.annotation.Generated;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.annotation.Generated;
+
 @Data
 @Accessors(chain = true)
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public class DictDetailDO extends BaseDO {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    @ApiModelProperty(value = "ID")
     private Long id;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    private Integer dictSort;
+    @ApiModelProperty(value = "字典id")
+    private Long dictId;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    private String label;
+    @ApiModelProperty(value = "字典标签")
+    private String text;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    @ApiModelProperty(value = "字典值")
     private String value;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    private Long dictId;
+    @ApiModelProperty(value = "排序")
+    private Integer dictSort;
 }

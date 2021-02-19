@@ -13,55 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.domain.gateway;
+package com.github.surgeon.executor.query;
 
+import com.alibaba.cola.dto.MultiResponse;
+import com.github.surgeon.convertor.DictDetailDTOConvertor;
 import com.github.surgeon.domain.DictDetail;
+import com.github.surgeon.domain.gateway.DictDetailGateway;
 import com.github.surgeon.dto.DictDetailQry;
+import com.github.surgeon.dto.data.DictDetailDTO;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
-public interface DictDetailGateway {
-    /**
-     * 根据ID查询
-     *
-     * @param id
-     * @return /
-     */
-    DictDetail findById(Long id);
+@Component
+public class DictDetailListQryExe {
 
-    /**
-     * 根据条件查询
-     *
-     * @param qry
-     * @return
-     */
-    List<DictDetail> findAll(DictDetailQry qry);
+    @Resource
+    private DictDetailGateway dictDetailGateway;
+    @Resource
+    private DictDetailDTOConvertor dictDetailDTOConvertor;
 
-    /**
-     * 分页查询
-     *
-     * @return /
-     */
-    List<DictDetail> findAll();
-
-    /**
-     * 创建
-     *
-     * @param dictDetail
-     */
-    DictDetail create(DictDetail dictDetail);
-
-    /**
-     * update
-     *
-     * @param dictDetail
-     */
-    DictDetail update(DictDetail dictDetail);
-
-    /**
-     * 删除
-     *
-     * @param id /
-     */
-    boolean delete(Long id);
+    public MultiResponse<DictDetailDTO> execute(DictDetailQry qry) {
+        List<DictDetail> all = dictDetailGateway.findAll(qry);
+        return MultiResponse.of(dictDetailDTOConvertor.toDto(all));
+    }
 }

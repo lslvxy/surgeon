@@ -13,18 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.dto;
+package com.github.surgeon.convertor;
 
-import com.alibaba.cola.dto.Query;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.github.surgeon.base.BaseConvertor;
+import com.github.surgeon.dataobject.DictDetailDO;
+import com.github.surgeon.domain.DictDetail;
+import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class DictQry extends Query {
-
-    private String name;
-
+@Mapper(componentModel = "spring", uses = {DictDOConvertor.class}, unmappedTargetPolicy = ReportingPolicy.IGNORE)
+public interface DictDetailDOConvertor extends BaseConvertor<DictDetailDO, DictDetail> {
 }

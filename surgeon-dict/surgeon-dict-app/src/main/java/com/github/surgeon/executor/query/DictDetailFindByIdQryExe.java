@@ -13,37 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.executor;
+package com.github.surgeon.executor.query;
 
 import com.alibaba.cola.dto.SingleResponse;
-import com.github.surgeon.convertor.DictDTOConvertor;
-import com.github.surgeon.domain.Dict;
-import com.github.surgeon.domain.gateway.DictGateway;
-import com.github.surgeon.dto.DictSaveCmd;
-import com.github.surgeon.dto.data.DictDTO;
+import com.github.surgeon.convertor.DictDetailDTOConvertor;
+import com.github.surgeon.domain.DictDetail;
+import com.github.surgeon.domain.gateway.DictDetailGateway;
+import com.github.surgeon.dto.data.DictDetailDTO;
+import com.github.surgeon.dto.query.IdQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.Objects;
 
 @Component
-public class DictSaveExe {
+public class DictDetailFindByIdQryExe {
 
     @Resource
-    private DictGateway dictGateway;
+    private DictDetailGateway dictDetailGateway;
     @Autowired
-    private DictDTOConvertor dictDTOConvertor;
+    private DictDetailDTOConvertor dictDetailDTOConvertor;
 
-    public SingleResponse<DictDTO> execute(DictSaveCmd cmd) {
-        Dict dict = dictDTOConvertor.toEntity(cmd.getDict());
-        if (Objects.isNull(cmd.getDict().getId())) {
-            dict = dictGateway.create(dict);
-        } else {
-            dict = dictGateway.update(dict);
-        }
-        DictDTO dictDTO = dictDTOConvertor.toDto(dict);
-        return SingleResponse.of(dictDTO);
+    public SingleResponse<DictDetailDTO> execute(IdQuery query) {
+        DictDetail byId = dictDetailGateway.findById(query.getId());
+        DictDetailDTO dto = dictDetailDTOConvertor.toDto(byId);
+        return SingleResponse.of(dto);
     }
-
 }

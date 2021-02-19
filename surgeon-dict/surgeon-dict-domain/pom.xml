@@ -27,6 +27,10 @@
             <groupId>com.alibaba.cola</groupId>
             <artifactId>cola-component-exception</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.surgeon</groupId>
+            <artifactId>surgeon-dict-client</artifactId>
+        </dependency>
         <!-- COLA components End-->
     </dependencies>
 

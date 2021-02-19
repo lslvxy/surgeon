@@ -15,7 +15,7 @@
  */
 package com.github.surgeon.dto;
 
-import com.alibaba.cola.dto.Query;
+import com.alibaba.cola.dto.PageQuery;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,8 +23,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DictQry extends Query {
+public class DictDetailPageQry extends PageQuery {
 
-    private String name;
+    private String text;
+    private String value;
+
+    private String dictName;
+    private Long dictId;
 
 }
