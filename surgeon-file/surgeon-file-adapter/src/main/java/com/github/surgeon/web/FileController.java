@@ -28,7 +28,6 @@ import com.github.surgeon.dto.FileUploadCmd;
 import com.github.surgeon.dto.data.FileDTO;
 import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.dto.data.FileUploadDTO;
-import com.google.common.base.Joiner;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
@@ -70,67 +69,11 @@ public class FileController extends BaseController {
         return fileService.upload(cmd);
     }
 
-    @GetMapping("download/{file}")
+    @GetMapping("download/{id}")
     @ApiOperation(value = "下载", response = Response.class)
-    public void download(@PathVariable String file, HttpServletResponse response) throws IOException {
+    public void download(@PathVariable Long id, HttpServletResponse response) throws IOException {
         FileDownloadCmd cmd = new FileDownloadCmd();
-        cmd.setFilePath(file);
-        doDownload(cmd, response);
-    }
-
-    @GetMapping("download")
-    public void downloadparam(@RequestParam String file, HttpServletResponse response) throws IOException {
-        FileDownloadCmd cmd = new FileDownloadCmd();
-        cmd.setFilePath(file);
-        doDownload(cmd, response);
-    }
-
-    @GetMapping("download/{path}/{file}")
-    public void download2(@PathVariable String path, @PathVariable String file, HttpServletResponse response) throws IOException {
-        FileDownloadCmd cmd = new FileDownloadCmd();
-        cmd.setFilePath(Joiner.on("/").join(path, file));
-        doDownload(cmd, response);
-    }
-
-    @GetMapping("download/{path1}/{path2}/{file}")
-    public void download3(@PathVariable String path1, @PathVariable String path2, @PathVariable String file, HttpServletResponse response) throws IOException {
-        FileDownloadCmd cmd = new FileDownloadCmd();
-        cmd.setFilePath(Joiner.on("/").join(path1, path2, file));
-        doDownload(cmd, response);
-    }
-
-    @GetMapping("download/{path1}/{path2}/{path3}/{file}")
-    public void download4(@PathVariable String path1, @PathVariable String path2, @PathVariable String path3, @PathVariable String file, HttpServletResponse response) throws IOException {
-        FileDownloadCmd cmd = new FileDownloadCmd();
-        cmd.setFilePath(Joiner.on("/").join(path1, path2, path3, file));
-        doDownload(cmd, response);
-    }
-
-    @GetMapping("download/{path1}/{path2}/{path3}/{path4}/{file}")
-    public void download4(@PathVariable String path1, @PathVariable String path2, @PathVariable String path3, @PathVariable String path4, @PathVariable String file, HttpServletResponse response) throws IOException {
-        FileDownloadCmd cmd = new FileDownloadCmd();
-        cmd.setFilePath(Joiner.on("/").join(path1, path2, path3, path4, file));
-        doDownload(cmd, response);
-    }
-
-    @GetMapping("download/{path1}/{path2}/{path3}/{path4}/{path5}/{file}")
-    public void download5(@PathVariable String path1, @PathVariable String path2, @PathVariable String path3, @PathVariable String path4, @PathVariable String path5, @PathVariable String file, HttpServletResponse response) throws IOException {
-        FileDownloadCmd cmd = new FileDownloadCmd();
-        cmd.setFilePath(Joiner.on("/").join(path1, path2, path3, path4, path5, file));
-        doDownload(cmd, response);
-    }
-
-    @GetMapping("download/{path1}/{path2}/{path3}/{path4}/{path5}/{path6}/{file}")
-    public void download6(@PathVariable String path1, @PathVariable String path2, @PathVariable String path3, @PathVariable String path4, @PathVariable String path5, @PathVariable String path6, @PathVariable String file, HttpServletResponse response) throws IOException {
-        FileDownloadCmd cmd = new FileDownloadCmd();
-        cmd.setFilePath(Joiner.on("/").join(path1, path2, path3, path4, path5, path6, file));
-        doDownload(cmd, response);
-    }
-
-    private void doDownload(FileDownloadCmd cmd, HttpServletResponse response) {
-        if (!cmd.getFilePath().startsWith("/")) {
-            cmd.setFilePath("/" + cmd.getFilePath());
-        }
+        cmd.setId(id);
         SingleResponse<FileDownloadDTO> dto = fileService.download(cmd);
 
         if (!dto.isSuccess()) {

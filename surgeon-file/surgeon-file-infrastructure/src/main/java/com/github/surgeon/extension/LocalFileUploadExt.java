@@ -15,6 +15,7 @@
  */
 package com.github.surgeon.extension;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.cola.extension.Extension;
 import com.github.surgeon.config.LocalProp;
 import com.github.surgeon.constant.FileProviderConstants;
@@ -25,7 +26,7 @@ import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.dto.data.FileUploadDTO;
 import com.github.surgeon.extensionpoint.FileUploadExtPt;
 import com.github.surgeon.util.FileUtils;
-import com.google.common.base.Joiner;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.BufferedInputStream;
@@ -33,6 +34,7 @@ import java.io.File;
 import java.util.Objects;
 
 @Extension(bizId = FileProviderConstants.LOCAL)
+@Slf4j
 public class LocalFileUploadExt implements FileUploadExtPt {
     @Autowired
     private LocalProp localProp;
@@ -44,8 +46,8 @@ public class LocalFileUploadExt implements FileUploadExtPt {
         Objects.requireNonNull(cmd.getInputStream());
         String rootPath = localProp.getPath();
         String finalFileName = FileUtils.getPathByTime(cmd.getFileDTO().getFileName());
-        String fullPath = Joiner.on(File.separator).join(rootPath, finalFileName);
-
+        String fullPath = StrUtil.removeSuffix(rootPath, File.separator) + finalFileName;
+        log.debug("fullPath is {}", fullPath);
         FileUtils.writeFromStream(cmd.getInputStream(), fullPath);
         FileUploadDTO dto = new FileUploadDTO();
         dto.setFilePath(finalFileName);
@@ -56,7 +58,8 @@ public class LocalFileUploadExt implements FileUploadExtPt {
     @Override
     public FileDownloadDTO download(FileDownloadCmd cmd) {
         String rootPath = localProp.getPath();
-        String fullPath = Joiner.on(File.separator).join(rootPath, cmd.getFilePath());
+        String fullPath = StrUtil.removeSuffix(rootPath, File.separator) + cmd.getId();
+        log.debug("fullPath is {}", fullPath);
         BufferedInputStream inputStream = FileUtils.getInputStream(fullPath);
         FileDownloadDTO dto = new FileDownloadDTO();
         dto.setFileName("");

@@ -37,9 +37,10 @@ public class FileDeleteCmdExe {
 
     public Response execute(FileDeleteCmd cmd) {
 
-        fileGateway.delete(cmd.getId());
         File file = fileGateway.findById(cmd.getId());
         cmd.setFilePath(file.getFilePath());
+        
+        fileGateway.delete(cmd.getId());
 
         if (Objects.isNull(cmd.getBizScenario())) {
             BizScenario scenario = BizScenario.valueOf(FileProviderConstants.LOCAL);

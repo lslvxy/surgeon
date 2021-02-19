@@ -19,6 +19,8 @@ import com.alibaba.cola.dto.SingleResponse;
 import com.alibaba.cola.extension.BizScenario;
 import com.alibaba.cola.extension.ExtensionExecutor;
 import com.github.surgeon.constant.FileProviderConstants;
+import com.github.surgeon.domain.File;
+import com.github.surgeon.domain.gateway.FileGateway;
 import com.github.surgeon.dto.FileDownloadCmd;
 import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.extensionpoint.FileUploadExtPt;
@@ -29,18 +31,21 @@ import java.util.Objects;
 
 @Component
 public class FileDownloadCmdExe {
-
+    @Resource
+    private FileGateway fileGateway;
     @Resource
     private ExtensionExecutor extensionExecutor;
 
     public SingleResponse<FileDownloadDTO> execute(FileDownloadCmd cmd) {
 
+        File file = fileGateway.findById(cmd.getId());
         if (Objects.isNull(cmd.getBizScenario())) {
             BizScenario scenario = BizScenario.valueOf(FileProviderConstants.LOCAL);
             cmd.setBizScenario(scenario);
         }
-        FileDownloadDTO execute = extensionExecutor.execute(FileUploadExtPt.class, cmd.getBizScenario(), v -> v.download(cmd));
-        return SingleResponse.of(execute);
+        FileDownloadDTO dto = extensionExecutor.execute(FileUploadExtPt.class, cmd.getBizScenario(), v -> v.download(cmd));
+        dto.setFileName(file.getFileName());
+        return SingleResponse.of(dto);
     }
 
 }

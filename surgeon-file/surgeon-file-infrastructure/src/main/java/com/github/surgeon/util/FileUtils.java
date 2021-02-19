@@ -15,6 +15,7 @@
  */
 package com.github.surgeon.util;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
@@ -43,7 +44,7 @@ public class FileUtils extends cn.hutool.core.io.FileUtil {
         String dir = now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
         String typePart = FileUtils.getTypePart(fileName);
         String substring = fileName.substring(0, fileName.lastIndexOf(typePart));
-        return dir + "/" + substring + now.format(DateTimeFormatter.ofPattern("_HHmmssSSS")) + typePart;
+        return File.separator + dir + File.separator + substring + now.format(DateTimeFormatter.ofPattern("_HHmmssSSS")) + typePart;
     }
 
     /**
