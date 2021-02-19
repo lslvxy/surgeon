@@ -16,12 +16,10 @@
 package com.github.surgeon.api;
 
 import com.alibaba.cola.dto.MultiResponse;
+import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
-import com.github.surgeon.dto.FileDeleteCmd;
-import com.github.surgeon.dto.FileDownloadCmd;
-import com.github.surgeon.dto.FileSearchQuery;
-import com.github.surgeon.dto.FileUploadCmd;
+import com.github.surgeon.dto.*;
 import com.github.surgeon.dto.data.FileDTO;
 import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.dto.data.FileUploadDTO;
@@ -44,9 +42,11 @@ public interface FileServiceI {
      *
      * @return /
      */
-    MultiResponse<FileDTO> findAll();
 
-    MultiResponse<FileDTO> findAll(FileSearchQuery query);
+    MultiResponse<FileDTO> findAll(FileQuery query);
+
+    PageResponse<FileDTO> findPage(FilePageQuery query);
+
 
     SingleResponse<FileDTO> findById(IdQuery query);
 

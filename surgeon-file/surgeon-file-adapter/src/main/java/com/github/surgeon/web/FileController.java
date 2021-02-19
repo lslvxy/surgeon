@@ -17,24 +17,26 @@ package com.github.surgeon.web;
 
 import cn.hutool.core.io.IoUtil;
 import com.alibaba.cola.dto.MultiResponse;
+import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.alibaba.cola.exception.SysException;
 import com.github.surgeon.api.FileServiceI;
 import com.github.surgeon.base.BaseController;
 import com.github.surgeon.dto.FileDownloadCmd;
-import com.github.surgeon.dto.FileSearchQuery;
+import com.github.surgeon.dto.FilePageQuery;
+import com.github.surgeon.dto.FileQuery;
 import com.github.surgeon.dto.FileUploadCmd;
 import com.github.surgeon.dto.data.FileDTO;
 import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.dto.data.FileUploadDTO;
+import com.github.surgeon.dto.query.IdQuery;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,15 +49,25 @@ public class FileController extends BaseController {
     @Autowired
     private FileServiceI fileService;
 
-    @PostMapping(value = "/list")
-    public MultiResponse<FileDTO> list(@RequestBody FileSearchQuery query) {
+    @GetMapping(value = "/list")
+    public MultiResponse<FileDTO> list(FileQuery query) {
         return fileService.findAll(query);
+    }
+
+    @GetMapping(value = "/page")
+    public PageResponse<FileDTO> page(FilePageQuery query) {
+        return fileService.findPage(query);
+    }
+
+    @GetMapping(value = "/detail")
+    public SingleResponse<FileDTO> detail(IdQuery query) {
+        return fileService.findById(query);
     }
 
 
     @PostMapping("upload")
     @ApiOperation(value = "上传", response = Response.class)
-    public SingleResponse<FileUploadDTO> upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
+    public SingleResponse<FileUploadDTO> upload(@RequestParam("file") MultipartFile file) throws IOException {
 
         FileUploadCmd cmd = new FileUploadCmd();
         FileDTO dto = new FileDTO();
@@ -71,7 +83,7 @@ public class FileController extends BaseController {
 
     @GetMapping("download/{id}")
     @ApiOperation(value = "下载", response = Response.class)
-    public void download(@PathVariable Long id, HttpServletResponse response) throws IOException {
+    public void download(@PathVariable Long id, HttpServletResponse response) {
         FileDownloadCmd cmd = new FileDownloadCmd();
         cmd.setId(id);
         SingleResponse<FileDownloadDTO> dto = fileService.download(cmd);

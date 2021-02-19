@@ -16,7 +16,7 @@
 package com.github.surgeon.domain.gateway;
 
 import com.github.surgeon.domain.File;
-import com.github.surgeon.dto.FileSearchQuery;
+import com.github.surgeon.dto.FileQuery;
 
 import java.util.List;
 
@@ -43,7 +43,7 @@ public interface FileGateway {
      * @param query
      * @return /
      */
-    List<File> findAll(FileSearchQuery query);
+    List<File> findAll(FileQuery query);
 
     /**
      * 创建

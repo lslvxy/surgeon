@@ -21,7 +21,7 @@ import com.github.surgeon.convertor.DictDetailDOConvertor;
 import com.github.surgeon.dataobject.DictDetailDO;
 import com.github.surgeon.domain.DictDetail;
 import com.github.surgeon.domain.gateway.DictDetailGateway;
-import com.github.surgeon.dto.DictDetailQry;
+import com.github.surgeon.dto.DictDetailQuery;
 import com.github.surgeon.repository.DictDetailDOMapper;
 import com.github.surgeon.util.IdUtil;
 import com.github.surgeon.util.SqlBuilderUtil;
@@ -55,7 +55,7 @@ public class DictDetailGatewayImpl implements DictDetailGateway {
     }
 
     @Override
-    public List<DictDetail> findAll(DictDetailQry qry) {
+    public List<DictDetail> findAll(DictDetailQuery qry) {
         SelectStatementProvider s = select(dictDetailDO.allColumns(), dictDO.allColumns()).from(dictDetailDO, "dd")
                 .leftJoin(dictDO, "d")
                 .on(dictDO.id, equalTo(dictDetailDO.dictId))

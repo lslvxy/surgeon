@@ -26,11 +26,7 @@ import com.github.surgeon.dto.data.FileUploadDTO;
 import com.github.surgeon.dto.query.NameQuery;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,6 +53,7 @@ public class FileController extends BaseController {
     @ApiOperation(value = "上传", response = Response.class)
     public Response upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
         if (file.isEmpty()) {
+
             return Response.buildFailure("500", "上传失败，请选择文件");
         }
         SingleResponse<FileUploadDTO> upload = fileService.upload(file);

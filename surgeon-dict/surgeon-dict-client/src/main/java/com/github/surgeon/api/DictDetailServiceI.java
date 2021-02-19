@@ -19,8 +19,8 @@ import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
-import com.github.surgeon.dto.DictDetailPageQry;
-import com.github.surgeon.dto.DictDetailQry;
+import com.github.surgeon.dto.DictDetailPageQuery;
+import com.github.surgeon.dto.DictDetailQuery;
 import com.github.surgeon.dto.DictDetailSaveCmd;
 import com.github.surgeon.dto.cmd.DeleteByIdCmd;
 import com.github.surgeon.dto.data.DictDetailDTO;
@@ -42,7 +42,7 @@ public interface DictDetailServiceI {
      * @param query
      * @return
      */
-    PageResponse<DictDetailDTO> findPage(DictDetailPageQry query);
+    PageResponse<DictDetailDTO> findPage(DictDetailPageQuery query);
 
     /**
      * 根据名查询
@@ -50,7 +50,7 @@ public interface DictDetailServiceI {
      * @param query
      * @return
      */
-    MultiResponse<DictDetailDTO> findAll(DictDetailQry query);
+    MultiResponse<DictDetailDTO> findAll(DictDetailQuery query);
 
     /**
      * 分页查询

@@ -17,14 +17,12 @@ package com.github.surgeon;
 
 import com.alibaba.cola.catchlog.CatchAndLog;
 import com.alibaba.cola.dto.MultiResponse;
+import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.alibaba.cola.extension.BizScenario;
 import com.github.surgeon.api.FileServiceI;
-import com.github.surgeon.dto.FileDeleteCmd;
-import com.github.surgeon.dto.FileDownloadCmd;
-import com.github.surgeon.dto.FileSearchQuery;
-import com.github.surgeon.dto.FileUploadCmd;
+import com.github.surgeon.dto.*;
 import com.github.surgeon.dto.data.FileDTO;
 import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.dto.data.FileUploadDTO;
@@ -33,6 +31,7 @@ import com.github.surgeon.executor.FileDeleteCmdExe;
 import com.github.surgeon.executor.FileDownloadCmdExe;
 import com.github.surgeon.executor.FileUploadCmdExe;
 import com.github.surgeon.executor.query.FileFindByIdQryExe;
+import com.github.surgeon.executor.query.FileFindPageQryExe;
 import com.github.surgeon.executor.query.FileListAllQryExe;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -59,8 +58,11 @@ public class FileServiceImpl implements FileServiceI {
 
     @Resource
     private FileListAllQryExe fileListAllQryExe;
+
     @Resource
     private FileFindByIdQryExe fileFindByIdQryExe;
+    @Resource
+    private FileFindPageQryExe fileFindPageQryExe;
 
     @PostConstruct
     private void initialize() {
@@ -86,12 +88,12 @@ public class FileServiceImpl implements FileServiceI {
 
 
     @Override
-    public MultiResponse<FileDTO> findAll() {
-        return fileListAllQryExe.execute(new FileSearchQuery());
+    public PageResponse<FileDTO> findPage(FilePageQuery query) {
+        return fileFindPageQryExe.execute(query);
     }
 
     @Override
-    public MultiResponse<FileDTO> findAll(FileSearchQuery query) {
+    public MultiResponse<FileDTO> findAll(FileQuery query) {
         return fileListAllQryExe.execute(query);
     }
 

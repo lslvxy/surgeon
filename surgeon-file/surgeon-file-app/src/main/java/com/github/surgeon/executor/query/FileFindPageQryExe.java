@@ -15,27 +15,35 @@
  */
 package com.github.surgeon.executor.query;
 
-import com.alibaba.cola.dto.MultiResponse;
+import cn.hutool.core.bean.BeanUtil;
+import com.alibaba.cola.dto.PageResponse;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.github.surgeon.convertor.FileDTOConvertor;
 import com.github.surgeon.domain.File;
 import com.github.surgeon.domain.gateway.FileGateway;
+import com.github.surgeon.dto.FilePageQuery;
 import com.github.surgeon.dto.FileQuery;
 import com.github.surgeon.dto.data.FileDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Component
-public class FileListAllQryExe {
+public class FileFindPageQryExe {
 
     @Resource
     private FileGateway fileGateway;
-    @Resource
+    @Autowired
     private FileDTOConvertor fileDTOConvertor;
 
-    public MultiResponse<FileDTO> execute(FileQuery query) {
-        List<File> all = fileGateway.findAll(query);
-        return MultiResponse.of(fileDTOConvertor.toSource(all));
+    public PageResponse<FileDTO> execute(FilePageQuery query) {
+        PageHelper.startPage(query.getPageIndex(), query.getPageSize());
+        List<File> list = fileGateway.findAll(BeanUtil.copyProperties(query, FileQuery.class));
+        List<FileDTO> dtoList = fileDTOConvertor.toSource(list);
+        PageInfo<FileDTO> pageInfo = new PageInfo<>(dtoList);
+        return PageResponse.of(dtoList, (int) pageInfo.getTotal(), pageInfo.getPageSize(), pageInfo.getPageNum());
     }
 }

@@ -21,8 +21,8 @@ import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.github.surgeon.api.DictDetailServiceI;
-import com.github.surgeon.dto.DictDetailPageQry;
-import com.github.surgeon.dto.DictDetailQry;
+import com.github.surgeon.dto.DictDetailPageQuery;
+import com.github.surgeon.dto.DictDetailQuery;
 import com.github.surgeon.dto.DictDetailSaveCmd;
 import com.github.surgeon.dto.cmd.DeleteByIdCmd;
 import com.github.surgeon.dto.data.DictDetailDTO;
@@ -58,18 +58,18 @@ public class DictDetailServiceImpl implements DictDetailServiceI {
     }
 
     @Override
-    public PageResponse<DictDetailDTO> findPage(DictDetailPageQry query) {
+    public PageResponse<DictDetailDTO> findPage(DictDetailPageQuery query) {
         return dictDetailPageQryExe.execute(query);
     }
 
     @Override
-    public MultiResponse<DictDetailDTO> findAll(DictDetailQry query) {
+    public MultiResponse<DictDetailDTO> findAll(DictDetailQuery query) {
         return dictDetailListQryExe.execute(query);
     }
 
     @Override
     public MultiResponse<DictDetailDTO> findAll() {
-        return dictDetailListQryExe.execute(new DictDetailQry());
+        return dictDetailListQryExe.execute(new DictDetailQuery());
     }
 
     @Override

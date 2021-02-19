@@ -21,7 +21,7 @@ import com.github.pagehelper.PageInfo;
 import com.github.surgeon.convertor.DictDTOConvertor;
 import com.github.surgeon.domain.Dict;
 import com.github.surgeon.domain.gateway.DictGateway;
-import com.github.surgeon.dto.DictPageQry;
+import com.github.surgeon.dto.DictPageQuery;
 import com.github.surgeon.dto.data.DictDTO;
 import org.springframework.stereotype.Component;
 
@@ -29,14 +29,14 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Component
-public class DictPageQryExe {
+public class DictFindPageQryExe {
 
     @Resource
     private DictGateway dictGateway;
     @Resource
     private DictDTOConvertor dictDTOConvertor;
 
-    public PageResponse<DictDTO> execute(DictPageQry query) {
+    public PageResponse<DictDTO> execute(DictPageQuery query) {
         PageHelper.startPage(query.getPageIndex(), query.getPageSize());
         List<Dict> dictList = dictGateway.findAll(query.getName());
         List<DictDTO> dictDTOList = dictDTOConvertor.toSource(dictList);

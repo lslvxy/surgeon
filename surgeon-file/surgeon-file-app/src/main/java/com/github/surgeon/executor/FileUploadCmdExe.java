@@ -25,6 +25,7 @@ import com.github.surgeon.domain.gateway.FileGateway;
 import com.github.surgeon.dto.FileUploadCmd;
 import com.github.surgeon.dto.data.FileUploadDTO;
 import com.github.surgeon.extensionpoint.FileUploadExtPt;
+import com.github.surgeon.validator.FileValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -42,6 +43,8 @@ public class FileUploadCmdExe {
     private FileDTOConvertor fileDTOConvertor;
 
     public SingleResponse<FileUploadDTO> execute(FileUploadCmd cmd) {
+        FileValidator.checkFileUpload(cmd);
+
         if (Objects.isNull(cmd.getBizScenario())) {
             BizScenario scenario = BizScenario.valueOf(FileProviderConstants.LOCAL);
             cmd.setBizScenario(scenario);

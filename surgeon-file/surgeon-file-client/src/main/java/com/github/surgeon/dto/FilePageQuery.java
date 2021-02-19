@@ -16,15 +16,10 @@
 package com.github.surgeon.dto;
 
 import com.alibaba.cola.dto.PageQuery;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class DictPageQry extends PageQuery {
-
+public class FilePageQuery extends PageQuery {
     private String name;
-
 }
+

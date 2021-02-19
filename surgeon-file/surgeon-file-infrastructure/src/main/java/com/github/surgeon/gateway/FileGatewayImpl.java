@@ -21,7 +21,7 @@ import com.github.surgeon.convertor.FileDOConvertor;
 import com.github.surgeon.dataobject.FileDO;
 import com.github.surgeon.domain.File;
 import com.github.surgeon.domain.gateway.FileGateway;
-import com.github.surgeon.dto.FileSearchQuery;
+import com.github.surgeon.dto.FileQuery;
 import com.github.surgeon.repository.FileDOMapper;
 import com.github.surgeon.util.IdUtil;
 import com.github.surgeon.util.SqlBuilderUtil;
@@ -66,7 +66,7 @@ public class FileGatewayImpl implements FileGateway {
     }
 
     @Override
-    public List<File> findAll(FileSearchQuery query) {
+    public List<File> findAll(FileQuery query) {
         SelectStatementProvider provider = select(fileDO.allColumns())
                 .from(fileDO)
                 .where(fileDO.fileName, isLike(query.getName()).when(StrUtil::isNotBlank).then(SqlBuilderUtil::addWildcards))

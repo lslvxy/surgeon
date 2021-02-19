@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DictDetailPageQry extends PageQuery {
+public class DictDetailPageQuery extends PageQuery {
 
     private String text;
     private String value;

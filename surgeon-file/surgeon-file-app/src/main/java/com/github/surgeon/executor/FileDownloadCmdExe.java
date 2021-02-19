@@ -22,6 +22,7 @@ import com.github.surgeon.constant.FileProviderConstants;
 import com.github.surgeon.domain.File;
 import com.github.surgeon.domain.gateway.FileGateway;
 import com.github.surgeon.dto.FileDownloadCmd;
+import com.github.surgeon.dto.data.ErrorCode;
 import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.extensionpoint.FileUploadExtPt;
 import org.springframework.stereotype.Component;
@@ -39,6 +40,10 @@ public class FileDownloadCmdExe {
     public SingleResponse<FileDownloadDTO> execute(FileDownloadCmd cmd) {
 
         File file = fileGateway.findById(cmd.getId());
+        if (Objects.isNull(file)) {
+            return SingleResponse.buildFailure(ErrorCode.B_FILE_NOT_EXISTS.getErrCode(), ErrorCode.B_FILE_NOT_EXISTS.getErrDesc());
+
+        }
         cmd.setFilePath(file.getFilePath());
         if (Objects.isNull(cmd.getBizScenario())) {
             BizScenario scenario = BizScenario.valueOf(FileProviderConstants.LOCAL);

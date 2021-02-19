@@ -22,8 +22,8 @@ import com.github.pagehelper.PageInfo;
 import com.github.surgeon.convertor.DictDetailDTOConvertor;
 import com.github.surgeon.domain.DictDetail;
 import com.github.surgeon.domain.gateway.DictDetailGateway;
-import com.github.surgeon.dto.DictDetailPageQry;
-import com.github.surgeon.dto.DictDetailQry;
+import com.github.surgeon.dto.DictDetailPageQuery;
+import com.github.surgeon.dto.DictDetailQuery;
 import com.github.surgeon.dto.data.DictDetailDTO;
 import org.springframework.stereotype.Component;
 
@@ -38,9 +38,9 @@ public class DictDetailPageQryExe {
     @Resource
     private DictDetailDTOConvertor dictDetailDTOConvertor;
 
-    public PageResponse<DictDetailDTO> execute(DictDetailPageQry query) {
+    public PageResponse<DictDetailDTO> execute(DictDetailPageQuery query) {
         PageHelper.startPage(query.getPageIndex(), query.getPageSize());
-        List<DictDetail> dictList = dictDetailGateway.findAll(BeanUtil.copyProperties(query, DictDetailQry.class));
+        List<DictDetail> dictList = dictDetailGateway.findAll(BeanUtil.copyProperties(query, DictDetailQuery.class));
         List<DictDetailDTO> dictDTOList = dictDetailDTOConvertor.toSource(dictList);
         PageInfo<DictDetailDTO> pageInfo = new PageInfo<>(dictDTOList);
         return PageResponse.of(dictDTOList, (int) pageInfo.getTotal(), pageInfo.getPageSize(), pageInfo.getPageNum());

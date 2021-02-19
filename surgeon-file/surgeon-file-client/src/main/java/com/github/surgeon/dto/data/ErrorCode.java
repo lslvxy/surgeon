@@ -13,18 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.dto;
+package com.github.surgeon.dto.data;
 
-import com.alibaba.cola.dto.Query;
+import com.github.surgeon.base.BaseErrorCode;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Data
+@Getter
 @AllArgsConstructor
-@NoArgsConstructor
-public class DictQry extends Query {
+public enum ErrorCode implements BaseErrorCode {
+    /**
+     * 文件不存在
+     */
+    B_FILE_NOT_EXISTS("B_FILE_NOT_EXISTS", "文件不存在");
 
-    private String name;
+    private final String errCode;
+
+    private final String errDesc;
 
 }

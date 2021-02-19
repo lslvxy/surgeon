@@ -19,7 +19,7 @@ import com.alibaba.cola.dto.MultiResponse;
 import com.github.surgeon.convertor.DictDTOConvertor;
 import com.github.surgeon.domain.Dict;
 import com.github.surgeon.domain.gateway.DictGateway;
-import com.github.surgeon.dto.DictQry;
+import com.github.surgeon.dto.DictQuery;
 import com.github.surgeon.dto.data.DictDTO;
 import org.springframework.stereotype.Component;
 
@@ -27,14 +27,14 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Component
-public class DictListQryExe {
+public class DictFindListQryExe {
 
     @Resource
     private DictGateway dictGateway;
     @Resource
     private DictDTOConvertor dictDTOConvertor;
 
-    public MultiResponse<DictDTO> execute(DictQry qry) {
+    public MultiResponse<DictDTO> execute(DictQuery qry) {
         List<Dict> all = dictGateway.findAll(qry.getName());
         return MultiResponse.of(dictDTOConvertor.toSource(all));
     }

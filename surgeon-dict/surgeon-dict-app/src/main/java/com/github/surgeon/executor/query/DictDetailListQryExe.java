@@ -19,7 +19,7 @@ import com.alibaba.cola.dto.MultiResponse;
 import com.github.surgeon.convertor.DictDetailDTOConvertor;
 import com.github.surgeon.domain.DictDetail;
 import com.github.surgeon.domain.gateway.DictDetailGateway;
-import com.github.surgeon.dto.DictDetailQry;
+import com.github.surgeon.dto.DictDetailQuery;
 import com.github.surgeon.dto.data.DictDetailDTO;
 import org.springframework.stereotype.Component;
 
@@ -34,7 +34,7 @@ public class DictDetailListQryExe {
     @Resource
     private DictDetailDTOConvertor dictDetailDTOConvertor;
 
-    public MultiResponse<DictDetailDTO> execute(DictDetailQry qry) {
+    public MultiResponse<DictDetailDTO> execute(DictDetailQuery qry) {
         List<DictDetail> all = dictDetailGateway.findAll(qry);
         return MultiResponse.of(dictDetailDTOConvertor.toSource(all));
     }

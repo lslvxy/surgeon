@@ -16,7 +16,7 @@
 package com.github.surgeon.domain.gateway;
 
 import com.github.surgeon.domain.DictDetail;
-import com.github.surgeon.dto.DictDetailQry;
+import com.github.surgeon.dto.DictDetailQuery;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ public interface DictDetailGateway {
      * @param qry
      * @return
      */
-    List<DictDetail> findAll(DictDetailQry qry);
+    List<DictDetail> findAll(DictDetailQuery qry);
 
     /**
      * 分页查询

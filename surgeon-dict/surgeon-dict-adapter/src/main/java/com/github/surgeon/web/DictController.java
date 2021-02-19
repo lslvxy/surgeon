@@ -20,8 +20,8 @@ import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
 import com.github.surgeon.api.DictServiceI;
 import com.github.surgeon.base.BaseController;
-import com.github.surgeon.dto.DictPageQry;
-import com.github.surgeon.dto.DictQry;
+import com.github.surgeon.dto.DictPageQuery;
+import com.github.surgeon.dto.DictQuery;
 import com.github.surgeon.dto.DictSaveCmd;
 import com.github.surgeon.dto.cmd.DeleteByIdCmd;
 import com.github.surgeon.dto.data.DictDTO;
@@ -37,7 +37,7 @@ public class DictController extends BaseController {
     private DictServiceI dictServiceI;
 
     @GetMapping(value = "page")
-    public PageResponse<DictDTO> page(DictPageQry query) {
+    public PageResponse<DictDTO> page(DictPageQuery query) {
         return dictServiceI.findPage(query);
     }
 
@@ -47,7 +47,7 @@ public class DictController extends BaseController {
     }
 
     @GetMapping(value = "list")
-    public MultiResponse<DictDTO> list(DictQry query) {
+    public MultiResponse<DictDTO> list(DictQuery query) {
         return dictServiceI.findAll(query);
     }
 
