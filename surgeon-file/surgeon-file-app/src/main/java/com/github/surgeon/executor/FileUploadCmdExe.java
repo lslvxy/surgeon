@@ -53,7 +53,7 @@ public class FileUploadCmdExe {
         file.setFilePath(execute.getFilePath());
         file = fileGateway.create(file);
         execute.setId(file.getId());
-        execute.setFileUrl("file/download/" + file.getId());
+        execute.setFileUrl("/file/download/" + file.getId());
         return SingleResponse.of(execute);
     }
 

@@ -58,7 +58,7 @@ public class LocalFileUploadExt implements FileUploadExtPt {
     @Override
     public FileDownloadDTO download(FileDownloadCmd cmd) {
         String rootPath = localProp.getPath();
-        String fullPath = StrUtil.removeSuffix(rootPath, File.separator) + cmd.getId();
+        String fullPath = StrUtil.removeSuffix(rootPath, File.separator) + cmd.getFilePath();
         log.debug("fullPath is {}", fullPath);
         BufferedInputStream inputStream = FileUtils.getInputStream(fullPath);
         FileDownloadDTO dto = new FileDownloadDTO();

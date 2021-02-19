@@ -25,5 +25,6 @@ public class FileDownloadCmd extends Command {
     private BizScenario bizScenario;
 
     private Long id;
+    private String filePath;
 
 }

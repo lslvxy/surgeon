@@ -39,6 +39,7 @@ public class FileDownloadCmdExe {
     public SingleResponse<FileDownloadDTO> execute(FileDownloadCmd cmd) {
 
         File file = fileGateway.findById(cmd.getId());
+        cmd.setFilePath(file.getFilePath());
         if (Objects.isNull(cmd.getBizScenario())) {
             BizScenario scenario = BizScenario.valueOf(FileProviderConstants.LOCAL);
             cmd.setBizScenario(scenario);
