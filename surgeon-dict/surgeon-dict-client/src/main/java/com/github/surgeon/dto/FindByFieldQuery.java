@@ -15,22 +15,17 @@
  */
 package com.github.surgeon.dto;
 
-import com.alibaba.cola.dto.Command;
-import com.github.surgeon.dto.data.DictDTO;
+import com.alibaba.cola.dto.Query;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DictSaveCmd extends Command {
+public class FindByFieldQuery extends Query {
 
-    @Valid
-    @NotNull
-    private DictDTO dict;
+    private String fieldName;
+    private Object value;
 
 }

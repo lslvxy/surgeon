@@ -13,24 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.dto;
+package com.github.surgeon.base;
 
-import com.alibaba.cola.dto.Command;
-import com.github.surgeon.dto.data.DictDTO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public interface BaseService {
+    /**
+     * Checks whether or not a given value exists for a given field
+     *
+     * @param value     The value to check for
+     * @param fieldName The name of the field for which to check if the value exists
+     * @return True if the value exists for the field; false otherwise
+     * @throws UnsupportedOperationException
+     */
+    boolean createValueExists(Object value, String fieldName) throws UnsupportedOperationException;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class DictSaveCmd extends Command {
-
-    @Valid
-    @NotNull
-    private DictDTO dict;
+    boolean updateValueExists(Object value, String fieldName, Object id) throws UnsupportedOperationException;
 
 }

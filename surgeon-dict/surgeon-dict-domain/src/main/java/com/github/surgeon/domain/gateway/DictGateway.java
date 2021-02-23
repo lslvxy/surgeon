@@ -64,4 +64,5 @@ public interface DictGateway {
      */
     boolean delete(Long id);
 
+    Dict findByField(String fieldName, Object value);
 }

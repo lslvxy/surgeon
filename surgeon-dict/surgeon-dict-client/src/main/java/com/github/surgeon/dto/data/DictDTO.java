@@ -16,12 +16,15 @@
 package com.github.surgeon.dto.data;
 
 import com.alibaba.cola.dto.DTO;
+import com.github.surgeon.annotation.Unique;
+import com.github.surgeon.annotation.UniqueColumn;
+import com.github.surgeon.api.DictServiceI;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.util.Date;
+import javax.validation.constraints.NotBlank;
 
 /**
  * @author lise
@@ -29,16 +32,24 @@ import java.util.Date;
 @Getter
 @Setter
 @Accessors(chain = true)
+@Unique(service = DictServiceI.class,
+        message = "字典[{}]已存在",
+        columns = {
+                @UniqueColumn(fields = "code"),
+        })
 public class DictDTO extends DTO {
     @ApiModelProperty(value = "ID", hidden = true)
     private Long id;
 
     @ApiModelProperty(value = "字典名称")
+    @NotBlank(message = "字典名称不能为空")
     private String name;
+
+    @ApiModelProperty(value = "字典Code")
+    private String code;
 
     @ApiModelProperty(value = "描述")
     private String description;
 
-    private Date createTime;
 
 }

@@ -21,16 +21,28 @@ import lombok.Data;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 @ToString
 @Accessors(chain = true)
+
 public class Dict extends BaseDomain {
     @ApiModelProperty(value = "ID")
     private Long id;
 
+    @NotBlank(message = "字典名称不能为空")
     @ApiModelProperty(value = "字典名称")
     private String name;
 
+    @ApiModelProperty(value = "字典Code")
+    private String code;
+
     @ApiModelProperty(value = "描述")
     private String description;
+
+    public static void main(String[] args) {
+        String s = "create.arg0.name: 字典名称不能为空, create.arg0.code: Must be after";
+        System.out.println(s.replaceAll("\\S*: ", ""));
+    }
 }

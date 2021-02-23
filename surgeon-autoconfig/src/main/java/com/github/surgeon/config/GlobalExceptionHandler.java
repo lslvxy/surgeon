@@ -25,6 +25,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.validation.ConstraintViolationException;
 import java.util.Objects;
 
 /**
@@ -38,6 +39,12 @@ public class GlobalExceptionHandler {
     /**
      * BizException
      */
+    @ExceptionHandler(value = {ConstraintViolationException.class})
+    public Response constraintViolationException(ConstraintViolationException e) {
+        log.error(ThrowableUtil.getStackTrace(e));
+        return buildResponseEntity("验证异常," + e.getMessage().replaceAll("\\S*: ", ""));
+    }
+
     @ExceptionHandler(value = {BizException.class})
     public Response bizException(BizException e) {
         log.error(ThrowableUtil.getStackTrace(e));

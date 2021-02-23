@@ -15,26 +15,31 @@
  */
 package com.github.surgeon;
 
+import cn.hutool.core.lang.Assert;
 import com.alibaba.cola.catchlog.CatchAndLog;
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.github.surgeon.api.DictServiceI;
+import com.github.surgeon.domain.Dict;
 import com.github.surgeon.dto.DictPageQuery;
 import com.github.surgeon.dto.DictQuery;
 import com.github.surgeon.dto.DictSaveCmd;
+import com.github.surgeon.dto.FindByFieldQuery;
 import com.github.surgeon.dto.cmd.DeleteByIdCmd;
 import com.github.surgeon.dto.data.DictDTO;
 import com.github.surgeon.dto.query.IdQuery;
 import com.github.surgeon.executor.DictDeleteCmdExe;
 import com.github.surgeon.executor.DictSaveExe;
+import com.github.surgeon.executor.query.DictFindByFieldQryExe;
 import com.github.surgeon.executor.query.DictFindByIdQryExe;
 import com.github.surgeon.executor.query.DictFindListQryExe;
 import com.github.surgeon.executor.query.DictFindPageQryExe;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 @Service("dictServiceImpl")
 @CatchAndLog
@@ -51,6 +56,32 @@ public class DictServiceImpl implements DictServiceI {
     private DictFindListQryExe dictFindListQryExe;
     @Resource
     private DictFindByIdQryExe dictFindByIdQryExe;
+    @Resource
+    private DictFindByFieldQryExe dictFindByFieldQryExe;
+
+    @Override
+    public boolean createValueExists(Object value, String fieldName) throws UnsupportedOperationException {
+        Assert.notBlank(fieldName);
+        if (value == null) {
+            return false;
+        }
+        Dict byField = findByField(new FindByFieldQuery(fieldName, value.toString()));
+        return !Objects.isNull(byField);
+    }
+
+    @Override
+    public boolean updateValueExists(Object value, String fieldName, Object id) throws UnsupportedOperationException {
+        Assert.notBlank(fieldName);
+        if (value == null) {
+            return false;
+        }
+        Dict byField = findByField(new FindByFieldQuery(fieldName, value.toString()));
+        return !(Objects.isNull(byField) || Objects.equals(byField.getId(), id));
+    }
+
+    public Dict findByField(FindByFieldQuery query) {
+        return dictFindByFieldQryExe.execute(query);
+    }
 
     @Override
     public SingleResponse<DictDTO> findById(IdQuery query) {

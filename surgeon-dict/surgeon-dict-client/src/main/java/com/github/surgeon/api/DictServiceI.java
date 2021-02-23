@@ -19,6 +19,7 @@ import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
+import com.github.surgeon.base.BaseService;
 import com.github.surgeon.dto.DictPageQuery;
 import com.github.surgeon.dto.DictQuery;
 import com.github.surgeon.dto.DictSaveCmd;
@@ -26,7 +27,7 @@ import com.github.surgeon.dto.cmd.DeleteByIdCmd;
 import com.github.surgeon.dto.data.DictDTO;
 import com.github.surgeon.dto.query.IdQuery;
 
-public interface DictServiceI {
+public interface DictServiceI extends BaseService {
 
     /**
      * 根据ID查询

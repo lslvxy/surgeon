@@ -48,7 +48,7 @@ spring:
 
 surgeon:
   file:
-    provider: minio
+    provider: local
     local:
       linux:
         path: /home/lise/file/

@@ -27,6 +27,7 @@ import com.github.surgeon.dto.cmd.DeleteByIdCmd;
 import com.github.surgeon.dto.data.DictDTO;
 import com.github.surgeon.dto.query.IdQuery;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -57,7 +58,7 @@ public class DictController extends BaseController {
     }
 
     @PostMapping(value = "save")
-    public Response save(@RequestBody DictSaveCmd cmd) {
+    public Response save(@Validated @RequestBody DictSaveCmd cmd) {
         return dictServiceI.create(cmd);
     }
 

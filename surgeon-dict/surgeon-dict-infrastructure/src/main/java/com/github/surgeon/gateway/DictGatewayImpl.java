@@ -35,8 +35,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.github.surgeon.repository.DictDODynamicSqlSupport.dictDO;
-import static org.mybatis.dynamic.sql.SqlBuilder.isLike;
-import static org.mybatis.dynamic.sql.SqlBuilder.select;
+import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
 @Component
 public class DictGatewayImpl implements DictGateway {
@@ -95,5 +94,18 @@ public class DictGatewayImpl implements DictGateway {
     public boolean delete(Long id) {
         int i = dictDOMapper.deleteByPrimaryKey(id);
         return i > 0;
+    }
+
+
+    @Override
+    public Dict findByField(String fieldName, Object value) {
+        SelectStatementProvider provider = select(dictDO.allColumns())
+                .from(dictDO)
+                .where(dictDO.column(fieldName), isEqualTo(value))
+                .limit(1)
+                .build()
+                .render(RenderingStrategies.MYBATIS3);
+        Optional<DictDO> dictDO = dictDOMapper.selectOne(provider);
+        return dictDOConvertor.toTarget(dictDO.get());
     }
 }
