@@ -18,10 +18,7 @@ package com.github.surgeon.config;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.BizException;
 import com.alibaba.cola.exception.SysException;
-import com.github.surgeon.constant.KamalaConstants;
-import com.github.surgeon.exception.BadRequestException;
-import com.github.surgeon.exception.EntityExistException;
-import com.github.surgeon.exception.EntityNotFoundException;
+import com.github.surgeon.constant.SurgeonConstants;
 import com.github.surgeon.util.ThrowableUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -56,26 +53,6 @@ public class GlobalExceptionHandler {
         return buildResponseEntity("系统异常," + e.getMessage());
     }
 
-    /**
-     * 处理 EntityNotFound
-     */
-    @ExceptionHandler(value = EntityNotFoundException.class)
-    public Response entityNotFoundException(EntityNotFoundException e) {
-        log.error(ThrowableUtil.getStackTrace(e));
-        return buildResponseEntity((e.getMessage()));
-    }
-
-    @ExceptionHandler(value = BadRequestException.class)
-    public Response badRequestException(BadRequestException e) {
-        log.error(ThrowableUtil.getStackTrace(e));
-        return buildResponseEntity((e.getMessage()));
-    }
-
-    @ExceptionHandler(value = EntityExistException.class)
-    public Response entityExistException(EntityExistException e) {
-        log.error(ThrowableUtil.getStackTrace(e));
-        return buildResponseEntity((e.getMessage()));
-    }
 
     /**
      * 处理所有接口数据验证异常
@@ -105,6 +82,6 @@ public class GlobalExceptionHandler {
      * 统一返回
      */
     private Response buildResponseEntity(String msg) {
-        return Response.buildFailure(KamalaConstants.DEFAULT_ERROR_CODR, msg);
+        return Response.buildFailure(SurgeonConstants.DEFAULT_ERROR_CODR, msg);
     }
 }

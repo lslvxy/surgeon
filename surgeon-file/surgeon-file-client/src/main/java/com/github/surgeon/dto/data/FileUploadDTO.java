@@ -17,7 +17,7 @@ package com.github.surgeon.dto.data;
 
 import com.alibaba.cola.dto.DTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.github.surgeon.constant.KamalaConstants;
+import com.github.surgeon.constant.SurgeonConstants;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,7 +36,7 @@ public class FileUploadDTO extends DTO {
     private Long id;
 
     @ApiModelProperty(value = "创建时间")
-    @JsonFormat(pattern = KamalaConstants.DATE_YYYY_MM_DD_HH_MM_SS)
+    @JsonFormat(pattern = SurgeonConstants.DATE_YYYY_MM_DD_HH_MM_SS)
     private Date createTime;
 
     @ApiModelProperty(value = "文件名称")

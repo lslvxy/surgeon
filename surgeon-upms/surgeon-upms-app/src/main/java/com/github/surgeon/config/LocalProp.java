@@ -15,7 +15,7 @@
  */
 package com.github.surgeon.config;
 
-import com.github.surgeon.constant.KamalaConstants;
+import com.github.surgeon.constant.SurgeonConstants;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -32,9 +32,9 @@ public class LocalProp {
 
     public String getPath() {
         String os = System.getProperty("os.name");
-        if (os.toLowerCase().startsWith(KamalaConstants.WIN)) {
+        if (os.toLowerCase().startsWith(SurgeonConstants.WIN)) {
             return windows.getPath();
-        } else if (os.toLowerCase().startsWith(KamalaConstants.MAC)) {
+        } else if (os.toLowerCase().startsWith(SurgeonConstants.MAC)) {
             return mac.getPath();
         }
         return linux.getPath();

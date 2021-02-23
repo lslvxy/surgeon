@@ -13,45 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.base;
+package com.github.surgeon.annotation;
 
-import lombok.Data;
-import lombok.ToString;
-import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
- * 通用字段， is_del 根据需求自行添加
- *
- * @author Zheng Jie
- * @Date 2019年10月24日20:46:32
+ * @author lise
  */
-@Data
-@ToString
-@Accessors(chain = true)
-public class BaseDomain implements Serializable {
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Dict {
+    Class clazz() default Void.class;
 
-    /**
-     * 创建人
-     */
-    private String createBy;
-
-    /**
-     * 更新人
-     */
-    private String updateBy;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-
+    String code() default "";
 }

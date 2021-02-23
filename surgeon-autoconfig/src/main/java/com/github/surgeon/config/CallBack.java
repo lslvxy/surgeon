@@ -13,45 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.base;
-
-import lombok.Data;
-import lombok.ToString;
-import lombok.experimental.Accessors;
-
-import java.io.Serializable;
-import java.util.Date;
+package com.github.surgeon.config;
 
 /**
- * 通用字段， is_del 根据需求自行添加
- *
- * @author Zheng Jie
- * @Date 2019年10月24日20:46:32
+ * @author: liaojinlong
+ * @date: 2020/6/9 17:02
+ * @since: 1.0
+ * @see {@link SpringContextHolder}
+ * 针对某些初始化方法，在SpringContextHolder 初始化前时，<br>
+ * 可提交一个 提交回调任务。<br>
+ * 在SpringContextHolder 初始化后，进行回调使用
  */
-@Data
-@ToString
-@Accessors(chain = true)
-public class BaseDomain implements Serializable {
+
+public interface CallBack {
+    /**
+     * 回调执行方法
+     */
+    void executor();
 
     /**
-     * 创建人
+     * 本回调任务名称
+     *
+     * @return /
      */
-    private String createBy;
-
-    /**
-     * 更新人
-     */
-    private String updateBy;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-
+    default String getCallBackName() {
+        return Thread.currentThread().getId() + ":" + this.getClass().getName();
+    }
 }
+

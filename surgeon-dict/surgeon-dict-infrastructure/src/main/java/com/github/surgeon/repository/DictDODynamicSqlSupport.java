@@ -42,6 +42,9 @@ public final class DictDODynamicSqlSupport {
     public static final SqlColumn<String> updateBy = dictDO.updateBy;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    public static final SqlColumn<String> code = dictDO.code;
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
     public static final SqlColumn<String> name = dictDO.name;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
@@ -58,6 +61,8 @@ public final class DictDODynamicSqlSupport {
         public final SqlColumn<String> createBy = column("create_by", JDBCType.VARCHAR);
 
         public final SqlColumn<String> updateBy = column("update_by", JDBCType.VARCHAR);
+
+        public final SqlColumn<String> code = column("code", JDBCType.VARCHAR);
 
         public final SqlColumn<String> name = column("name", JDBCType.VARCHAR);
 

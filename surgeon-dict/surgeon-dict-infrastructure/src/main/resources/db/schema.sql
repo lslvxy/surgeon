@@ -7,6 +7,7 @@ CREATE TABLE `sys_dict`
     `create_by`   varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
     `update_by`   varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
 
+    `code`        varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT '字典编码',
     `name`        varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT '字典名称',
     `description` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '描述',
     PRIMARY KEY (`id`)

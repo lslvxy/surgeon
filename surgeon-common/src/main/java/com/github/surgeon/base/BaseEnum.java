@@ -22,4 +22,18 @@ public interface BaseEnum {
     Integer getValue();
 
     String getDesc();
+
+    static BaseEnum NullEnum() {
+        return new BaseEnum() {
+            @Override
+            public Integer getValue() {
+                return null;
+            }
+
+            @Override
+            public String getDesc() {
+                return null;
+            }
+        };
+    }
 }

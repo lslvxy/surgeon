@@ -15,11 +15,9 @@
  */
 package com.github.surgeon.base;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.github.surgeon.constant.KamalaConstants;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -29,20 +27,26 @@ import java.util.Date;
  * @Date 2019年10月24日20:46:32
  */
 @ToString
-public class BaseDO {
+public class BaseDO implements Serializable {
 
-    @ApiModelProperty(value = "创建人", hidden = true)
+    /**
+     * 创建人
+     */
     private String createBy;
 
-    @ApiModelProperty(value = "更新人", hidden = true)
+    /**
+     * 更新人
+     */
     private String updateBy;
 
-    @ApiModelProperty(value = "创建时间", hidden = true)
-    @JsonFormat(pattern = KamalaConstants.DATE_YYYY_MM_DD_HH_MM_SS)
+    /**
+     * 创建时间
+     */
     private Date createTime;
 
-    @ApiModelProperty(value = "更新时间", hidden = true)
-    @JsonFormat(pattern = KamalaConstants.DATE_YYYY_MM_DD_HH_MM_SS)
+    /**
+     * 更新时间
+     */
     private Date updateTime;
 
     public String getCreateBy() {

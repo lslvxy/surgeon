@@ -45,7 +45,7 @@ import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 @Mapper
 public interface DictDOMapper extends BaseMapper {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    BasicColumn[] selectList = BasicColumn.columnList(id, createTime, updateTime, createBy, updateBy, name, description);
+    BasicColumn[] selectList = BasicColumn.columnList(id, createTime, updateTime, createBy, updateBy, code, name, description);
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     @SelectProvider(type = SqlProviderAdapter.class, method = "select")
@@ -76,6 +76,7 @@ public interface DictDOMapper extends BaseMapper {
             @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
             @Result(column = "create_by", property = "createBy", jdbcType = JdbcType.VARCHAR),
             @Result(column = "update_by", property = "updateBy", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "code", property = "code", jdbcType = JdbcType.VARCHAR),
             @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
             @Result(column = "description", property = "description", jdbcType = JdbcType.VARCHAR)
     })
@@ -110,6 +111,7 @@ public interface DictDOMapper extends BaseMapper {
                         .map(updateTime).toProperty("updateTime")
                         .map(createBy).toProperty("createBy")
                         .map(updateBy).toProperty("updateBy")
+                        .map(code).toProperty("code")
                         .map(name).toProperty("name")
                         .map(description).toProperty("description")
         );
@@ -123,6 +125,7 @@ public interface DictDOMapper extends BaseMapper {
                         .map(updateTime).toProperty("updateTime")
                         .map(createBy).toProperty("createBy")
                         .map(updateBy).toProperty("updateBy")
+                        .map(code).toProperty("code")
                         .map(name).toProperty("name")
                         .map(description).toProperty("description")
         );
@@ -136,6 +139,7 @@ public interface DictDOMapper extends BaseMapper {
                         .map(updateTime).toPropertyWhenPresent("updateTime", record::getUpdateTime)
                         .map(createBy).toPropertyWhenPresent("createBy", record::getCreateBy)
                         .map(updateBy).toPropertyWhenPresent("updateBy", record::getUpdateBy)
+                        .map(code).toPropertyWhenPresent("code", record::getCode)
                         .map(name).toPropertyWhenPresent("name", record::getName)
                         .map(description).toPropertyWhenPresent("description", record::getDescription)
         );
@@ -175,6 +179,7 @@ public interface DictDOMapper extends BaseMapper {
                 .set(updateTime).equalTo(record::getUpdateTime)
                 .set(createBy).equalTo(record::getCreateBy)
                 .set(updateBy).equalTo(record::getUpdateBy)
+                .set(code).equalTo(record::getCode)
                 .set(name).equalTo(record::getName)
                 .set(description).equalTo(record::getDescription);
     }
@@ -186,6 +191,7 @@ public interface DictDOMapper extends BaseMapper {
                 .set(updateTime).equalToWhenPresent(record::getUpdateTime)
                 .set(createBy).equalToWhenPresent(record::getCreateBy)
                 .set(updateBy).equalToWhenPresent(record::getUpdateBy)
+                .set(code).equalToWhenPresent(record::getCode)
                 .set(name).equalToWhenPresent(record::getName)
                 .set(description).equalToWhenPresent(record::getDescription);
     }
@@ -197,6 +203,7 @@ public interface DictDOMapper extends BaseMapper {
                         .set(updateTime).equalTo(record::getUpdateTime)
                         .set(createBy).equalTo(record::getCreateBy)
                         .set(updateBy).equalTo(record::getUpdateBy)
+                        .set(code).equalTo(record::getCode)
                         .set(name).equalTo(record::getName)
                         .set(description).equalTo(record::getDescription)
                         .where(id, isEqualTo(record::getId))
@@ -210,6 +217,7 @@ public interface DictDOMapper extends BaseMapper {
                         .set(updateTime).equalToWhenPresent(record::getUpdateTime)
                         .set(createBy).equalToWhenPresent(record::getCreateBy)
                         .set(updateBy).equalToWhenPresent(record::getUpdateBy)
+                        .set(code).equalToWhenPresent(record::getCode)
                         .set(name).equalToWhenPresent(record::getName)
                         .set(description).equalToWhenPresent(record::getDescription)
                         .where(id, isEqualTo(record::getId))

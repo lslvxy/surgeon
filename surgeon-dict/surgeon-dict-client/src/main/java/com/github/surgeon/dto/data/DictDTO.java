@@ -21,6 +21,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import java.util.Date;
+
 /**
  * @author lise
  */
@@ -36,4 +38,7 @@ public class DictDTO extends DTO {
 
     @ApiModelProperty(value = "描述")
     private String description;
+
+    private Date createTime;
+
 }

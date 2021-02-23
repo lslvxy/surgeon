@@ -36,7 +36,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
-@Service
+@Service("dictDetailServiceImpl")
 @CatchAndLog
 public class DictDetailServiceImpl implements DictDetailServiceI {
 

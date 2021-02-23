@@ -29,6 +29,8 @@ public interface DictDetailGateway {
      */
     DictDetail findById(Long id);
 
+    String findByDictCode(String code, String value);
+
     /**
      * 根据条件查询
      *

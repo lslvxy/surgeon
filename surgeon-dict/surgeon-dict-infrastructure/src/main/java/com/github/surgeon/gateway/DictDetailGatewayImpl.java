@@ -17,6 +17,7 @@ package com.github.surgeon.gateway;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONUtil;
 import com.github.surgeon.convertor.DictDetailDOConvertor;
 import com.github.surgeon.dataobject.DictDetailDO;
 import com.github.surgeon.domain.DictDetail;
@@ -39,7 +40,7 @@ import static com.github.surgeon.repository.DictDODynamicSqlSupport.dictDO;
 import static com.github.surgeon.repository.DictDetailDODynamicSqlSupport.dictDetailDO;
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
-@Component
+@Component("dictDetailGateway")
 public class DictDetailGatewayImpl implements DictDetailGateway {
     @Autowired
     private DictDetailDOConvertor dictDetailDOConvertor;
@@ -52,6 +53,19 @@ public class DictDetailGatewayImpl implements DictDetailGateway {
         AtomicReference<DictDetail> dictDetail = new AtomicReference<>();
         dictDetailDO.ifPresent(v -> dictDetail.set(dictDetailDOConvertor.toTarget(v)));
         return dictDetail.get();
+    }
+
+    @Override
+    public String findByDictCode(String code, String value) {
+        SelectStatementProvider s = select(dictDetailDO.allColumns()).from(dictDetailDO, "dd")
+                .leftJoin(dictDO, "d")
+                .on(dictDO.id, equalTo(dictDetailDO.dictId))
+                .where(dictDetailDO.value, isEqualTo(value).when(StrUtil::isNotBlank))
+                .and(dictDO.code, isEqualTo(code).when(ObjectUtil::isNotNull))
+                .build()
+                .render(RenderingStrategies.MYBATIS3);
+        DictDetailDO dictDetailDO = dictDetailDOMapper.selectOne(s).get();
+        return JSONUtil.toJsonStr(dictDetailDO);
     }
 
     @Override

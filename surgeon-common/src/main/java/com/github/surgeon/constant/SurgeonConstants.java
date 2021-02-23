@@ -20,13 +20,13 @@ package com.github.surgeon.constant;
  *
  * @author lise
  */
-public interface KamalaConstants {
-    String DATE_YYYY_MM_DD          = "yyyy-MM-dd";
+public interface SurgeonConstants {
+    String DATE_YYYY_MM_DD = "yyyy-MM-dd";
     String DATE_YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
     /**
      * length must ==32
      */
-    String JWT_CLIENT_SECRET        = "Seal@202012221120*&^%$@!!@#$%^&*";
+    String JWT_CLIENT_SECRET = "Seal@202012221120*&^%$@!!@#$%^&*";
 
     String DEFAULT_PASSWORD = "123456";
 
@@ -39,7 +39,7 @@ public interface KamalaConstants {
     /**
      * win 系统
      */
-    String WIN    = "win";
+    String WIN = "win";
 
     /**
      * mac 系统
