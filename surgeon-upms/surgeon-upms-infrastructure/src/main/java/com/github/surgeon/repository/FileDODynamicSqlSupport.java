@@ -15,11 +15,12 @@
  */
 package com.github.surgeon.repository;
 
-import java.sql.JDBCType;
-import java.util.Date;
-import javax.annotation.Generated;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
+
+import javax.annotation.Generated;
+import java.sql.JDBCType;
+import java.util.Date;
 
 public final class FileDODynamicSqlSupport {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")

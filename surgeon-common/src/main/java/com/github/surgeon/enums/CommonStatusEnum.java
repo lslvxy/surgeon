@@ -41,7 +41,7 @@ public enum CommonStatusEnum implements BaseEnum {
     /**
      * desc
      */
-    private String  desc;
+    private String desc;
 
     public static CommonStatusEnum get(Integer value) {
         if (Objects.isNull(value)) {

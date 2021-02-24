@@ -56,21 +56,21 @@ public class FileServiceImpl implements FileServiceI {
     private BizScenario scenario;
 
     @Resource
-    private FileUploadCmdExe   fileUploadCmdExe;
+    private FileUploadCmdExe fileUploadCmdExe;
     @Resource
     private FileDownloadCmdExe fileDownloadCmdExe;
 
     @Resource
-    private FileSaveExe      fileSaveExe;
+    private FileSaveExe fileSaveExe;
     @Resource
     private FileDeleteCmdExe fileDeleteCmdExe;
 
     @Resource
     private FileListByNameQryExe fileListByNameQryExe;
     @Resource
-    private FileListAllQryExe    fileListAllQryExe;
+    private FileListAllQryExe fileListAllQryExe;
     @Resource
-    private FileFindByIdQryExe   fileFindByIdQryExe;
+    private FileFindByIdQryExe fileFindByIdQryExe;
 
     @PostConstruct
     private void initialize() {

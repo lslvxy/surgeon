@@ -23,7 +23,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author Frank Zhang
  */
-@SpringBootApplication(scanBasePackages = {"com.github.surgeon","com.alibaba.cola"})
+@SpringBootApplication(scanBasePackages = {"com.github.surgeon", "com.alibaba.cola"})
 public class Application {
 
     public static void main(String[] args) {

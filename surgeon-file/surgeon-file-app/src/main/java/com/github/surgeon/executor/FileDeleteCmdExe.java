@@ -39,7 +39,7 @@ public class FileDeleteCmdExe {
 
         File file = fileGateway.findById(cmd.getId());
         cmd.setFilePath(file.getFilePath());
-        
+
         fileGateway.delete(cmd.getId());
 
         if (Objects.isNull(cmd.getBizScenario())) {

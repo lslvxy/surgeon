@@ -22,8 +22,8 @@ import lombok.Data;
 @Data
 public class FileDeleteCmd extends Command {
 
-    private Long        id;
-    private String      filePath;
+    private Long id;
+    private String filePath;
     private BizScenario bizScenario;
 
 }

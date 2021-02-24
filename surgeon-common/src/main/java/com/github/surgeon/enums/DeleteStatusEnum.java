@@ -41,7 +41,7 @@ public enum DeleteStatusEnum implements BaseEnum {
     /**
      * desc
      */
-    private String  desc;
+    private String desc;
 
     public static DeleteStatusEnum get(Integer value) {
         if (Objects.isNull(value)) {

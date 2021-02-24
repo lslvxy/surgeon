@@ -17,9 +17,10 @@ package com.github.surgeon.dataobject;
 
 import com.github.surgeon.base.BaseDO;
 import io.swagger.annotations.ApiModelProperty;
-import javax.annotation.Generated;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import javax.annotation.Generated;
 
 @Data
 @Accessors(chain = true)

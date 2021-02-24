@@ -31,7 +31,7 @@ import java.util.Objects;
 @Component
 public class FileDeleteCmdExe {
     @Resource
-    private FileGateway       fileGateway;
+    private FileGateway fileGateway;
     @Resource
     private ExtensionExecutor extensionExecutor;
 

@@ -21,7 +21,7 @@ package com.github.surgeon.dto.event;
  * @author Frank Zhang
  * @date 2019-01-04 10:32 AM
  */
-public class CustomerCreatedEvent{
+public class CustomerCreatedEvent {
 
     private String customerId;
 

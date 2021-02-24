@@ -17,6 +17,7 @@ package com.github.surgeon.extension;
 
 import cn.hutool.core.lang.Assert;
 import com.alibaba.cola.extension.Extension;
+import com.github.surgeon.config.MinioProp;
 import com.github.surgeon.constant.Constants;
 import com.github.surgeon.dto.FileDeleteCmd;
 import com.github.surgeon.dto.FileDownloadCmd;
@@ -32,7 +33,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.InputStream;
-import com.github.surgeon.config.MinioProp;
 
 @Extension(bizId = Constants.MINIO)
 @Component
@@ -40,7 +40,7 @@ public class MinioFileUploadExt implements FileUploadExtPt {
     @Resource
     private MinioClient minioClient;
     @Resource
-    private MinioProp   minioProp;
+    private MinioProp minioProp;
 
     @Override
     public FileUploadDTO upload(FileUploadCmd cmd) {
