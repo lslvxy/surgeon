@@ -16,12 +16,14 @@
 package com.github.surgeon;
 
 import cn.hutool.core.lang.Assert;
+import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.cola.catchlog.CatchAndLog;
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.github.surgeon.api.DictServiceI;
+import com.github.surgeon.domain.Dict;
 import com.github.surgeon.dto.DictPageQuery;
 import com.github.surgeon.dto.DictQuery;
 import com.github.surgeon.dto.DictSaveCmd;
@@ -59,10 +61,14 @@ public class DictServiceImpl implements DictServiceI {
     private DictFindByFieldQryExe dictFindByFieldQryExe;
 
     @Override
-    public boolean fieldValueExists(Map<String, Object> fieldMap) throws UnsupportedOperationException {
+    public boolean fieldValueExists(Map<String, Object> fieldMap, Object id) throws UnsupportedOperationException {
         Assert.notEmpty(fieldMap);
         FindByFieldQuery query = new FindByFieldQuery(fieldMap);
-        return dictFindByFieldQryExe.execute(query);
+        Dict dict = dictFindByFieldQryExe.execute(query);
+        if (ObjectUtil.isNull(id)) {
+            return ObjectUtil.isNotNull(dict);
+        }
+        return ObjectUtil.notEqual(dict.getId(), id);
     }
 
 

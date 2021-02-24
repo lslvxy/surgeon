@@ -56,7 +56,7 @@ public class UniqueValidator implements ConstraintValidator<Unique, Object> {
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
-        Map<String, Object> invalidMap = _countRows2(value);
+        Map<String, Object> invalidMap = countRows(value);
         if (ObjectUtil.isNotNull(invalidMap)) {
             Map.Entry<String, Object> field = invalidMap.entrySet().iterator().next();
             context.unwrap(HibernateConstraintValidatorContext.class)
@@ -76,7 +76,7 @@ public class UniqueValidator implements ConstraintValidator<Unique, Object> {
     }
 
 
-    private Map<String, Object> _countRows2(Object value) {
+    private Map<String, Object> countRows(Object value) {
         List<Map<String, Object>> fieldValueCombos = new ArrayList<>();
 
         if (columns.length > 0) {
@@ -94,10 +94,7 @@ public class UniqueValidator implements ConstraintValidator<Unique, Object> {
 
     private boolean hasRecord(Object value, Map<String, Object> fieldMap) {
         Object idValue = ReflectUtil.getFieldValue(value, idKey);
-        if (!Objects.isNull(idValue)) {
-            fieldMap.put(idKey, idValue);
-        }
-        return this.service.fieldValueExists(fieldMap);
+        return this.service.fieldValueExists(fieldMap, idValue);
     }
 
     private List<Map<String, Object>> prepareColumns(Object value) {

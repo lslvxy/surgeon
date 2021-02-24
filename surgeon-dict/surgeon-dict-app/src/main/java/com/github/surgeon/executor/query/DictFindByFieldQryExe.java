@@ -21,7 +21,6 @@ import com.github.surgeon.dto.query.FindByFieldQuery;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.Objects;
 
 @Component
 public class DictFindByFieldQryExe {
@@ -29,8 +28,7 @@ public class DictFindByFieldQryExe {
     @Resource
     private DictGateway dictGateway;
 
-    public boolean execute(FindByFieldQuery query) {
-        Dict byId = dictGateway.findByField(query.getFieldMap());
-        return !Objects.isNull(byId);
+    public Dict execute(FindByFieldQuery query) {
+        return dictGateway.findByField(query.getFieldMap());
     }
 }

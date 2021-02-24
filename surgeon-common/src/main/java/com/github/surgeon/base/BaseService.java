@@ -21,12 +21,14 @@ public interface BaseService {
     /**
      * Checks whether or not a given value exists for a given field
      *
-     * @param value     The value to check for
-     * @param fieldName The name of the field for which to check if the value exists
+     * @param fieldMap k The name of the field for which to check if the value exists
+     * @param fieldMap v  The value to check for
      * @return True if the value exists for the field; false otherwise
      * @throws UnsupportedOperationException
      */
-    boolean fieldValueExists(Map<String, Object> fieldMap) throws UnsupportedOperationException;
+    default boolean fieldValueExists(Map<String, Object> fieldMap, Object id) throws UnsupportedOperationException {
+        return false;
+    }
 
 
 }
