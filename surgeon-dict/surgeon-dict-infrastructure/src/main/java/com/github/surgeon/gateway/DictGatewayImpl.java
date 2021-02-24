@@ -25,12 +25,15 @@ import com.github.surgeon.repository.DictDOMapper;
 import com.github.surgeon.util.IdUtil;
 import com.github.surgeon.util.SqlBuilderUtil;
 import org.mybatis.dynamic.sql.render.RenderingStrategies;
+import org.mybatis.dynamic.sql.select.QueryExpressionDSL;
+import org.mybatis.dynamic.sql.select.SelectModel;
 import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -98,14 +101,14 @@ public class DictGatewayImpl implements DictGateway {
 
 
     @Override
-    public Dict findByField(String fieldName, Object value) {
-        SelectStatementProvider provider = select(dictDO.allColumns())
-                .from(dictDO)
-                .where(dictDO.column(fieldName), isEqualTo(value))
-                .limit(1)
+    public Dict findByField(Map<String, Object> fieldMap) {
+        QueryExpressionDSL<SelectModel>.QueryExpressionWhereBuilder from = select(dictDO.allColumns())
+                .from(dictDO).where(dictDO.id, isNotNull());
+        fieldMap.forEach((k, v) -> from.and(dictDO.column(k), isEqualTo(v)));
+        SelectStatementProvider provider = from.limit(1)
                 .build()
                 .render(RenderingStrategies.MYBATIS3);
         Optional<DictDO> dictDO = dictDOMapper.selectOne(provider);
-        return dictDOConvertor.toTarget(dictDO.get());
+        return dictDOConvertor.toTarget(dictDO.orElse(null));
     }
 }

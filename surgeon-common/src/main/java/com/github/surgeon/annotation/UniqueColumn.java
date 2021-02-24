@@ -12,6 +12,4 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface UniqueColumn {
 
     String[] fields() default {};
-
-    String[] orValue() default {};
 }

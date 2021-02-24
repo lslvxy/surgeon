@@ -15,6 +15,8 @@
  */
 package com.github.surgeon.base;
 
+import java.util.Map;
+
 public interface BaseService {
     /**
      * Checks whether or not a given value exists for a given field
@@ -24,8 +26,7 @@ public interface BaseService {
      * @return True if the value exists for the field; false otherwise
      * @throws UnsupportedOperationException
      */
-    boolean createValueExists(Object value, String fieldName) throws UnsupportedOperationException;
+    boolean fieldValueExists(Map<String, Object> fieldMap) throws UnsupportedOperationException;
 
-    boolean updateValueExists(Object value, String fieldName, Object id) throws UnsupportedOperationException;
 
 }

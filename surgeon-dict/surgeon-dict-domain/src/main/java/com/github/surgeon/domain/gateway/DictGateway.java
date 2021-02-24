@@ -18,6 +18,7 @@ package com.github.surgeon.domain.gateway;
 import com.github.surgeon.domain.Dict;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DictGateway {
     /**
@@ -64,5 +65,5 @@ public interface DictGateway {
      */
     boolean delete(Long id);
 
-    Dict findByField(String fieldName, Object value);
+    Dict findByField(Map<String, Object> fieldMap);
 }

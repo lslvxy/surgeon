@@ -34,6 +34,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface Unique {
     String message() default "数据已存在";
 
+    String idKey() default "id";
+
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};

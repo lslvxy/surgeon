@@ -15,12 +15,14 @@
  */
 package com.github.surgeon.validator;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.cola.domain.ApplicationContextHelper;
 import com.github.surgeon.annotation.Unique;
 import com.github.surgeon.annotation.UniqueColumn;
 import com.github.surgeon.base.BaseService;
+import org.hibernate.validator.constraintvalidation.HibernateConstraintValidatorContext;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -35,15 +37,17 @@ public class UniqueValidator implements ConstraintValidator<Unique, Object> {
 
     private UniqueColumn[] columns;
     private String message;
+    private String idKey;
 
     @Override
     public void initialize(Unique unique) {
         Class<? extends BaseService> clazz = unique.service();
         columns = unique.columns();
         message = unique.message();
+        idKey = unique.idKey();
         String serviceQualifier = unique.serviceQualifier();
 
-        if (!serviceQualifier.equals("")) {
+        if (StrUtil.isNotBlank(serviceQualifier)) {
             this.service = ApplicationContextHelper.getBean(serviceQualifier, clazz);
         } else {
             this.service = ApplicationContextHelper.getBean(clazz);
@@ -52,19 +56,22 @@ public class UniqueValidator implements ConstraintValidator<Unique, Object> {
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
-        Map<String, Object> fieldMap = _countRows2(value);
-        for (Map.Entry<String, Object> entry : fieldMap.entrySet()) {
-            String k = entry.getKey();
-            Object v = entry.getValue();
-            boolean valueExists = this.service.createValueExists(v, k);
-            if (valueExists) {
-                context.disableDefaultConstraintViolation();
-                context.buildConstraintViolationWithTemplate(StrUtil.format(message, v))
-                        .addPropertyNode(k).addConstraintViolation();
-                return false;
-            }
+        Map<String, Object> invalidMap = _countRows2(value);
+        if (ObjectUtil.isNotNull(invalidMap)) {
+            Map.Entry<String, Object> field = invalidMap.entrySet().iterator().next();
+            context.unwrap(HibernateConstraintValidatorContext.class)
+                    .addExpressionVariable("name", value.getClass().getSimpleName())
+                    .addExpressionVariable("fullName", value.getClass().getName())
+                    .addExpressionVariable("field", field.getKey())
+                    .addExpressionVariable("value", field.getValue())
+                    .addExpressionVariable("allFields", StrUtil.join(", ", invalidMap.keySet()))
+                    .addExpressionVariable("values", StrUtil.join(", ", invalidMap.values()))
+                    .buildConstraintViolationWithTemplate(message)
+                    .addPropertyNode(field.getKey())
+                    .addConstraintViolation()
+                    .disableDefaultConstraintViolation();
+            return false;
         }
-
         return true;
     }
 
@@ -73,11 +80,11 @@ public class UniqueValidator implements ConstraintValidator<Unique, Object> {
         List<Map<String, Object>> fieldValueCombos = new ArrayList<>();
 
         if (columns.length > 0) {
-            fieldValueCombos = _prepareColumns(value);
+            fieldValueCombos = prepareColumns(value);
         }
 
         for (Map<String, Object> fieldMap : fieldValueCombos) {
-            if (_hasRecord(value, fieldMap)) {
+            if (hasRecord(value, fieldMap)) {
                 return fieldMap;
             }
         }
@@ -85,22 +92,22 @@ public class UniqueValidator implements ConstraintValidator<Unique, Object> {
         return null;
     }
 
-    private boolean _hasRecord(Object value, Map<String, Object> fieldMap) {
-        return true;
+    private boolean hasRecord(Object value, Map<String, Object> fieldMap) {
+        Object idValue = ReflectUtil.getFieldValue(value, idKey);
+        if (!Objects.isNull(idValue)) {
+            fieldMap.put(idKey, idValue);
+        }
+        return this.service.fieldValueExists(fieldMap);
     }
 
-    private List<Map<String, Object>> _prepareColumns(Object value) {
+    private List<Map<String, Object>> prepareColumns(Object value) {
         return Arrays.stream(columns)
                 .map(column -> {
                     if (column.fields().length == 1) {
                         Map<String, Object> result = new HashMap<>();
                         String fieldName = column.fields()[0];
                         Object val = ReflectUtil.getFieldValue(value, fieldName);
-
-                        if (!Arrays.asList(column.orValue()).contains(val.toString())) {
-                            result.put(fieldName, val);
-                        }
-
+                        result.put(fieldName, val);
                         return result;
                     }
 

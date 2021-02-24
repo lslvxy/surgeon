@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.dto;
+package com.github.surgeon.dto.query;
 
 import com.alibaba.cola.dto.Query;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Map;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class FindByFieldQuery extends Query {
 
-    private String fieldName;
-    private Object value;
+    private Map<String, Object> fieldMap;
 
 }

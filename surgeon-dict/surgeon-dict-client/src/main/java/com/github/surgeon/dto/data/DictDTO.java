@@ -32,10 +32,11 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @Accessors(chain = true)
-@Unique(service = DictServiceI.class,
-        message = "字典[{}]已存在",
+@Unique(
+        service = DictServiceI.class,
+        message = "字典[${value}]已存在",
         columns = {
-                @UniqueColumn(fields = "code"),
+                @UniqueColumn(fields = {"code"}),
         })
 public class DictDTO extends DTO {
     @ApiModelProperty(value = "ID", hidden = true)

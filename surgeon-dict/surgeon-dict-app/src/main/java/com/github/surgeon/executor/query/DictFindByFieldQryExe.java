@@ -15,25 +15,22 @@
  */
 package com.github.surgeon.executor.query;
 
-import com.github.surgeon.convertor.DictDTOConvertor;
 import com.github.surgeon.domain.Dict;
 import com.github.surgeon.domain.gateway.DictGateway;
-import com.github.surgeon.dto.FindByFieldQuery;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.github.surgeon.dto.query.FindByFieldQuery;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 @Component
 public class DictFindByFieldQryExe {
 
     @Resource
     private DictGateway dictGateway;
-    @Autowired
-    private DictDTOConvertor dictDTOConvertor;
 
-    public Dict execute(FindByFieldQuery query) {
-        Dict byId = dictGateway.findByField(query.getFieldName(), query.getValue());
-        return byId;
+    public boolean execute(FindByFieldQuery query) {
+        Dict byId = dictGateway.findByField(query.getFieldMap());
+        return !Objects.isNull(byId);
     }
 }

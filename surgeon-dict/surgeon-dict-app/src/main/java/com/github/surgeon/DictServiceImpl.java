@@ -22,13 +22,12 @@ import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.github.surgeon.api.DictServiceI;
-import com.github.surgeon.domain.Dict;
 import com.github.surgeon.dto.DictPageQuery;
 import com.github.surgeon.dto.DictQuery;
 import com.github.surgeon.dto.DictSaveCmd;
-import com.github.surgeon.dto.FindByFieldQuery;
 import com.github.surgeon.dto.cmd.DeleteByIdCmd;
 import com.github.surgeon.dto.data.DictDTO;
+import com.github.surgeon.dto.query.FindByFieldQuery;
 import com.github.surgeon.dto.query.IdQuery;
 import com.github.surgeon.executor.DictDeleteCmdExe;
 import com.github.surgeon.executor.DictSaveExe;
@@ -39,7 +38,7 @@ import com.github.surgeon.executor.query.DictFindPageQryExe;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Objects;
+import java.util.Map;
 
 @Service("dictServiceImpl")
 @CatchAndLog
@@ -60,28 +59,12 @@ public class DictServiceImpl implements DictServiceI {
     private DictFindByFieldQryExe dictFindByFieldQryExe;
 
     @Override
-    public boolean createValueExists(Object value, String fieldName) throws UnsupportedOperationException {
-        Assert.notBlank(fieldName);
-        if (value == null) {
-            return false;
-        }
-        Dict byField = findByField(new FindByFieldQuery(fieldName, value.toString()));
-        return !Objects.isNull(byField);
-    }
-
-    @Override
-    public boolean updateValueExists(Object value, String fieldName, Object id) throws UnsupportedOperationException {
-        Assert.notBlank(fieldName);
-        if (value == null) {
-            return false;
-        }
-        Dict byField = findByField(new FindByFieldQuery(fieldName, value.toString()));
-        return !(Objects.isNull(byField) || Objects.equals(byField.getId(), id));
-    }
-
-    public Dict findByField(FindByFieldQuery query) {
+    public boolean fieldValueExists(Map<String, Object> fieldMap) throws UnsupportedOperationException {
+        Assert.notEmpty(fieldMap);
+        FindByFieldQuery query = new FindByFieldQuery(fieldMap);
         return dictFindByFieldQryExe.execute(query);
     }
+
 
     @Override
     public SingleResponse<DictDTO> findById(IdQuery query) {
