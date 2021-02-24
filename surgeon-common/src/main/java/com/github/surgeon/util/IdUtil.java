@@ -1,5 +1,5 @@
 /*
- * Copyright © ${project.inceptionYear} Laysan (lslvxy@gmail.com)
+ * Copyright © 2021 Laysan (lslvxy@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,27 @@
  */
 package com.github.surgeon.util;
 
+/**
+ * <p>IdUtil class.</p>
+ *
+ * @author lise
+ * @version $Id: $Id
+ */
 public class IdUtil extends cn.hutool.core.util.IdUtil {
+    /**
+     * <p>getNextId.</p>
+     *
+     * @return a {@link java.lang.Long} object.
+     */
     public static Long getNextId() {
         return getSnowflake(1, 1).nextId();
     }
 
+    /**
+     * <p>getNextIdStr.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public static String getNextIdStr() {
         return getSnowflake(1, 1).nextIdStr();
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright © ${project.inceptionYear} Laysan (lslvxy@gmail.com)
+ * Copyright © 2021 Laysan (lslvxy@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,31 @@
 package com.github.surgeon.base;
 
 /**
+ * <p>BaseEnum interface.</p>
+ *
  * @author lise
+ * @version $Id: $Id
  */
 public interface BaseEnum {
+    /**
+     * <p>getValue.</p>
+     *
+     * @return a {@link java.lang.Integer} object.
+     */
     Integer getValue();
 
+    /**
+     * <p>getDesc.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     String getDesc();
 
+    /**
+     * <p>NullEnum.</p>
+     *
+     * @return a {@link com.github.surgeon.base.BaseEnum} object.
+     */
     static BaseEnum NullEnum() {
         return new BaseEnum() {
             @Override

@@ -1,5 +1,5 @@
 /*
- * Copyright © ${project.inceptionYear} Laysan (lslvxy@gmail.com)
+ * Copyright © 2021 Laysan (lslvxy@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,12 @@ import lombok.Getter;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * <p>CommonStatusEnum class.</p>
+ *
+ * @author lise
+ * @version $Id: $Id
+ */
 @Getter
 @AllArgsConstructor
 public enum CommonStatusEnum implements BaseEnum {
@@ -36,6 +42,18 @@ public enum CommonStatusEnum implements BaseEnum {
     DISABLED(1, "禁用");
     /**
      * code
+     */
+    /**
+     * <p>get.</p>
+     *
+     * @param value a {@link java.lang.Integer} object.
+     * @return a {@link com.github.surgeon.enums.CommonStatusEnum} object.
+     */
+    /**
+     * <p>get.</p>
+     *
+     * @param value a {@link java.lang.Integer} object.
+     * @return a {@link com.github.surgeon.enums.CommonStatusEnum} object.
      */
     private Integer value;
     /**

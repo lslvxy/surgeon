@@ -1,5 +1,5 @@
 /*
- * Copyright © ${project.inceptionYear} Laysan (lslvxy@gmail.com)
+ * Copyright © 2021 Laysan (lslvxy@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,12 @@ import lombok.Getter;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * <p>DeleteStatusEnum class.</p>
+ *
+ * @author lise
+ * @version $Id: $Id
+ */
 @Getter
 @AllArgsConstructor
 public enum DeleteStatusEnum implements BaseEnum {
@@ -36,6 +42,18 @@ public enum DeleteStatusEnum implements BaseEnum {
     DELETED(1, "已删除");
     /**
      * code
+     */
+    /**
+     * <p>get.</p>
+     *
+     * @param value a {@link java.lang.Integer} object.
+     * @return a {@link com.github.surgeon.enums.DeleteStatusEnum} object.
+     */
+    /**
+     * <p>get.</p>
+     *
+     * @param value a {@link java.lang.Integer} object.
+     * @return a {@link com.github.surgeon.enums.DeleteStatusEnum} object.
      */
     private Integer value;
     /**

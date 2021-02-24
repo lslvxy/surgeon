@@ -1,5 +1,5 @@
 /*
- * Copyright © ${project.inceptionYear} Laysan (lslvxy@gmail.com)
+ * Copyright © 2021 Laysan (lslvxy@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,21 +15,39 @@
  */
 package com.github.surgeon.util;
 
+/**
+ * <p>SqlBuilderUtil class.</p>
+ *
+ * @author lise
+ * @version $Id: $Id
+ */
 public class SqlBuilderUtil {
     /**
      * 模糊查询
      *
-     * @param s
-     * @return
+     * @param s a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
      */
     public static String addWildcards(String s) {
         return "%" + s + "%";
     }
 
+    /**
+     * <p>addLeftWildcards.</p>
+     *
+     * @param s a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
+     */
     public static String addLeftWildcards(String s) {
         return "%" + s;
     }
 
+    /**
+     * <p>addRightWildcards.</p>
+     *
+     * @param s a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
+     */
     public static String addRightWildcards(String s) {
         return "%" + s;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright © ${project.inceptionYear} Laysan (lslvxy@gmail.com)
+ * Copyright © 2021 Laysan (lslvxy@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,15 @@ import java.io.StringWriter;
  * 异常工具 2019-01-06
  *
  * @author Zheng Jie
+ * @version $Id: $Id
  */
 public class ThrowableUtil {
 
     /**
      * 获取堆栈信息
+     *
+     * @param throwable a {@link java.lang.Throwable} object.
+     * @return a {@link java.lang.String} object.
      */
     public static String getStackTrace(Throwable throwable) {
         StringWriter sw = new StringWriter();

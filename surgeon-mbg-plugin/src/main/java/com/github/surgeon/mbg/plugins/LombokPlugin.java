@@ -1,5 +1,5 @@
 /*
- * Copyright © ${project.inceptionYear} Laysan (lslvxy@gmail.com)
+ * Copyright © 2021 Laysan (lslvxy@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,14 +25,25 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * <p>LombokPlugin class.</p>
+ *
+ * @author lise
+ * @version $Id: $Id
+ */
 public class LombokPlugin extends PluginAdapter {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setProperties(Properties properties) {
         super.setProperties(properties);
     }
 
     /**
+     * {@inheritDoc}
+     * <p>
      * This plugin is always valid - no properties are required.
      */
     @Override
@@ -40,6 +51,9 @@ public class LombokPlugin extends PluginAdapter {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass,
                                                  IntrospectedTable introspectedTable) {
@@ -54,6 +68,9 @@ public class LombokPlugin extends PluginAdapter {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean modelGetterMethodGenerated(Method method,
                                               TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn,
@@ -62,6 +79,9 @@ public class LombokPlugin extends PluginAdapter {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean modelSetterMethodGenerated(Method method,
                                               TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn,

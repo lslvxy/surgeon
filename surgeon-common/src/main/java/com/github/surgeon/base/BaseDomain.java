@@ -1,5 +1,5 @@
 /*
- * Copyright © ${project.inceptionYear} Laysan (lslvxy@gmail.com)
+ * Copyright © 2021 Laysan (lslvxy@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import java.util.Date;
  * 通用字段， is_del 根据需求自行添加
  *
  * @author Zheng Jie
+ * @version $Id: $Id
  * @Date 2019年10月24日20:46:32
  */
 @Data

@@ -1,5 +1,5 @@
 /*
- * Copyright © ${project.inceptionYear} Laysan (lslvxy@gmail.com)
+ * Copyright © 2021 Laysan (lslvxy@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,12 @@ import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+/**
+ * <p>UniqueValidator class.</p>
+ *
+ * @author lise
+ * @version $Id: $Id
+ */
 public class UniqueValidator implements ConstraintValidator<Unique, Object> {
 
     private BaseService service;
@@ -39,6 +45,9 @@ public class UniqueValidator implements ConstraintValidator<Unique, Object> {
     private String message;
     private String idKey;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(Unique unique) {
         Class<? extends BaseService> clazz = unique.service();
@@ -54,6 +63,9 @@ public class UniqueValidator implements ConstraintValidator<Unique, Object> {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         Map<String, Object> invalidMap = countRows(value);
