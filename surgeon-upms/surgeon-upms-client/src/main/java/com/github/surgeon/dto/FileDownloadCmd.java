@@ -18,10 +18,12 @@ package com.github.surgeon.dto;
 import com.alibaba.cola.dto.Command;
 import com.alibaba.cola.extension.BizScenario;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.InputStream;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class FileDownloadCmd extends Command {
 
     private BizScenario bizScenario;

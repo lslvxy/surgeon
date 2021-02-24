@@ -58,8 +58,10 @@ public class LombokPlugin extends PluginAdapter {
     public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass,
                                                  IntrospectedTable introspectedTable) {
         topLevelClass.addImportedType("lombok.Data");
+        topLevelClass.addImportedType("lombok.EqualsAndHashCode");
         topLevelClass.addImportedType("lombok.experimental.Accessors");
         topLevelClass.addAnnotation("@Data");
+        topLevelClass.addAnnotation("@EqualsAndHashCode(callSuper = true)");
         topLevelClass.addAnnotation("@Accessors(chain = true)");
         topLevelClass.getSuperClass().ifPresent(v -> {
             topLevelClass.addImportedType("lombok.EqualsAndHashCode");

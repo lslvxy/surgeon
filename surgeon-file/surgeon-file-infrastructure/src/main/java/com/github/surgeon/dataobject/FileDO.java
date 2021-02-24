@@ -18,11 +18,13 @@ package com.github.surgeon.dataobject;
 import com.github.surgeon.base.BaseDO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import javax.annotation.Generated;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 public class FileDO extends BaseDO {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")

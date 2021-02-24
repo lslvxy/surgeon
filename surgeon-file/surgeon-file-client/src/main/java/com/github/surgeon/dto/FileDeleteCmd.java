@@ -18,8 +18,10 @@ package com.github.surgeon.dto;
 import com.alibaba.cola.dto.Command;
 import com.alibaba.cola.extension.BizScenario;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class FileDeleteCmd extends Command {
 
     private Long id;

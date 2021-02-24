@@ -18,12 +18,14 @@ package com.github.surgeon.domain;
 import com.github.surgeon.base.BaseDomain;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotBlank;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @ToString
 @Accessors(chain = true)
 

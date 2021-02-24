@@ -16,11 +16,15 @@
 package com.github.surgeon.config;
 
 import com.github.surgeon.constant.SurgeonConstants;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
 @Component
 @ConfigurationProperties(prefix = "surgeon.file.local")
 public class LocalProp {
@@ -40,7 +44,8 @@ public class LocalProp {
         return linux.getPath();
     }
 
-    @Data
+    @Getter
+    @Setter
     public static class ElPath {
         private String path;
     }

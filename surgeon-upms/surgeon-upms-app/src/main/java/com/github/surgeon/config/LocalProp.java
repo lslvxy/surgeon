@@ -17,12 +17,15 @@ package com.github.surgeon.config;
 
 import com.github.surgeon.constant.SurgeonConstants;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@Data
+@Getter
+@Setter
 @Component
-@ConfigurationProperties(prefix = "kamala.file.local")
+@ConfigurationProperties(prefix = "surgeon.file.local")
 public class LocalProp {
     private ElPath mac;
 

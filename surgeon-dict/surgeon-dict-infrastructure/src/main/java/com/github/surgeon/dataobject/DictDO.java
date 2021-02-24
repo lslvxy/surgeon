@@ -24,8 +24,8 @@ import lombok.experimental.Accessors;
 import javax.annotation.Generated;
 
 @Data
-@Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
+@Accessors(chain = true)
 public class DictDO extends BaseDO {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     @ApiModelProperty(value = "ID")

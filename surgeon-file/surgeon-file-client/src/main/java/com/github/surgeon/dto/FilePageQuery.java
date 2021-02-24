@@ -17,8 +17,10 @@ package com.github.surgeon.dto;
 
 import com.alibaba.cola.dto.PageQuery;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class FilePageQuery extends PageQuery {
     private String name;
 }

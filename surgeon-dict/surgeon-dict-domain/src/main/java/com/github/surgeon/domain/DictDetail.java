@@ -21,8 +21,8 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@EqualsAndHashCode(callSuper = false)
 public class DictDetail extends BaseDomain {
     private Long id;
 

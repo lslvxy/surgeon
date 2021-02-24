@@ -19,10 +19,12 @@ import com.alibaba.cola.dto.Command;
 import com.alibaba.cola.extension.BizScenario;
 import com.github.surgeon.dto.data.FileDTO;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.InputStream;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class FileUploadCmd extends Command {
 
     private BizScenario bizScenario;

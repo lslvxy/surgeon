@@ -18,9 +18,11 @@ package com.github.surgeon.dto;
 import com.alibaba.cola.dto.Query;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class DictQuery extends Query {

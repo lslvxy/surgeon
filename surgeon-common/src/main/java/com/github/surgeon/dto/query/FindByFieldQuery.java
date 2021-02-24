@@ -18,9 +18,11 @@ package com.github.surgeon.dto.query;
 import com.alibaba.cola.dto.Query;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.Map;
+
 
 /**
  * <p>FindByFieldQuery class.</p>
@@ -29,6 +31,7 @@ import java.util.Map;
  * @version $Id: $Id
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class FindByFieldQuery extends Query {
