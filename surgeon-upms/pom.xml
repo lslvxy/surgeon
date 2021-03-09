@@ -9,7 +9,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>surgeon-upms-parent</artifactId>
+    <artifactId>surgeon-upms</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>surgeon-upms</name>

@@ -14,7 +14,8 @@
         <module>surgeon-dict</module>
         <module>surgeon-file</module>
         <module>surgeon-upms</module>
-        <!--                <module>start</module>-->
+        <module>surgeon-swagger</module>
+        <module>surgeon-start</module>
     </modules>
     <inceptionYear>2021</inceptionYear>
     <packaging>pom</packaging>

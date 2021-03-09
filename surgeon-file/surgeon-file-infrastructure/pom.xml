@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.surgeon</groupId>
-        <artifactId>surgeon-file-parent</artifactId>
+        <artifactId>surgeon-file</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -75,6 +75,7 @@
                 <executions>
                     <execution>
                         <id>Generate MyBatis Artifacts</id>
+                        <phase>deploy</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>

@@ -61,3 +61,22 @@ surgeon:
       accessKey: minio
       secretKey: minio@123
       bucket: ${spring.application.name}
+
+
+knife4j:
+  enable: true
+  production: false
+  base_package: com.ssyuntu.travel|com.ssyuntu.travel
+  setting:
+    enableSwaggerModels: true
+    swaggerModelName: 请求实体对象
+  info:
+    title: 文旅资质评定系统
+    description: 文旅资质评定系统
+    service_url: http://www.ssyuntu.com
+    version: 1.0
+    group_name: v1
+    author:
+      name: Ssyuntu
+      url: http://www.ssyuntu.com
+      email: admin@ssyuntu.com
