@@ -24,6 +24,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -44,13 +45,23 @@ public class SurgeonAutoConfig {
     @Value("${spring.jackson.date-time-format:yyyy-MM-dd HH:mm:ss}")
     private String dateTimePattern;
 
-
-    //===========跨域配置===========================
+    /**
+     * 跨域配置
+     *
+     * @return CorsFilter
+     */
+    @Bean
+    @ConditionalOnProperty(value = "surgeon.cors", havingValue = "enable")
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", addCorsMappings());
+        return new CorsFilter(source);
+    }
 
     /**
-     * cors
+     * CorsConfiguration
      *
-     * @return
+     * @return CorsConfiguration
      */
     public CorsConfiguration addCorsMappings() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -60,13 +71,6 @@ public class SurgeonAutoConfig {
         corsConfiguration.addAllowedHeader(CorsConfiguration.ALL);
         corsConfiguration.addAllowedMethod(CorsConfiguration.ALL);
         return corsConfiguration;
-    }
-
-    @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", addCorsMappings());
-        return new CorsFilter(source);
     }
 
     //===========Jackson配置===========================
@@ -96,6 +100,5 @@ public class SurgeonAutoConfig {
     public SpringContextHolder springContextHolder() {
         return new SpringContextHolder();
     }
-
 
 }

@@ -53,6 +53,7 @@ spring:
     type: redis
 
 surgeon:
+  cors: enable
   caching:
     default-timeout: 60s
     specs:
@@ -81,10 +82,6 @@ surgeon:
   swagger:
     enable: true
 
-j2cache:
-  config-location: /j2cache-dev.properties
-  cache-clean-mode: active
-  open-spring-cache: true
 
 
 knife4j:

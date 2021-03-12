@@ -22,9 +22,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.env.Environment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author Jie
  * @date 2019-01-07
@@ -33,23 +30,6 @@ import java.util.List;
 public class SpringContextHolder implements ApplicationContextAware, DisposableBean {
 
     private static ApplicationContext applicationContext = null;
-    private static final List<CallBack> CALL_BACKS = new ArrayList<>();
-    private static boolean addCallback = true;
-
-    /**
-     * 针对 某些初始化方法，在SpringContextHolder 未初始化时 提交回调方法。
-     * 在SpringContextHolder 初始化后，进行回调使用
-     *
-     * @param callBack 回调函数
-     */
-    public synchronized static void addCallBacks(CallBack callBack) {
-        if (addCallback) {
-            SpringContextHolder.CALL_BACKS.add(callBack);
-        } else {
-            log.warn("CallBack：{} 已无法添加！立即执行", callBack.getCallBackName());
-            callBack.executor();
-        }
-    }
 
     /**
      * 从静态变量applicationContext中取得Bean, 自动转型为所赋值对象的类型.
@@ -136,12 +116,5 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
             log.warn("SpringContextHolder中的ApplicationContext被覆盖, 原有ApplicationContext为:" + SpringContextHolder.applicationContext);
         }
         SpringContextHolder.applicationContext = applicationContext;
-        if (addCallback) {
-            for (CallBack callBack : SpringContextHolder.CALL_BACKS) {
-                callBack.executor();
-            }
-            CALL_BACKS.clear();
-        }
-        SpringContextHolder.addCallback = false;
     }
 }
