@@ -22,7 +22,6 @@ import com.github.surgeon.constant.Constants;
 import com.github.surgeon.domain.file.File;
 import com.github.surgeon.domain.gateway.FileGateway;
 import com.github.surgeon.dto.FileDeleteCmd;
-import com.github.surgeon.extensionpoint.FileUploadExtPt;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -31,7 +30,7 @@ import java.util.Objects;
 @Component
 public class FileDeleteCmdExe {
     @Resource
-    private FileGateway fileGateway;
+    private FileGateway       fileGateway;
     @Resource
     private ExtensionExecutor extensionExecutor;
 
@@ -45,7 +44,6 @@ public class FileDeleteCmdExe {
             BizScenario scenario = BizScenario.valueOf(Constants.LOCAL);
             cmd.setBizScenario(scenario);
         }
-        extensionExecutor.executeVoid(FileUploadExtPt.class, cmd.getBizScenario(), v -> v.delete(cmd));
         return Response.buildSuccess();
     }
 

@@ -20,7 +20,6 @@ import com.alibaba.cola.extension.ExtensionExecutor;
 import com.github.surgeon.constant.Constants;
 import com.github.surgeon.dto.FileUploadCmd;
 import com.github.surgeon.dto.data.FileUploadDTO;
-import com.github.surgeon.extensionpoint.FileUploadExtPt;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -38,7 +37,7 @@ public class FileUploadCmdExe {
             BizScenario scenario = BizScenario.valueOf(Constants.LOCAL);
             cmd.setBizScenario(scenario);
         }
-        return extensionExecutor.execute(FileUploadExtPt.class, cmd.getBizScenario(), v -> v.upload(cmd));
+        return null;
     }
 
 }

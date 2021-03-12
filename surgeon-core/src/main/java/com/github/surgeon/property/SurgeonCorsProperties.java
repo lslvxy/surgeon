@@ -13,32 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.config;
+package com.github.surgeon.property;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@Getter
-@Setter
+@Data
 @Component
-@ConfigurationProperties(prefix = "surgeon.file.minio")
-public class MinioProp {
-    /**
-     * 连接url
-     */
-    private String endpoint;
-    /**
-     * 用户名
-     */
-    private String accessKey;
-    /**
-     * 密码
-     */
-    private String secretKey;
-    /**
-     * 桶
-     */
-    private String bucket;
+@ConfigurationProperties(prefix = "surgeon.cors")
+public class SurgeonCorsProperties {
+    private boolean enable;
 }

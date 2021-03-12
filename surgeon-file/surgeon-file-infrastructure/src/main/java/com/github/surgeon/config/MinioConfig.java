@@ -15,16 +15,15 @@
  */
 package com.github.surgeon.config;
 
+import com.github.surgeon.property.file.MinioProp;
 import io.minio.MinioClient;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.Resource;
 
 @Configuration
-@EnableConfigurationProperties({MinioProp.class})
 @ConditionalOnProperty(name = "surgeon.file.provider", havingValue = "minio")
 public class MinioConfig {
     @Resource

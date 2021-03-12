@@ -53,7 +53,8 @@ spring:
     type: redis
 
 surgeon:
-  cors: enable
+  cors:
+    enable: true
   caching:
     default-timeout: 60s
     specs:

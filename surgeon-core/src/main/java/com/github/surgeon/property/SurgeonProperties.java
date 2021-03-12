@@ -13,20 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.extensionpoint;
+package com.github.surgeon.property;
 
-import com.alibaba.cola.extension.ExtensionPointI;
-import com.github.surgeon.dto.FileDeleteCmd;
-import com.github.surgeon.dto.FileDownloadCmd;
-import com.github.surgeon.dto.FileUploadCmd;
-import com.github.surgeon.dto.data.FileDownloadDTO;
-import com.github.surgeon.dto.data.FileUploadDTO;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-public interface FileUploadExtPt extends ExtensionPointI {
-
-    FileUploadDTO upload(FileUploadCmd cmd);
-
-    FileDownloadDTO download(FileDownloadCmd cmd);
-
-    void delete(FileDeleteCmd cmd);
+@Data
+@Component
+@ConfigurationProperties(prefix = "surgeon")
+public class SurgeonProperties {
+    private SurgeonCorsProperties    cors;
+    private SurgeonFileProperties    file;
+    private SurgeonSwaggerProperties swagger;
 }

@@ -17,7 +17,6 @@ package com.github.surgeon.extension;
 
 import cn.hutool.core.lang.Assert;
 import com.alibaba.cola.extension.Extension;
-import com.github.surgeon.config.MinioProp;
 import com.github.surgeon.constant.FileProviderConstants;
 import com.github.surgeon.dto.FileDeleteCmd;
 import com.github.surgeon.dto.FileDownloadCmd;
@@ -25,6 +24,7 @@ import com.github.surgeon.dto.FileUploadCmd;
 import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.dto.data.FileUploadDTO;
 import com.github.surgeon.extensionpoint.FileUploadExtPt;
+import com.github.surgeon.property.file.MinioProp;
 import com.github.surgeon.util.FileUtils;
 import io.minio.MinioClient;
 import io.minio.ObjectStat;

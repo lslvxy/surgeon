@@ -20,7 +20,7 @@
 
         <dependency>
             <groupId>com.github.surgeon</groupId>
-            <artifactId>surgeon-file</artifactId>
+            <artifactId>surgeon-file-adapter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.github.surgeon</groupId>

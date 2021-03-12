@@ -22,9 +22,11 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.github.surgeon.property.SurgeonProperties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -39,6 +41,7 @@ import java.time.format.DateTimeFormatter;
 
 @Configuration
 @ComponentScan(basePackages = {"com.alibaba.cola", "com.github.surgeon"})
+@EnableConfigurationProperties(value = {SurgeonProperties.class})
 public class SurgeonAutoConfig {
     @Value("${spring.jackson.date-format:yyyy-MM-dd}")
     private String datePattern;

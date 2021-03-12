@@ -13,38 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.config;
+package com.github.surgeon.property;
 
-import com.github.surgeon.constant.SurgeonConstants;
+import com.github.surgeon.property.file.LocalProp;
+import com.github.surgeon.property.file.MinioProp;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@Getter
-@Setter
+@Data
 @Component
-@ConfigurationProperties(prefix = "surgeon.file.local")
-public class LocalProp {
-    private ElPath mac;
+@ConfigurationProperties(prefix = "surgeon.file")
+public class SurgeonFileProperties {
+    /**
+     * 连接url
+     */
+    private String    provider;
+    private LocalProp local;
+    private MinioProp minio;
 
-    private ElPath linux;
-
-    private ElPath windows;
-
-    public String getPath() {
-        String os = System.getProperty("os.name");
-        if (os.toLowerCase().startsWith(SurgeonConstants.WIN)) {
-            return windows.getPath();
-        } else if (os.toLowerCase().startsWith(SurgeonConstants.MAC)) {
-            return mac.getPath();
-        }
-        return linux.getPath();
-    }
-
-    @Data
-    public static class ElPath {
-        private String path;
-    }
 }
