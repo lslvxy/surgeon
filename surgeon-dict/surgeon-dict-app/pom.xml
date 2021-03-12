@@ -30,6 +30,10 @@
             <groupId>com.alibaba.cola</groupId>
             <artifactId>cola-component-extension-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.surgeon</groupId>
+            <artifactId>surgeon-cache</artifactId>
+        </dependency>
         <!-- JSR 303 Validation -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>

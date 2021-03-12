@@ -44,9 +44,26 @@ spring:
         wall:
           config:
             multi-statement-allow: true
-
+  redis:
+    host: laysan.com
+    port: 6379
+    database: 0
+    timeout: 8s
+  cache:
+    type: redis
 
 surgeon:
+  caching:
+    default-timeout: 60s
+    specs:
+      dictCache:
+        timeout: 20
+      userCache:
+        timeout: 60
+        max: 500
+      testCache:
+        timeout: 5
+        max: 10
   file:
     provider: local
     local:
@@ -61,6 +78,13 @@ surgeon:
       accessKey: minio
       secretKey: minio@123
       bucket: ${spring.application.name}
+  swagger:
+    enable: true
+
+j2cache:
+  config-location: /j2cache-dev.properties
+  cache-clean-mode: active
+  open-spring-cache: true
 
 
 knife4j:

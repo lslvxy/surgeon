@@ -13,20 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon;
+package com.github.surgeon.config;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
-/**
- * Spring Boot Starter
- *
- * @author Frank Zhang
- */
-@SpringBootApplication
-public class Application {
+import java.util.Map;
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+@Data
+@ConfigurationProperties(prefix = "surgeon.caching")
+public class CacheNameProperties {
+    private String defaultTimeout;
+
+    private Map<String, CacheSpec> specs;
+
+    @Data
+    public static class CacheSpec {
+        private String  timeout = "60s";
+        private Integer max     = 200;
     }
+
 }

@@ -37,6 +37,8 @@ import com.github.surgeon.executor.query.DictFindByFieldQryExe;
 import com.github.surgeon.executor.query.DictFindByIdQryExe;
 import com.github.surgeon.executor.query.DictFindListQryExe;
 import com.github.surgeon.executor.query.DictFindPageQryExe;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -44,19 +46,20 @@ import java.util.Map;
 
 @Service("dictServiceImpl")
 @CatchAndLog
+@CacheConfig(cacheNames = "dictCache")
 public class DictServiceImpl implements DictServiceI {
 
     @Resource
-    private DictSaveExe dictSaveExe;
+    private DictSaveExe      dictSaveExe;
     @Resource
     private DictDeleteCmdExe dictDeleteCmdExe;
 
     @Resource
-    private DictFindPageQryExe dictFindPageQryExe;
+    private DictFindPageQryExe    dictFindPageQryExe;
     @Resource
-    private DictFindListQryExe dictFindListQryExe;
+    private DictFindListQryExe    dictFindListQryExe;
     @Resource
-    private DictFindByIdQryExe dictFindByIdQryExe;
+    private DictFindByIdQryExe    dictFindByIdQryExe;
     @Resource
     private DictFindByFieldQryExe dictFindByFieldQryExe;
 
@@ -71,8 +74,8 @@ public class DictServiceImpl implements DictServiceI {
         return ObjectUtil.notEqual(dict.getId(), id);
     }
 
-
     @Override
+    @Cacheable(key = "#query.id")
     public SingleResponse<DictDTO> findById(IdQuery query) {
         return dictFindByIdQryExe.execute(query);
     }

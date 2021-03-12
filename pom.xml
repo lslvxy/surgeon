@@ -9,6 +9,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>surgeon-common</module>
+        <module>surgeon-cache</module>
         <module>surgeon-mbg-plugin</module>
         <module>surgeon-autoconfig</module>
         <module>surgeon-dict</module>
@@ -62,6 +63,21 @@
             <dependency>
                 <groupId>com.github.surgeon</groupId>
                 <artifactId>surgeon-autoconfig</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-swagger</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-cache</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.surgeon</groupId>
+                <artifactId>surgeon-mbg-plugin</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -183,7 +199,7 @@
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-spring-boot-starter</artifactId>
-                <version>2.0.8</version>
+                <version>3.0.2</version>
             </dependency>
             <dependency>
                 <groupId>io.swagger</groupId>
