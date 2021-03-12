@@ -64,7 +64,7 @@ public class RedisCacheAutoConfiguration {
         Map<String, CacheSpec> specs = cacheNameProperties.getSpecs();
         if (Objects.isNull(specs)) {
             specs = new HashMap<>(1);
-            specs.put("surgeonCache", new CacheSpec());
+            specs.put("defaultCache", new CacheSpec(cacheNameProperties.getDefaultTimeout()));
         }
 
         RedisCacheConfiguration defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig();

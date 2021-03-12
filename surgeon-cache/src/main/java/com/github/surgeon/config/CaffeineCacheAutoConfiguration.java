@@ -63,7 +63,7 @@ public class CaffeineCacheAutoConfiguration {
         Map<String, CacheSpec> specs = cacheNameProperties.getSpecs();
         if (Objects.isNull(specs)) {
             specs = new HashMap<>(1);
-            specs.put("surgeonCache", new CacheSpec());
+            specs.put("defaultCache", new CacheSpec(cacheNameProperties.getDefaultTimeout()));
         }
         List<CaffeineCache> caches =
                 specs.entrySet().stream()

@@ -29,8 +29,12 @@ public class CacheNameProperties {
 
     @Data
     public static class CacheSpec {
-        private String  timeout = "60s";
-        private Integer max     = 200;
+        private String  timeout;
+        private Integer max = 200;
+
+        public CacheSpec(String timeout) {
+            this.timeout = timeout;
+        }
     }
 
 }
