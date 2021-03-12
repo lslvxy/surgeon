@@ -1,5 +1,20 @@
 # Surgeon 研发手册
 
+## Swagger 文档
+
+## Domain 唯一性校验
+
+需要校验的DTO加上注解
+
+```
+@Unique(
+        service = DictServiceI.class,  # 需要调用的Service
+        message = "字典[${value}]已存在", # 验证失败消息,变量支持 ${name},${fullName},${field},${allFields},${value},${values},
+        columns = {
+                @UniqueColumn(fields = {"code"}), # 唯一的列
+        })
+```
+
 ## 缓存
 
 集成Spring-Cache实现缓存功能

@@ -20,30 +20,13 @@
         </dependency>
         <dependency>
             <groupId>com.github.surgeon</groupId>
+            <artifactId>surgeon-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.surgeon</groupId>
             <artifactId>surgeon-upms-infrastructure</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-component-catchlog-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-component-extension-starter</artifactId>
-        </dependency>
-        <!-- JSR 303 Validation -->
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>javax.el-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>javax.el</artifactId>
-        </dependency>
-        <!-- JSR 303 Validation End-->
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

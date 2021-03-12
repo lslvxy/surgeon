@@ -16,7 +16,7 @@
     <dependencies>
         <dependency>
             <groupId>com.github.surgeon</groupId>
-            <artifactId>surgeon-common</artifactId>
+            <artifactId>surgeon-core</artifactId>
         </dependency>
         <!-- COLA components -->
         <dependency>

@@ -26,7 +26,11 @@ import org.hibernate.validator.constraintvalidation.HibernateConstraintValidator
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -42,8 +46,8 @@ public class UniqueValidator implements ConstraintValidator<Unique, Object> {
     private BaseService service;
 
     private UniqueColumn[] columns;
-    private String message;
-    private String idKey;
+    private String         message;
+    private String         idKey;
 
     /**
      * {@inheritDoc}
@@ -86,7 +90,6 @@ public class UniqueValidator implements ConstraintValidator<Unique, Object> {
         }
         return true;
     }
-
 
     private Map<String, Object> countRows(Object value) {
         List<Map<String, Object>> fieldValueCombos = new ArrayList<>();

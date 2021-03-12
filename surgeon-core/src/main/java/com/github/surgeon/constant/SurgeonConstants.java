@@ -25,7 +25,7 @@ public interface SurgeonConstants {
     /**
      * Constant <code>DATE_YYYY_MM_DD="yyyy-MM-dd"</code>
      */
-    String DATE_YYYY_MM_DD = "yyyy-MM-dd";
+    String DATE_YYYY_MM_DD          = "yyyy-MM-dd";
     /**
      * Constant <code>DATE_YYYY_MM_DD_HH_MM_SS="yyyy-MM-dd HH:mm:ss"</code>
      */
@@ -33,7 +33,7 @@ public interface SurgeonConstants {
     /**
      * length must ==32
      */
-    String JWT_CLIENT_SECRET = "Seal@202012221120*&^%$@!!@#$%^&*";
+    String JWT_CLIENT_SECRET        = "Seal@202012221120*&^%$@!!@#$%^&*";
 
     /**
      * Constant <code>DEFAULT_PASSWORD="123456"</code>
@@ -52,7 +52,7 @@ public interface SurgeonConstants {
     /**
      * win 系统
      */
-    String WIN = "win";
+    String WIN    = "win";
 
     /**
      * mac 系统

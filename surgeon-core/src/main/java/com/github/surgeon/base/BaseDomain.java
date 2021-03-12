@@ -56,5 +56,4 @@ public class BaseDomain implements Serializable {
      */
     private Date updateTime;
 
-
 }

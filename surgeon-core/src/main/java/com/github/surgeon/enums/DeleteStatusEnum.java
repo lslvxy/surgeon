@@ -23,23 +23,23 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * <p>CommonStatusEnum class.</p>
+ * <p>DeleteStatusEnum class.</p>
  *
  * @author lise
  * @version $Id: $Id
  */
 @Getter
 @AllArgsConstructor
-public enum CommonStatusEnum implements BaseEnum {
+public enum DeleteStatusEnum implements BaseEnum {
 
     /**
      * 正常
      */
     NORMAL(0, "正常"),
     /**
-     * 禁用
+     * 已删除
      */
-    DISABLED(1, "禁用");
+    DELETED(1, "已删除");
     /**
      * code
      */
@@ -47,25 +47,26 @@ public enum CommonStatusEnum implements BaseEnum {
      * <p>get.</p>
      *
      * @param value a {@link java.lang.Integer} object.
-     * @return a {@link com.github.surgeon.enums.CommonStatusEnum} object.
+     * @return a {@link com.github.surgeon.enums.DeleteStatusEnum} object.
      */
     /**
      * <p>get.</p>
      *
      * @param value a {@link java.lang.Integer} object.
-     * @return a {@link com.github.surgeon.enums.CommonStatusEnum} object.
+     * @return a {@link com.github.surgeon.enums.DeleteStatusEnum} object.
      */
     private Integer value;
     /**
      * desc
      */
-    private String desc;
+    private String  desc;
 
-    public static CommonStatusEnum get(Integer value) {
+    public static DeleteStatusEnum get(Integer value) {
         if (Objects.isNull(value)) {
-            return CommonStatusEnum.DISABLED;
+            return DeleteStatusEnum.NORMAL;
         }
-        return Arrays.stream(CommonStatusEnum.values()).filter(item -> item.getValue().equals(value)).findFirst().orElse(
-                CommonStatusEnum.DISABLED);
+        return Arrays.stream(DeleteStatusEnum.values()).filter(item -> item.getValue().equals(value)).findFirst().orElse(
+                DeleteStatusEnum.NORMAL);
     }
 }
+

@@ -13,29 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.dto.query;
+package com.github.surgeon.annotation;
 
-import com.alibaba.cola.dto.Query;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-
-import java.util.Map;
-
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
- * <p>FindByFieldQuery class.</p>
+ * <p>Dict class.</p>
  *
  * @author lise
  * @version $Id: $Id
  */
-@Data
-@EqualsAndHashCode(callSuper = true)
-@AllArgsConstructor
-@NoArgsConstructor
-public class FindByFieldQuery extends Query {
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Dict {
+    Class clazz() default Void.class;
 
-    private Map<String, Object> fieldMap;
-
+    String code() default "";
 }

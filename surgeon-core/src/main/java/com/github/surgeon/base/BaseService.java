@@ -38,5 +38,4 @@ public interface BaseService {
         return false;
     }
 
-
 }
