@@ -15,7 +15,7 @@
  */
 package com.github.surgeon.config;
 
-import com.github.surgeon.property.file.MinioProp;
+import com.github.surgeon.property.file.MinioProperties;
 import io.minio.MinioClient;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +27,7 @@ import javax.annotation.Resource;
 @ConditionalOnProperty(name = "surgeon.file.provider", havingValue = "minio")
 public class MinioConfig {
     @Resource
-    private MinioProp minioProp;
+    private MinioProperties minioProperties;
 
     /**
      * 获取 MinioClient
@@ -36,11 +36,12 @@ public class MinioConfig {
      */
     @Bean
     public MinioClient minioClient() throws Exception {
-        MinioClient minioClient = new MinioClient(minioProp.getEndpoint(), minioProp.getAccessKey(), minioProp.getSecretKey());
+        MinioClient minioClient = new MinioClient(minioProperties.getEndpoint(), minioProperties.getAccessKey(),
+                minioProperties.getSecretKey());
         // 检查存储桶是否已经存在
-        boolean isExist = minioClient.bucketExists(minioProp.getBucket());
+        boolean isExist = minioClient.bucketExists(minioProperties.getBucket());
         if (!isExist) {
-            minioClient.makeBucket(minioProp.getBucket());
+            minioClient.makeBucket(minioProperties.getBucket());
         }
         return minioClient;
     }

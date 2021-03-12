@@ -22,6 +22,6 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties(prefix = "surgeon.swagger")
-public class SurgeonSwaggerProperties {
+public class SwaggerProperties {
     private boolean enable;
 }

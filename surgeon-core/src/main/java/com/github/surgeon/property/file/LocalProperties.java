@@ -27,12 +27,12 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode
 @Component
 @ConfigurationProperties(prefix = "surgeon.file.local")
-public class LocalProp {
-    private ElPath mac;
+public class LocalProperties {
+    private FilePath mac;
 
-    private ElPath linux;
+    private FilePath linux;
 
-    private ElPath windows;
+    private FilePath windows;
 
     public String getPath() {
         String os = System.getProperty("os.name");
@@ -46,7 +46,7 @@ public class LocalProp {
 
     @Getter
     @Setter
-    public static class ElPath {
+    public static class FilePath {
         private String path;
     }
 }

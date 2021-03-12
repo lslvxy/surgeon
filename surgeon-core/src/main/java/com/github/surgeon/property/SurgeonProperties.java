@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "surgeon")
 public class SurgeonProperties {
-    private SurgeonCorsProperties    cors;
-    private SurgeonFileProperties    file;
-    private SurgeonSwaggerProperties swagger;
+    private CorsProperties    cors;
+    private FileProperties    file;
+    private SwaggerProperties swagger;
 }

@@ -24,7 +24,7 @@ import com.github.surgeon.dto.FileUploadCmd;
 import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.dto.data.FileUploadDTO;
 import com.github.surgeon.extensionpoint.FileUploadExtPt;
-import com.github.surgeon.property.file.MinioProp;
+import com.github.surgeon.property.file.MinioProperties;
 import com.github.surgeon.util.FileUtils;
 import io.minio.MinioClient;
 import io.minio.ObjectStat;
@@ -40,9 +40,9 @@ import java.util.Objects;
 @Component
 public class MinioFileUploadExt implements FileUploadExtPt {
     @Autowired(required = false)
-    private MinioClient minioClient;
+    private MinioClient     minioClient;
     @Resource
-    private MinioProp minioProp;
+    private MinioProperties minioProperties;
 
     @Override
     public FileUploadDTO upload(FileUploadCmd cmd) {
@@ -52,9 +52,9 @@ public class MinioFileUploadExt implements FileUploadExtPt {
         try {
             InputStream inputStream = cmd.getInputStream();
             Assert.notNull(minioClient, "minioClient 配置错误");
-            minioClient.putObject(minioProp.getBucket(), finalFileName, inputStream,
+            minioClient.putObject(minioProperties.getBucket(), finalFileName, inputStream,
                     new PutObjectOptions(inputStream.available(), -1));
-            ObjectStat objectStat = minioClient.statObject(minioProp.getBucket(), finalFileName);
+            ObjectStat objectStat = minioClient.statObject(minioProperties.getBucket(), finalFileName);
             Assert.notNull(objectStat, "上传失败");
             FileUploadDTO dto = new FileUploadDTO();
             dto.setFilePath(finalFileName);
@@ -70,7 +70,7 @@ public class MinioFileUploadExt implements FileUploadExtPt {
     public FileDownloadDTO download(FileDownloadCmd cmd) {
         try {
             Assert.notNull(minioClient, "minioClient 配置错误");
-            InputStream inputStream = minioClient.getObject(minioProp.getBucket(), cmd.getFilePath());
+            InputStream inputStream = minioClient.getObject(minioProperties.getBucket(), cmd.getFilePath());
             FileDownloadDTO dto = new FileDownloadDTO();
             dto.setFileInputStream(inputStream);
             return dto;

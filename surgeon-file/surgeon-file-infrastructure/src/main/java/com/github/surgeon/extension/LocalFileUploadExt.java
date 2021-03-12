@@ -24,7 +24,7 @@ import com.github.surgeon.dto.FileUploadCmd;
 import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.dto.data.FileUploadDTO;
 import com.github.surgeon.extensionpoint.FileUploadExtPt;
-import com.github.surgeon.property.file.LocalProp;
+import com.github.surgeon.property.file.LocalProperties;
 import com.github.surgeon.util.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +37,14 @@ import java.util.Objects;
 @Slf4j
 public class LocalFileUploadExt implements FileUploadExtPt {
     @Autowired
-    private LocalProp localProp;
+    private LocalProperties localProperties;
 
     @Override
     public FileUploadDTO upload(FileUploadCmd cmd) {
 
         Objects.requireNonNull(cmd.getFileDTO());
         Objects.requireNonNull(cmd.getInputStream());
-        String rootPath = localProp.getPath();
+        String rootPath = localProperties.getPath();
         String finalFileName = FileUtils.getPathByTime(cmd.getFileDTO().getFileName());
         String fullPath = StrUtil.removeSuffix(rootPath, File.separator) + finalFileName;
         log.debug("fullPath is {}", fullPath);
@@ -57,7 +57,7 @@ public class LocalFileUploadExt implements FileUploadExtPt {
 
     @Override
     public FileDownloadDTO download(FileDownloadCmd cmd) {
-        String rootPath = localProp.getPath();
+        String rootPath = localProperties.getPath();
         String fullPath = StrUtil.removeSuffix(rootPath, File.separator) + cmd.getFilePath();
         log.debug("fullPath is {}", fullPath);
         BufferedInputStream inputStream = FileUtils.getInputStream(fullPath);

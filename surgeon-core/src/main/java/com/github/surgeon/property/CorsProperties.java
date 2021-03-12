@@ -22,6 +22,6 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties(prefix = "surgeon.cors")
-public class SurgeonCorsProperties {
+public class CorsProperties {
     private boolean enable;
 }

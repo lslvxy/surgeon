@@ -15,8 +15,8 @@
  */
 package com.github.surgeon.property;
 
-import com.github.surgeon.property.file.LocalProp;
-import com.github.surgeon.property.file.MinioProp;
+import com.github.surgeon.property.file.LocalProperties;
+import com.github.surgeon.property.file.MinioProperties;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -24,12 +24,12 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties(prefix = "surgeon.file")
-public class SurgeonFileProperties {
+public class FileProperties {
     /**
      * 连接url
      */
-    private String    provider;
-    private LocalProp local;
-    private MinioProp minio;
+    private String          provider;
+    private LocalProperties local;
+    private MinioProperties minio;
 
 }
