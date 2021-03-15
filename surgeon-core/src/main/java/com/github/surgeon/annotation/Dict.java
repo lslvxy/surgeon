@@ -21,7 +21,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * <p>Dict class.</p>
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 @Retention(RetentionPolicy.RUNTIME)

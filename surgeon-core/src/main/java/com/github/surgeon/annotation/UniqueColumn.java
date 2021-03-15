@@ -24,7 +24,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 /**
  * <p>UniqueColumn class.</p>
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 @Documented

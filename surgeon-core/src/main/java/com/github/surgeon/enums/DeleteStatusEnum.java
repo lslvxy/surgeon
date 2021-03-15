@@ -25,7 +25,7 @@ import java.util.Objects;
 /**
  * <p>DeleteStatusEnum class.</p>
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 @Getter

@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * <p>BaseService interface.</p>
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 public interface BaseService {

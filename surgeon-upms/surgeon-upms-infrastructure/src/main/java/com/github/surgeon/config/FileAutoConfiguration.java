@@ -18,7 +18,7 @@ package com.github.surgeon.config;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author lise
+ * @author Laysan
  */
 @Configuration
 public class FileAutoConfiguration {

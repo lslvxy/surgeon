@@ -23,7 +23,7 @@ import lombok.experimental.Accessors;
 /**
  * <p>NameQuery class.</p>
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 @Getter

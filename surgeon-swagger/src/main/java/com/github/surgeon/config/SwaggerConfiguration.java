@@ -65,7 +65,7 @@ import java.util.stream.Collectors;
 /**
  * Swagger2配置
  *
- * @author L.cm
+ * @author Laysan
  */
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(Docket.class)

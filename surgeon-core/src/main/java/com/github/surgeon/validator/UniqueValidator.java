@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 /**
  * <p>UniqueValidator class.</p>
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 public class UniqueValidator implements ConstraintValidator<Unique, Object> {

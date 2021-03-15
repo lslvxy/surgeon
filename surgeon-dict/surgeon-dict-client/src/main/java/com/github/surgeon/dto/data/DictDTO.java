@@ -27,7 +27,7 @@ import lombok.experimental.Accessors;
 import javax.validation.constraints.NotBlank;
 
 /**
- * @author lise
+ * @author Laysan
  */
 @Getter
 @Setter

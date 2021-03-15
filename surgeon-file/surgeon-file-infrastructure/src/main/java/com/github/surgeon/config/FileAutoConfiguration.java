@@ -19,7 +19,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author lise
+ * @author Laysan
  */
 @Configuration
 @MapperScan(basePackages = {"com.github.surgeon.repository"})

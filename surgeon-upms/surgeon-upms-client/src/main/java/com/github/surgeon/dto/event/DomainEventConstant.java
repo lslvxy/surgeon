@@ -16,7 +16,7 @@
 package com.github.surgeon.dto.event;
 
 /**
- * @author niexiaolong
+ * @author Laysan
  * @date 2019/4/16
  */
 public class DomainEventConstant {

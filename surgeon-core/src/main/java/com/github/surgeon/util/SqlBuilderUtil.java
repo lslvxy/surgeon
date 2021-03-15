@@ -18,7 +18,7 @@ package com.github.surgeon.util;
 /**
  * <p>SqlBuilderUtil class.</p>
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 public class SqlBuilderUtil {

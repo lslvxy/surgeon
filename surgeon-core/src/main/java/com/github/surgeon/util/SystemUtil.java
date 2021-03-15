@@ -9,7 +9,7 @@ import java.util.Objects;
 /**
  * 系统工具类
  *
- * @author L.cm
+ * @author Laysan
  */
 public class SystemUtil {
 	/**

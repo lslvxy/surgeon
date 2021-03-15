@@ -18,7 +18,7 @@ package com.github.surgeon.constant;
 /**
  * 系统级常量
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 public interface SurgeonConstants {

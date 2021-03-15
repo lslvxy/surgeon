@@ -18,7 +18,7 @@ package com.github.surgeon.util;
 /**
  * <p>IdUtil class.</p>
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 public class IdUtil extends cn.hutool.core.util.IdUtil {

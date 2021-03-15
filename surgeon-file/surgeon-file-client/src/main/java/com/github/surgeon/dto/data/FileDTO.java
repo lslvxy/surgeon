@@ -27,7 +27,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 /**
- * @author lise
+ * @author Laysan
  */
 @Getter
 @Setter

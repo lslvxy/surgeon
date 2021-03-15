@@ -24,7 +24,7 @@ import lombok.experimental.Accessors;
 import java.io.InputStream;
 
 /**
- * @author lise
+ * @author Laysan
  */
 @Getter
 @Setter

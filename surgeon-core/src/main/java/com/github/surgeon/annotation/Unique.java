@@ -30,7 +30,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 /**
  * <p>Unique class.</p>
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 @Target({TYPE})

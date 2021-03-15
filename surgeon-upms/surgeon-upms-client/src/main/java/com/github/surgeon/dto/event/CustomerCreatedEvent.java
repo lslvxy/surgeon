@@ -18,7 +18,7 @@ package com.github.surgeon.dto.event;
 /**
  * CustomerCreatedEvent
  *
- * @author Frank Zhang
+ * @author Laysan
  * @date 2019-01-04 10:32 AM
  */
 public class CustomerCreatedEvent {

@@ -26,7 +26,7 @@ import lombok.experimental.Accessors;
 import java.util.Date;
 
 /**
- * @author lise
+ * @author Laysan
  */
 @Getter
 @Setter

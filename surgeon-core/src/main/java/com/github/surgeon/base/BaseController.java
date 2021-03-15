@@ -20,7 +20,7 @@ import lombok.ToString;
 /**
  * 通用字段， is_del 根据需求自行添加
  *
- * @author Zheng Jie
+ * @author Laysan
  * @version $Id: $Id
  * @Date 2019年10月24日20:46:32
  */

@@ -18,7 +18,7 @@ package com.github.surgeon.base;
 /**
  * <p>BaseMapper interface.</p>
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 public interface BaseMapper {

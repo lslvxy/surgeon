@@ -18,7 +18,7 @@ package com.github.surgeon.base;
 /**
  * <p>BaseEnum interface.</p>
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 public interface BaseEnum {

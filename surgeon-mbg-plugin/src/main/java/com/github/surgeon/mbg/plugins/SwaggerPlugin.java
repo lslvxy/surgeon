@@ -28,7 +28,7 @@ import java.util.Properties;
 /**
  * <p>SwaggerPlugin class.</p>
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 public class SwaggerPlugin extends PluginAdapter {

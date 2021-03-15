@@ -25,7 +25,7 @@ import java.util.Objects;
 /**
  * <p>CommonStatusEnum class.</p>
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 @Getter

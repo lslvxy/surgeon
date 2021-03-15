@@ -26,7 +26,7 @@ import java.util.Map;
 /**
  * <p>FindByFieldQuery class.</p>
  *
- * @author lise
+ * @author Laysan
  * @version $Id: $Id
  */
 @Data
