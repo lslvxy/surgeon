@@ -18,16 +18,6 @@
             <groupId>com.github.surgeon</groupId>
             <artifactId>surgeon-core</artifactId>
         </dependency>
-        <!-- COLA components -->
-        <dependency>
-            <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-component-domain-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-component-exception</artifactId>
-        </dependency>
-        <!-- COLA components End-->
     </dependencies>
 
 

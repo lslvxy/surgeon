@@ -18,12 +18,10 @@
             <groupId>com.github.surgeon</groupId>
             <artifactId>surgeon-core</artifactId>
         </dependency>
-        <!-- COLA components -->
         <dependency>
             <groupId>com.github.surgeon</groupId>
             <artifactId>surgeon-file-client</artifactId>
         </dependency>
-        <!-- COLA components End-->
     </dependencies>
 
 
