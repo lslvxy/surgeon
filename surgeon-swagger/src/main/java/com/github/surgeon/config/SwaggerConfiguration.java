@@ -15,19 +15,27 @@
  */
 package com.github.surgeon.config;
 
-import com.github.surgeon.config.SurgeonSwaggerProperties.Authorization;
-import com.github.surgeon.config.SurgeonSwaggerProperties.GrantTypes;
-import com.github.surgeon.config.SurgeonSwaggerProperties.Oauth2;
+import com.github.surgeon.property.SwaggerProperties;
+import com.github.surgeon.property.SwaggerProperties.Authorization;
+import com.github.surgeon.property.SwaggerProperties.GrantTypes;
+import com.github.surgeon.property.SwaggerProperties.Oauth2;
+import com.github.xiaoymin.knife4j.spring.filter.ProductionSecurityFilter;
 import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.lang.Nullable;
 import org.springframework.util.AntPathMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.OAuthBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -55,6 +63,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.ApiKeyVehicle;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -69,18 +78,37 @@ import java.util.stream.Collectors;
  */
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(Docket.class)
-@EnableConfigurationProperties(SurgeonSwaggerProperties.class)
-@ConditionalOnProperty(value = "surgeon.swagger.enabled", havingValue = "true", matchIfMissing = true)
+@ComponentScan("com.github.xiaoymin.knife4j.spring")
+@EnableSwagger2
+@Slf4j
 public class SwaggerConfiguration {
+    @Autowired
+    private Environment environment;
+
+    @Bean("knife4jCorsFilter")
+    @ConditionalOnMissingBean(CorsFilter.class)
+    @ConditionalOnProperty(name = "surgeon.swagger.cors", havingValue = "true")
+    public CorsFilter corsFilter() {
+        log.info("init CorsFilter...");
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.addAllowedOriginPattern(CorsConfiguration.ALL);
+        corsConfiguration.addAllowedHeader(CorsConfiguration.ALL);
+        corsConfiguration.addAllowedMethod(CorsConfiguration.ALL);
+        corsConfiguration.setMaxAge(10000L);
+        //匹配所有API
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return new CorsFilter(source);
+    }
 
     @Bean
     public Docket docket(Environment environment,
-                         SurgeonSwaggerProperties properties,
+                         SwaggerProperties properties,
                          ObjectProvider<List<SwaggerCustomizer>> swaggerCustomizersProvider) {
         // 1. 组名为应用名
         String appName = environment.getProperty("spring.application.name");
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
-                .useDefaultResponseMessages(false)
                 .globalRequestParameters(globalHeaders(properties))
                 .apiInfo(apiInfo(appName, properties)).select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
@@ -101,6 +129,27 @@ public class SwaggerConfiguration {
         // 4. 自定义 customizer 配置
         swaggerCustomizersProvider.ifAvailable(customizers -> customizers.forEach(customizer -> customizer.customize(docket)));
         return docket;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(ProductionSecurityFilter.class)
+    public ProductionSecurityFilter productionSecurityFilter(SwaggerProperties swaggerProperties) {
+        boolean prod = false;
+        ProductionSecurityFilter p;
+        if (swaggerProperties == null) {
+            if (environment != null) {
+                String prodStr = environment.getProperty("surgeon.swagger.enable");
+                if (log.isDebugEnabled()) {
+                    log.debug("swagger.enable:{}", prodStr);
+                }
+                prod = !Boolean.parseBoolean(prodStr);
+            }
+            p = new ProductionSecurityFilter(prod);
+        } else {
+            p = new ProductionSecurityFilter(!swaggerProperties.isEnable());
+        }
+
+        return p;
     }
 
     /**
@@ -196,7 +245,7 @@ public class SwaggerConfiguration {
                 .build();
     }
 
-    private ApiInfo apiInfo(@Nullable String appName, SurgeonSwaggerProperties properties) {
+    private ApiInfo apiInfo(@Nullable String appName, SwaggerProperties properties) {
         String defaultName = (appName == null ? "" : appName) + "服务";
         String title = Optional.ofNullable(properties.getTitle())
                 .orElse(defaultName);
@@ -210,7 +259,7 @@ public class SwaggerConfiguration {
                 .build();
     }
 
-    private List<RequestParameter> globalHeaders(SurgeonSwaggerProperties properties) {
+    private List<RequestParameter> globalHeaders(SwaggerProperties properties) {
         return properties.getHeaders().stream()
                 .map(header ->
                         new RequestParameterBuilder()

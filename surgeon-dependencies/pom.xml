@@ -37,140 +37,7 @@
     </properties>
     <dependencyManagement>
         <dependencies>
-            <!--Surgeon Components-->
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-core</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-autoconfig</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-swagger</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-cache</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-mbg-plugin</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-file</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-dict</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-upms</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-file-adapter</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-file-client</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-file-app</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-file-domain</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-file-infrastructure</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-file-provider</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
 
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-dict-adapter</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-dict-client</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-dict-app</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-dict-domain</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-dict-infrastructure</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-dict-provider</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-upms-adapter</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-upms-client</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-upms-app</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-upms-domain</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-upms-infrastructure</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.surgeon</groupId>
-                <artifactId>surgeon-upms-provider</artifactId>
-                <version>${surgeon.version}</version>
-            </dependency>
-            <!--Surgeon Components End-->
 
             <!--COLA Components-->
             <dependency>
@@ -210,7 +77,6 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct-processor</artifactId>
                 <version>${org.mapstruct.version}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>

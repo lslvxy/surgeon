@@ -31,10 +31,16 @@ import com.github.surgeon.dto.data.FileDTO;
 import com.github.surgeon.dto.data.FileDownloadDTO;
 import com.github.surgeon.dto.data.FileUploadDTO;
 import com.github.surgeon.dto.query.IdQuery;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -44,6 +50,7 @@ import java.net.URLEncoder;
 
 @RestController
 @RequestMapping("file")
+@Api(tags = "文件管理")
 public class FileController extends BaseController {
 
     @Autowired
@@ -63,7 +70,6 @@ public class FileController extends BaseController {
     public SingleResponse<FileDTO> detail(IdQuery query) {
         return fileService.findById(query);
     }
-
 
     @PostMapping("upload")
     @ApiOperation(value = "上传", response = Response.class)
