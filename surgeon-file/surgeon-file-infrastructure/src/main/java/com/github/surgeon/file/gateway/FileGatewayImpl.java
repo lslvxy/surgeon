@@ -13,17 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.file.dict.gateway;
+package com.github.surgeon.file.gateway;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.github.surgeon.file.File;
 import com.github.surgeon.file.convertor.FileDOConvertor;
 import com.github.surgeon.file.dataobject.FileDO;
-import com.github.surgeon.file.dict.repository.FileDODynamicSqlSupport;
-import com.github.surgeon.file.dict.repository.FileDOMapper;
 import com.github.surgeon.file.dto.FileQuery;
-import com.github.surgeon.file.gateway.FileGateway;
+import com.github.surgeon.file.repository.FileDODynamicSqlSupport;
+import com.github.surgeon.file.repository.FileDOMapper;
 import com.github.surgeon.util.IdUtil;
 import com.github.surgeon.util.SqlBuilderUtil;
 import org.mybatis.dynamic.sql.SqlBuilder;

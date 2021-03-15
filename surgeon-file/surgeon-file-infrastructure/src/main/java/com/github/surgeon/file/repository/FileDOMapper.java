@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.surgeon.file.dict.repository;
+package com.github.surgeon.file.repository;
 
 import com.github.surgeon.base.BaseMapper;
 import com.github.surgeon.file.dataobject.FileDO;
