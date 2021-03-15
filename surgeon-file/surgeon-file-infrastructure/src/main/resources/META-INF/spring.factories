@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.github.surgeon.config.FileAutoConfiguration
+com.github.surgeon.file.config.FileAutoConfiguration
