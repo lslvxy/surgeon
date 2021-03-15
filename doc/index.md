@@ -2,6 +2,31 @@
 
 ## Swagger 文档
 
+`application.yml` 中配置
+
+注意: 添加有 `@Api` 注解的控制器才会自动暴露给 swagger。
+
+```yaml
+surgeon:
+  swagger:
+    enable: true
+    title: 测试
+    description: xxx项目
+    version: V1.0
+```
+
+自定义配置
+
+```java
+@Bean
+public SwaggerCustomizer swaggerCustomizer(){
+        return(docket)->{
+        docket.xxxx
+        };
+        }
+
+```
+
 ## Domain 唯一性校验
 
 需要校验的DTO加上注解
