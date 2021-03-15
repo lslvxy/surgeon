@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Laysan
  */
 @Configuration
-@MapperScan("com.github.surgeon.repository")
+@MapperScan("com.github.surgeon.dict.repository")
 public class DictAutoConfiguration {
 
 }

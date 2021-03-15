@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Laysan
  */
 @Configuration
-@MapperScan(basePackages = {"com.github.surgeon.repository"})
+@MapperScan(basePackages = {"com.github.surgeon.file.repository"})
 public class FileAutoConfiguration {
 
 }
