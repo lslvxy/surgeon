@@ -35,6 +35,10 @@ public interface SurgeonConstants {
      */
     String JWT_CLIENT_SECRET        = "Seal@202012221120*&^%$@!!@#$%^&*";
 
+    String SPRING_APP_NAME_KEY = "spring.application.name";
+
+    String ACTIVE_PROFILES_PROPERTY = "spring.profiles.active";
+
     /**
      * Constant <code>DEFAULT_PASSWORD="123456"</code>
      */

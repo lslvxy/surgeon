@@ -10,12 +10,13 @@
     <modules>
         <module>surgeon-core</module>
         <module>surgeon-cache</module>
+        <module>surgeon-swagger</module>
+        <module>surgeon-logging</module>
         <module>surgeon-mbg-plugin</module>
         <module>surgeon-autoconfig</module>
         <module>surgeon-dict</module>
         <module>surgeon-file</module>
         <module>surgeon-upms</module>
-        <module>surgeon-swagger</module>
     </modules>
     <inceptionYear>2021</inceptionYear>
     <packaging>pom</packaging>
